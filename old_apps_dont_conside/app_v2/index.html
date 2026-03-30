@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creators Pod — Your Second Brain for the Creator Economy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F8F6F2;
+      --bg-elevated: #FFFEFB;
+      --surface: #EFEDE8;
+      --border: #E2DFD9;
+      --border-strong: #C9C4BA;
+      --text: #1A1814;
+      --text-secondary: #5C5650;
+      --text-muted: #8A847A;
+      --accent: #C45C2E;
+      --accent-dim: rgba(196, 92, 46, 0.12);
+      --accent-glow: rgba(196, 92, 46, 0.2);
+      --accent-2: #2D6B5C;
+      --accent-2-dim: rgba(45, 107, 92, 0.12);
+      --success: #2D6B5C;
+      --ff-display: 'Instrument Serif', Georgia, serif;
+      --ff-body: 'DM Sans', sans-serif;
+      --ff-mono: 'JetBrains Mono', monospace;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --transition: 0.25s ease;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F0E0C;
+      --bg-elevated: #181614;
+      --surface: #1E1C18;
+      --border: #2A2722;
+      --border-strong: #3D3832;
+      --text: #F2F0EB;
+      --text-secondary: #B5B0A6;
+      --text-muted: #7A756C;
+      --accent: #E87D4A;
+      --accent-dim: rgba(232, 125, 74, 0.15);
+      --accent-glow: rgba(232, 125, 74, 0.25);
+      --accent-2: #4A9B88;
+      --accent-2-dim: rgba(74, 155, 136, 0.15);
+      --success: #4A9B88;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 100% 80% at 20% 20%, var(--accent-dim) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 100% at 80% 80%, var(--accent-2-dim) 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(248, 246, 242, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s, background 0.3s;
+    }
+
+    [data-theme="dark"] nav {
+      background: rgba(15, 14, 12, 0.9);
+    }
+
+    nav.scrolled { padding: 14px 40px; }
+
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-mark {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow);
+      animation: pulse-mark 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-mark {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.1); }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.2s;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--border-strong);
+      color: var(--text);
+    }
+
+    .btn-primary {
+      font-family: var(--ff-body);
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      box-shadow: 0 4px 20px var(--accent-glow);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 24px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 16px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s ease forwards;
+    }
+
+    h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 24px;
+      max-width: 800px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s ease forwards;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-strapline {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      max-width: 560px;
+      margin: 0 auto 40px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s ease forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.65s ease forwards;
+    }
+
+    .btn-secondary {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 12px 24px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-muted);
+      background: var(--surface);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Features strip */
+    #features {
+      padding: 100px 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 540px;
+      margin-bottom: 48px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .feature-card {
+      background: var(--bg-elevated);
+      padding: 36px 32px;
+      border: none;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .feature-card:hover {
+      background: var(--surface);
+      transform: translateY(-2px);
+      z-index: 1;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+
+    [data-theme="dark"] .feature-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover::after { opacity: 1; }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--accent-dim);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .feature-name {
+      font-family: var(--ff-display);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Personas */
+    #personas {
+      padding: 100px 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .personas-header {
+      margin-bottom: 48px;
+    }
+
+    .personas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .persona-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .persona-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .persona-card.creator::before { background: var(--accent-2); }
+    .persona-card.brand::before { background: var(--accent); }
+    .persona-card.executive::before { background: #4A6B9B; }
+
+    .persona-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    [data-theme="dark"] .persona-card:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .persona-card:hover::before { opacity: 1; }
+
+    .persona-emoji {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .persona-type {
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .persona-card.creator .persona-type { color: var(--accent-2); }
+    .persona-card.brand .persona-type { color: var(--accent); }
+    .persona-card.executive .persona-type { color: #4A6B9B; }
+
+    .persona-name {
+      font-family: var(--ff-display);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .persona-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+
+    .persona-cta {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .persona-card.creator .persona-cta { color: var(--accent-2); }
+    .persona-card.brand .persona-cta { color: var(--accent); }
+    .persona-card.executive .persona-cta { color: #4A6B9B; }
+
+    .persona-cta .arrow { transition: transform 0.2s; }
+    .persona-card:hover .persona-cta .arrow { transform: translateX(4px); }
+
+    /* How it works */
+    #how {
+      padding: 100px 24px;
+      background: linear-gradient(180deg, transparent 0%, var(--surface) 30%, var(--surface) 70%, transparent 100%);
+      position: relative;
+      z-index: 2;
+    }
+    .how-header { text-align: center; margin-bottom: 56px; }
+    .how-header .section-label { justify-content: center; }
+    .how-header .section-label::before { display: none; }
+    .how-header .section-sub { margin-left: auto; margin-right: auto; text-align: center; }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .how-step {
+      text-align: center;
+      padding: 0 20px;
+    }
+    .how-step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-family: var(--ff-display);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--accent);
+      transition: all 0.3s;
+    }
+    .how-step:hover .how-step-num {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 0 24px var(--accent-glow);
+    }
+    .how-step-title {
+      font-family: var(--ff-display);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .how-step-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Proof / stats */
+    #proof {
+      padding: 100px 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .proof-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .proof-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    }
+    [data-theme="dark"] .proof-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+    .proof-num {
+      font-family: var(--ff-display);
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .proof-num span { color: var(--text); }
+    .proof-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .proof-source {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* Problem strip */
+    #problem {
+      padding: 80px 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 40px;
+    }
+    .problem-card {
+      background: var(--bg-elevated);
+      padding: 32px 28px;
+      transition: all 0.3s;
+    }
+    .problem-card:hover { background: var(--surface); }
+    .problem-stat {
+      font-family: var(--ff-display);
+      font-size: 48px;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .problem-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .problem-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-logo {
+      font-family: var(--ff-display);
+      font-size: 18px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-secondary); }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .personas-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
+      .problem-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-mark"></span>
+    Creators Pod
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#personas">Who it's for</a></li>
+    <li><a href="#proof">Proof</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">◐</button>
+    <a href="creator/onboarding.html" class="btn-primary">
+      Get started
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-badge">Autonomous agents · Second Brain</div>
+  <h1>Your creative output, <em>on autopilot.</em></h1>
+  <p class="hero-strapline">
+    The AI-native platform that runs your full content lifecycle — from ideation and research to creation, publishing, and analytics — with persistent memory and minimal intervention.
+  </p>
+  <div class="hero-actions">
+    <a href="creator/onboarding.html" class="btn-primary">
+      Start free
+      <span aria-hidden="true">→</span>
+    </a>
+    <a href="#personas" class="btn-secondary">
+      See by role
+      <span aria-hidden="true">↓</span>
+    </a>
+  </div>
+</section>
+
+<section id="features">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Platform capabilities</div>
+      <h2 class="section-title">One goal. Full execution.<br><em>Zero context loss.</em></h2>
+      <p class="section-sub">Six integrated engines powered by autonomous agents and persistent memory — so your brand voice, performance data, and preferences are always in play.</p>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <div class="feature-name">Content Research Engine</div>
+        <div class="feature-desc">Real-time trend discovery across social, search, and news. Topic clustering, opportunity mapping, and continuous background monitoring — no manual scouting.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <div class="feature-name">Content Development</div>
+        <div class="feature-desc">Scripts, captions, articles, threads — multi-format output grounded in your stored voice fingerprint and past performance. Human-in-the-loop checkpoints when you want them.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-name">Smart Publishing</div>
+        <div class="feature-desc">Multi-platform publishing with cadence optimisation, platform-specific reformatting, and A/B testing. One asset, every channel — on schedule.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-name">Analytics & Optimisation</div>
+        <div class="feature-desc">Unified performance dashboard, predictive scoring before publish, and feedback loops that make every piece better. Weekly narrative reports in plain language.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧬</div>
+        <div class="feature-name">Brand Voice DNA</div>
+        <div class="feature-desc">Proprietary voice fingerprint from your content history — tone, vocabulary, structure. Every output scored for consistency before delivery.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-name">Goal-State Machine</div>
+        <div class="feature-desc">Define a high-level goal and timeline. The platform decomposes it into weekly sprints, executes autonomously, and reports progress with explainability by default.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">The problem</div>
+      <h2 class="section-title">Creators are <em>drowning</em> in workflow</h2>
+      <p class="section-sub">The creator economy is booming — but the tools haven't caught up. Most creators spend more time managing their workflow than actually creating.</p>
+    </div>
+    <div class="problem-grid reveal">
+      <div class="problem-card">
+        <div class="problem-stat">45%</div>
+        <div class="problem-title">Time lost on repetitive tasks</div>
+        <div class="problem-desc">Nearly half of every creator's workweek goes to copy-editing, scheduling, and data aggregation — leaving little for the work that matters.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-stat">68%</div>
+        <div class="problem-title">Context lost between sessions</div>
+        <div class="problem-desc">Ideas, past scripts, and analytics scattered across tools. No single place that remembers your voice and your goals.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-stat">12%</div>
+        <div class="problem-title">Campaign error rate</div>
+        <div class="problem-desc">Multi-step execution fails when assets and metrics live in disconnected systems. One platform fixes that.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="section-inner">
+    <div class="how-header reveal">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">Three steps to <em>autonomous content</em></h2>
+      <p class="section-sub">Set a goal. Autonomous agents do the rest. You review, approve, and scale.</p>
+    </div>
+    <div class="how-steps reveal">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Define your goal</div>
+        <div class="how-step-desc">Tell the platform what you want — in plain language. Growth targets, authority in a niche, campaign outcomes. The system breaks it into a plan.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Autonomous agents execute</div>
+        <div class="how-step-desc">Research, content, publishing, and analytics agents work in the background. They use your voice, your data, and your preferences — with persistent memory.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Review & scale</div>
+        <div class="how-step-desc">Review a daily digest, approve or adjust, and watch performance compound. Start supervised; unlock full autopilot as you trust the system.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Proof</div>
+      <h2 class="section-title">A market ready for <em>autonomous creation</em></h2>
+      <p class="section-sub">The creator economy is exploding. The high-autonomy, low-friction quadrant is still wide open.</p>
+    </div>
+    <div class="proof-grid reveal">
+      <div class="proof-card">
+        <div class="proof-num">$70B<span style="font-size:18px">+</span></div>
+        <div class="proof-label">TAM for autonomous creator agents by 2030</div>
+        <div class="proof-source">Market.US · Grand View Research</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">73%</div>
+        <div class="proof-label">Of creators already use AI weekly — ready to upgrade</div>
+        <div class="proof-source">Creator Economy Report 2025</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">30%</div>
+        <div class="proof-label">CAGR for agentic content creation through 2034</div>
+        <div class="proof-source">Market.US Agentic AI</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">$284B</div>
+        <div class="proof-label">Creator economy in 2024 → $400B+ by 2026</div>
+        <div class="proof-source">Industry reports</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="personas">
+  <div class="section-inner">
+    <div class="personas-header reveal">
+      <div class="section-label">Built for three worlds</div>
+      <h2 class="section-title">Who is it <em>for?</em></h2>
+      <p class="section-sub">Different goals, one platform. Pick your role and try the onboarding and dashboard prototypes.</p>
+    </div>
+    <div class="personas-grid reveal">
+      <a href="creator/onboarding.html" class="persona-card creator">
+        <span class="persona-emoji">🎬</span>
+        <div class="persona-type">Individual Creator</div>
+        <div class="persona-name">Solo Creators</div>
+        <div class="persona-desc">YouTubers, TikTokers, podcasters, newsletter writers. Automate research, scripting, and publishing while keeping your voice consistent. 30% more output without extra hours.</div>
+        <div class="persona-cta">
+          Onboarding & dashboard
+          <span class="arrow">→</span>
+        </div>
+      </a>
+      <a href="brand/onboarding.html" class="persona-card brand">
+        <span class="persona-emoji">🏢</span>
+        <div class="persona-type">Brand & Agency</div>
+        <div class="persona-name">Campaign Teams</div>
+        <div class="persona-desc">Marketing teams and agencies running multi-channel campaigns. Brief to multi-format assets in one workflow, with brand voice enforcement and compliance baked in.</div>
+        <div class="persona-cta">
+          Onboarding & dashboard
+          <span class="arrow">→</span>
+        </div>
+      </a>
+      <a href="executive/onboarding.html" class="persona-card executive">
+        <span class="persona-emoji">💼</span>
+        <div class="persona-type">Executive & Thought Leader</div>
+        <div class="persona-name">Thought Leaders</div>
+        <div class="persona-desc">VCs, executives, consultants. Calendar-aware content, secure RAG over private documents, and brand-consistent ghost writing — content time cut to under an hour.</div>
+        <div class="persona-cta">
+          Onboarding & dashboard
+          <span class="arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <span class="nav-logo-mark"></span>
+    Creators Pod
+  </div>
+  <div class="footer-links">
+    <a href="creator/onboarding.html">Creator</a>
+    <a href="brand/onboarding.html">Brand</a>
+    <a href="executive/onboarding.html">Executive</a>
+  </div>
+  <div class="footer-copy">© 2026 Creators Pod. Prototype.</div>
+</footer>
+
+<script>
+  (function () {
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const themeToggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('creatorspod-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggle.textContent = '◑';
+    }
+    themeToggle.addEventListener('click', function () {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '◐';
+        localStorage.setItem('creatorspod-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '◑';
+        localStorage.setItem('creatorspod-theme', 'dark');
+      }
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(function (el) { observer.observe(el); });
+  })();
+</script>
+</body>
+</html>

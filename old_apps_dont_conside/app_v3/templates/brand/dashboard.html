@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creators Pod | Brand Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <script src="../../assets/app.js" defer></script>
+  </head>
+  <body data-theme="light" data-persona="brand">
+    <header class="site-header">
+      <div class="shell dashboard-header__inner">
+        <a class="brand-lockup" href="../../index.html">
+          <span class="brand-lockup__mark">C</span>
+          <span class="brand-lockup__text">
+            <span class="brand-lockup__eyebrow">Brand dashboard</span>
+            <span>Creators Pod</span>
+          </span>
+        </a>
+        <div class="inline-links">
+          <a class="inline-link" href="./onboarding.html">Onboarding</a>
+          <a class="inline-link" href="../creator/dashboard.html">Creator dashboard</a>
+          <a class="inline-link" href="../executive/dashboard.html">Executive dashboard</a>
+        </div>
+        <div class="header-actions">
+          <button class="button-ghost theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+            Dark
+          </button>
+          <button class="button-secondary" type="button" data-run-cycle>Run campaign cycle</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-shell" data-dashboard>
+      <section class="dashboard-hero">
+        <div class="shell dashboard-hero__grid">
+          <article class="panel hero-panel reveal">
+            <div class="kicker">Campaign command center</div>
+            <h1 style="font-size: clamp(2.5rem, 4vw, 4.4rem);">A brand-safe studio where agents execute with oversight.</h1>
+            <p style="margin-top: 18px;">
+              The brand workspace combines campaign planning, influencer scoring, asset creation,
+              reporting, and compliance into one operating view.
+            </p>
+            <div class="summary-list">
+              <div>
+                <strong>Daily digest</strong>
+                <span data-dashboard-digest></span>
+              </div>
+            </div>
+          </article>
+
+          <aside class="panel side-panel reveal reveal-delay-1">
+            <div class="meta-label">Automation boundary</div>
+            <h3 data-dashboard-autonomy-output>Orchestrated</h3>
+            <p>Research, scoring, and reporting can run automatically. Publishing and legal-sensitive actions stay gated.</p>
+            <div class="slider-row">
+              <input type="range" min="0" max="2" value="1" data-dashboard-autonomy />
+              <div class="slider-scale">
+                <span>Guarded</span>
+                <span>Orchestrated</span>
+                <span>Campaign autopilot</span>
+              </div>
+            </div>
+            <div class="check-list">
+              <span>Mandatory brand review before distribution.</span>
+              <span>Influencer outreach suggestions stay draft-first.</span>
+              <span>Reporting narratives update automatically every week.</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell dashboard-grid">
+          <div class="dashboard-column">
+            <div class="metrics-grid">
+              <article class="stat-card">
+                <div class="meta-label">Campaign reach</div>
+                <strong>2.4M</strong>
+                <p>Projected total reach across active channels this sprint.</p>
+              </article>
+              <article class="stat-card">
+                <div class="meta-label">Voice safety</div>
+                <strong>96%</strong>
+                <p>Average brand voice alignment across queued assets.</p>
+              </article>
+              <article class="stat-card">
+                <div class="meta-label">Influencer fit</div>
+                <strong>31 matched</strong>
+                <p>Creators scored above target relevance threshold.</p>
+              </article>
+              <article class="stat-card">
+                <div class="meta-label">Compliance queue</div>
+                <strong>4 items</strong>
+                <p>Assets waiting on final review.</p>
+              </article>
+            </div>
+
+            <article class="dashboard-card">
+              <div class="section-heading" style="margin-bottom: 18px;">
+                <div>
+                  <div class="meta-label">Agent workspace</div>
+                  <h3>Cross-functional campaign execution</h3>
+                </div>
+              </div>
+              <div class="agent-strip">
+                <div class="agent-card">
+                  <div class="agent-card__state">
+                    <strong>Research Agent</strong>
+                    <span class="status-badge">Active</span>
+                  </div>
+                  <p>Monitoring competitor themes and platform-native creator trends.</p>
+                  <div class="agent-card__progress" data-agent-progress="76">
+                    <span style="width: 76%;"></span>
+                  </div>
+                </div>
+                <div class="agent-card">
+                  <div class="agent-card__state">
+                    <strong>Compliance Agent</strong>
+                    <span class="tiny-badge">Reviewing</span>
+                  </div>
+                  <p>Checking claims, disclosures, and restricted language against policy rules.</p>
+                  <div class="agent-card__progress" data-agent-progress="61">
+                    <span style="width: 61%;"></span>
+                  </div>
+                </div>
+                <div class="agent-card">
+                  <div class="agent-card__state">
+                    <strong>Analytics Agent</strong>
+                    <span class="status-badge">Reporting</span>
+                  </div>
+                  <p>Updating weekly narrative reporting and ROI signals by partner and format.</p>
+                  <div class="agent-card__progress" data-agent-progress="69">
+                    <span style="width: 69%;"></span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="dashboard-card">
+              <div class="section-heading" style="margin-bottom: 18px;">
+                <div>
+                  <div class="meta-label">Campaign views</div>
+                  <h3>Overview, partner network, and reporting</h3>
+                </div>
+              </div>
+              <div class="segmented" data-tab-group>
+                <button type="button" aria-selected="true" class="tab-button" data-tab-button="overview">Overview</button>
+                <button type="button" aria-selected="false" class="tab-button" data-tab-button="partners">Partners</button>
+                <button type="button" aria-selected="false" class="tab-button" data-tab-button="reporting">Reporting</button>
+              </div>
+              <div style="margin-top: 18px;">
+                <div class="tab-panel" data-tab-panel="overview" data-active="true">
+                  <div class="timeline-list">
+                    <article>
+                      <strong>Current campaign pulse</strong>
+                      <p>The hero message focused on measurable creator ROI is outperforming brand-led messaging.</p>
+                    </article>
+                    <article>
+                      <strong>Asset readiness</strong>
+                      <p>12 assets approved, 4 in compliance review, 3 waiting on strategist sign-off.</p>
+                    </article>
+                    <article>
+                      <strong>Recommended next move</strong>
+                      <p>Expand into one more creator cluster in the productivity niche while preserving price discipline.</p>
+                    </article>
+                  </div>
+                </div>
+                <div class="tab-panel" data-tab-panel="partners" data-active="false">
+                  <div class="check-list">
+                    <span>Creator cohort A shows the best CPM-to-conversion efficiency so far.</span>
+                    <span>Three mid-tier partners have high audience overlap and should be deprioritized.</span>
+                    <span>Two new prospects match tone, audience, and historical ROI benchmarks.</span>
+                  </div>
+                </div>
+                <div class="tab-panel" data-tab-panel="reporting" data-active="false">
+                  <div class="workflow-chain">
+                    <div class="workflow-node">
+                      <small>Reach</small>
+                      <strong>+27%</strong>
+                      <p>Cross-platform awareness versus last sprint.</p>
+                    </div>
+                    <div class="workflow-node">
+                      <small>CTR</small>
+                      <strong>3.8%</strong>
+                      <p>Higher than baseline for short-form paid support.</p>
+                    </div>
+                    <div class="workflow-node">
+                      <small>ROAS</small>
+                      <strong>4.6x</strong>
+                      <p>Campaign return estimate using current attribution model.</p>
+                    </div>
+                    <div class="workflow-node">
+                      <small>Lift</small>
+                      <strong>+14%</strong>
+                      <p>Incremental partner impact on qualified visits.</p>
+                    </div>
+                    <div class="workflow-node">
+                      <small>Risk</small>
+                      <strong>Low</strong>
+                      <p>No policy breaches detected in the queued batch.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="dashboard-column">
+            <article class="digest-card">
+              <div class="meta-label">Approvals</div>
+              <h3>Waiting for sign-off</h3>
+              <article>
+                <strong>Influencer shortlist</strong>
+                <p>Eight creators ranked by audience fit, pricing history, and expected conversion efficiency.</p>
+              </article>
+              <article>
+                <strong>Launch asset bundle</strong>
+                <p>Hero ad copy, social cutdowns, and creator briefing deck prepared for final review.</p>
+              </article>
+              <article>
+                <strong>Weekly narrative report</strong>
+                <p>The system drafted a plain-language summary of reach, spend efficiency, and next recommendations.</p>
+              </article>
+            </article>
+
+            <article class="workspace-card">
+              <div class="meta-label">Operational guardrails</div>
+              <h3>Policy status</h3>
+              <div class="summary-list">
+                <div>
+                  <strong>Claims monitoring</strong>
+                  <span>No unsupported performance claims found in active drafts.</span>
+                </div>
+                <div>
+                  <strong>Disclosure coverage</strong>
+                  <span>Sponsored and AI-assisted content labels are attached where required.</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="workspace-card">
+              <div class="meta-label">Team collaboration</div>
+              <h3>Live workspace activity</h3>
+              <div class="check-list">
+                <span>Strategist edited the launch message and the agent propagated tone changes downstream.</span>
+                <span>Creative lead approved 6 short-form concepts for partner-specific adaptation.</span>
+                <span>Analytics lead requested a deeper break-out by creator cohort.</span>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer__inner">
+        <p>Brand dashboard prototype for Creators Pod.</p>
+        <div class="inline-links">
+          <a class="inline-link" href="../../index.html">Landing page</a>
+          <a class="inline-link" href="../executive/dashboard.html">Executive dashboard</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

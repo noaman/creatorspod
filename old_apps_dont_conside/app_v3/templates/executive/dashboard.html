@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creators Pod | Executive Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <script src="../../assets/app.js" defer></script>
+  </head>
+  <body data-theme="light" data-persona="executive">
+    <header class="site-header">
+      <div class="shell dashboard-header__inner">
+        <a class="brand-lockup" href="../../index.html">
+          <span class="brand-lockup__mark">C</span>
+          <span class="brand-lockup__text">
+            <span class="brand-lockup__eyebrow">Executive dashboard</span>
+            <span>Creators Pod</span>
+          </span>
+        </a>
+        <div class="inline-links">
+          <a class="inline-link" href="./onboarding.html">Onboarding</a>
+          <a class="inline-link" href="../creator/dashboard.html">Creator dashboard</a>
+          <a class="inline-link" href="../brand/dashboard.html">Brand dashboard</a>
+        </div>
+        <div class="header-actions">
+          <button class="button-ghost theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+            Dark
+          </button>
+          <button class="button-secondary" type="button" data-run-cycle>Run authority cycle</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-shell" data-dashboard>
+      <section class="dashboard-hero">
+        <div class="shell dashboard-hero__grid">
+          <article class="panel hero-panel reveal">
+            <div class="kicker">Authority command center</div>
+            <h1 style="font-size: clamp(2.5rem, 4vw, 4.4rem);">Maintain a public presence without adding another full-time job.</h1>
+            <p style="margin-top: 18px;">
+              The executive workspace is built for trusted context, selective automation, and clear
+              review trails before anything appears in public.
+            </p>
+            <div class="summary-list">
+              <div>
+                <strong>Daily digest</strong>
+                <span data-dashboard-digest></span>
+              </div>
+            </div>
+          </article>
+
+          <aside class="panel side-panel reveal reveal-delay-1">
+            <div class="meta-label">Authority posture</div>
+            <h3 data-dashboard-autonomy-output>Strategic assist</h3>
+            <p>Use automation to surface timely ideas and first drafts while keeping high-sensitivity content review-first.</p>
+            <div class="slider-row">
+              <input type="range" min="0" max="2" value="1" data-dashboard-autonomy />
+              <div class="slider-scale">
+                <span>Draft support</span>
+                <span>Strategic assist</span>
+                <span>Authority autopilot</span>
+              </div>
+            </div>
+            <div class="check-list">
+              <span>Calendar scanning stays active at all times.</span>
+              <span>Posts with strategic sensitivity remain gated for review.</span>
+              <span>Internal notes are summarized, not exposed directly.</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell dashboard-grid">
+          <div class="dashboard-column">
+            <div class="metrics-grid">
+              <article class="stat-card">
+                <div class="meta-label">Authority momentum</div>
+                <strong>+22%</strong>
+                <p>Growth in qualified impressions across leadership content.</p>
+              </article>
+              <article class="stat-card">
+                <div class="meta-label">Calendar triggers</div>
+                <strong>5 upcoming</strong>
+                <p>Events or milestones with strong content opportunity.</p>
+              </article>
+              <article class="stat-card">
+                <div class="meta-label">Review latency</div>
+                <strong>14 min</strong>
+                <p>Average time from draft generation to approval.</p>
+              </article>
+              <article class="stat-card">
+                <div class="meta-label">Narrative fit</div>
+                <strong>91%</strong>
+                <p>Alignment to your learned voice and strategic themes.</p>
+              </article>
+            </div>
+
+            <article class="dashboard-card">
+              <div class="section-heading" style="margin-bottom: 18px;">
+                <div>
+                  <div class="meta-label">Agent workspace</div>
+                  <h3>Private context turned into public-ready content</h3>
+                </div>
+              </div>
+              <div class="agent-strip">
+                <div class="agent-card">
+                  <div class="agent-card__state">
+                    <strong>Calendar Agent</strong>
+                    <span class="status-badge">Watching</span>
+                  </div>
+                  <p>Detected conference, board update, and product milestone windows for timely posts.</p>
+                  <div class="agent-card__progress" data-agent-progress="73">
+                    <span style="width: 73%;"></span>
+                  </div>
+                </div>
+                <div class="agent-card">
+                  <div class="agent-card__state">
+                    <strong>Content Agent</strong>
+                    <span class="tiny-badge">Drafting</span>
+                  </div>
+                  <p>Building LinkedIn and long-form outputs from internal notes and prior talks.</p>
+                  <div class="agent-card__progress" data-agent-progress="66">
+                    <span style="width: 66%;"></span>
+                  </div>
+                </div>
+                <div class="agent-card">
+                  <div class="agent-card__state">
+                    <strong>Compliance Agent</strong>
+                    <span class="status-badge">Screening</span>
+                  </div>
+                  <p>Flagging anything that may over-disclose confidential or market-sensitive information.</p>
+                  <div class="agent-card__progress" data-agent-progress="57">
+                    <span style="width: 57%;"></span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="dashboard-card">
+              <div class="section-heading" style="margin-bottom: 18px;">
+                <div>
+                  <div class="meta-label">Leadership views</div>
+                  <h3>Overview, event rhythm, and narrative insights</h3>
+                </div>
+              </div>
+              <div class="segmented" data-tab-group>
+                <button type="button" aria-selected="true" class="tab-button" data-tab-button="overview">Overview</button>
+                <button type="button" aria-selected="false" class="tab-button" data-tab-button="calendar">Calendar</button>
+                <button type="button" aria-selected="false" class="tab-button" data-tab-button="narrative">Narrative</button>
+              </div>
+              <div style="margin-top: 18px;">
+                <div class="tab-panel" data-tab-panel="overview" data-active="true">
+                  <div class="timeline-list">
+                    <article>
+                      <strong>Today’s suggested angle</strong>
+                      <p>“What operational discipline actually looks like in modern SaaS” maps cleanly to recent internal wins.</p>
+                    </article>
+                    <article>
+                      <strong>Ready for approval</strong>
+                      <p>Two LinkedIn posts, one event teaser, and a ghostwritten newsletter outline.</p>
+                    </article>
+                    <article>
+                      <strong>Recommended action</strong>
+                      <p>Approve the event teaser today to create a pre-conference narrative runway.</p>
+                    </article>
+                  </div>
+                </div>
+                <div class="tab-panel" data-tab-panel="calendar" data-active="false">
+                  <div class="check-list">
+                    <span>72 hours before keynote: publish preview insight and announce the core theme.</span>
+                    <span>Live event day: queue one observation-driven post after the main panel.</span>
+                    <span>48 hours after event: release a distilled lesson learned with a longer-form article hook.</span>
+                  </div>
+                </div>
+                <div class="tab-panel" data-tab-panel="narrative" data-active="false">
+                  <div class="workflow-chain">
+                    <div class="workflow-node">
+                      <small>Theme</small>
+                      <strong>Operational clarity</strong>
+                      <p>Highest resonance across recent audience responses.</p>
+                    </div>
+                    <div class="workflow-node">
+                      <small>Proof</small>
+                      <strong>Internal signal</strong>
+                      <p>Grounded in notes, metrics, and recent executive decisions.</p>
+                    </div>
+                    <div class="workflow-node">
+                      <small>Tone</small>
+                      <strong>Measured</strong>
+                      <p>More evidence-led writing is outperforming bolder positioning.</p>
+                    </div>
+                    <div class="workflow-node">
+                      <small>Risk</small>
+                      <strong>Low</strong>
+                      <p>All queued narratives avoid confidential specifics.</p>
+                    </div>
+                    <div class="workflow-node">
+                      <small>Next</small>
+                      <strong>Deepen series</strong>
+                      <p>Expand this into a three-post sequence after the event.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="dashboard-column">
+            <article class="digest-card">
+              <div class="meta-label">Review queue</div>
+              <h3>Waiting for approval</h3>
+              <article>
+                <strong>Pre-event LinkedIn post</strong>
+                <p>Frames the upcoming talk through a practical operating lesson rather than promotion.</p>
+              </article>
+              <article>
+                <strong>Ghostwritten article outline</strong>
+                <p>Converts internal board-level observations into a public narrative with safe abstraction.</p>
+              </article>
+              <article>
+                <strong>Post-event recap draft</strong>
+                <p>Ready to personalize once live event observations are captured.</p>
+              </article>
+            </article>
+
+            <article class="workspace-card">
+              <div class="meta-label">Trust layer</div>
+              <h3>Confidentiality posture</h3>
+              <div class="summary-list">
+                <div>
+                  <strong>Source isolation</strong>
+                  <span>Private inputs remain in a separate trusted context layer during generation.</span>
+                </div>
+                <div>
+                  <strong>Disclosure control</strong>
+                  <span>Potentially sensitive content is routed to review-first workflows automatically.</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="workspace-card">
+              <div class="meta-label">Opportunity map</div>
+              <h3>Emerging thought-leadership windows</h3>
+              <div class="check-list">
+                <span>Industry pricing debate is peaking and aligns with your recent internal positioning.</span>
+                <span>Conference circuit creates a six-week sequence of high-context public moments.</span>
+                <span>Audience engagement is strongest when posts share first-principles operating lessons.</span>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer__inner">
+        <p>Executive dashboard prototype for Creators Pod.</p>
+        <div class="inline-links">
+          <a class="inline-link" href="../../index.html">Landing page</a>
+          <a class="inline-link" href="../creator/dashboard.html">Creator dashboard</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

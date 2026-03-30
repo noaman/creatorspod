@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive Walkthrough — Creators Pod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,400&family=Syne:wght@400;500;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --c-bg: #070A14;
+      --c-s1: #0C1020;
+      --c-s2: #10162A;
+      --c-s3: #151D34;
+      --c-border: #1C2440;
+      --c-bsoft: #243060;
+      --c-accent: #5E9CFF;
+      --c-adim: rgba(94,156,255,.1);
+      --c-aglow: rgba(94,156,255,.25);
+      --c-gold: #FFD166;
+      --c-green: #5EFF9C;
+      --c-text: #E8F0FF;
+      --c-t2: #7888B5;
+      --c-t3: #3A4468;
+      --ff-d: 'Fraunces', Georgia, serif;
+      --ff-u: 'Syne', sans-serif;
+      --ff-b: 'Epilogue', sans-serif;
+    }
+    html, body { height: 100%; overflow: hidden; }
+    body { background: var(--c-bg); color: var(--c-text); font-family: var(--ff-b); font-size: 14px; display: flex; flex-direction: column; }
+
+    /* TOP BAR */
+    .topbar { height: 56px; background: var(--c-s1); border-bottom: 1px solid var(--c-border); display: flex; align-items: center; padding: 0 24px; gap: 20px; flex-shrink: 0; position: relative; z-index: 50; }
+    .topbar-logo { font-family: var(--ff-u); font-size: 15px; font-weight: 800; color: var(--c-text); display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .logo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--c-accent); box-shadow: 0 0 10px var(--c-accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 10px var(--c-accent)} 50%{opacity:.6;box-shadow:0 0 20px var(--c-accent)} }
+    .topbar-sep { width: 1px; height: 24px; background: var(--c-border); }
+    .topbar-persona { font-family: var(--ff-u); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--c-accent); background: var(--c-adim); border: 1px solid rgba(94,156,255,.2); border-radius: 100px; padding: 4px 12px; }
+    .topbar-title { font-family: var(--ff-u); font-size: 13px; font-weight: 500; color: var(--c-t2); }
+    .topbar-steps { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+    .step-pip { width: 28px; height: 4px; border-radius: 2px; background: var(--c-border); transition: background .4s; cursor: pointer; }
+    .step-pip.done { background: rgba(94,156,255,.4); }
+    .step-pip.active { background: var(--c-accent); box-shadow: 0 0 8px var(--c-aglow); }
+    .step-counter { font-family: var(--ff-u); font-size: 12px; font-weight: 600; color: var(--c-t3); min-width: 50px; text-align: right; }
+    .topbar-back { font-family: var(--ff-u); font-size: 12px; font-weight: 500; color: var(--c-t3); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s; margin-left: 16px; }
+    .topbar-back:hover { color: var(--c-t2); }
+
+    /* LAYOUT */
+    .app-layout { flex: 1; display: grid; grid-template-columns: 240px 1fr 320px; overflow: hidden; }
+
+    /* SIDEBAR */
+    .sidebar { background: var(--c-s1); border-right: 1px solid var(--c-border); display: flex; flex-direction: column; overflow-y: auto; padding: 24px 16px; }
+    .sidebar-profile { background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+    .profile-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--c-accent), #9BC8FF); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 10px; border: 2px solid rgba(94,156,255,.3); }
+    .profile-name { font-family: var(--ff-u); font-size: 14px; font-weight: 700; color: var(--c-text); margin-bottom: 2px; }
+    .profile-sub { font-size: 11px; color: var(--c-t3); margin-bottom: 10px; }
+    .profile-goal-label { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-t3); margin-bottom: 6px; }
+    .profile-goal { font-size: 12px; color: var(--c-t2); line-height: 1.5; padding: 8px 10px; background: var(--c-adim); border: 1px solid rgba(94,156,255,.15); border-radius: 8px; }
+    .sidebar-nav-label { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--c-t3); padding: 0 8px; margin-bottom: 8px; }
+    .sidebar-steps { display: flex; flex-direction: column; gap: 4px; margin-bottom: 24px; }
+    .sidebar-step { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: background .2s; border: 1px solid transparent; }
+    .sidebar-step:hover { background: var(--c-s2); }
+    .sidebar-step.active { background: var(--c-adim); border-color: rgba(94,156,255,.2); }
+    .sidebar-step.done .step-icon, .sidebar-step.active .step-icon { color: var(--c-accent); }
+    .step-icon { font-size: 16px; width: 20px; text-align: center; color: var(--c-t3); flex-shrink: 0; }
+    .step-info { flex: 1; min-width: 0; }
+    .step-name { font-family: var(--ff-u); font-size: 12px; font-weight: 600; color: var(--c-t2); margin-bottom: 1px; }
+    .sidebar-step.active .step-name { color: var(--c-text); }
+    .step-status { font-size: 11px; color: var(--c-t3); }
+    .sidebar-step.done .step-status, .sidebar-step.active .step-status { color: var(--c-accent); }
+    .sidebar-divider { height: 1px; background: var(--c-border); margin: 16px 0; }
+    .sidebar-stat { padding: 12px; background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 10px; margin-bottom: 8px; }
+    .stat-label { font-family: var(--ff-u); font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--c-t3); margin-bottom: 4px; }
+    .stat-value { font-family: var(--ff-d); font-size: 22px; font-weight: 700; letter-spacing: -.02em; color: var(--c-accent); }
+    .stat-change { font-size: 11px; color: var(--c-t3); }
+
+    /* MAIN */
+    .main-content { overflow-y: auto; padding: 28px; display: flex; flex-direction: column; }
+    .step-view { display: none; flex-direction: column; gap: 20px; animation: fadeIn .4s ease; }
+    .step-view.active { display: flex; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    .view-header { margin-bottom: 4px; }
+    .view-step-badge { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--c-accent); margin-bottom: 8px; display: block; }
+    .view-title { font-family: var(--ff-d); font-size: 26px; font-weight: 700; letter-spacing: -.02em; color: var(--c-text); margin-bottom: 6px; }
+    .view-sub { font-size: 13px; color: var(--c-t2); line-height: 1.6; }
+    .card { background: var(--c-s1); border: 1px solid var(--c-border); border-radius: 14px; padding: 20px; }
+    .card-label { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-t3); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+    .card-badge { font-size: 10px; font-weight: 600; letter-spacing: .06em; padding: 3px 8px; border-radius: 100px; }
+    .badge-trigger { background: var(--c-adim); color: var(--c-accent); border: 1px solid rgba(94,156,255,.2); }
+    .badge-secure { background: rgba(94,255,156,.1); color: var(--c-green); border: 1px solid rgba(94,255,156,.2); }
+    .badge-ok { background: rgba(94,255,156,.1); color: var(--c-green); border: 1px solid rgba(94,255,156,.2); }
+
+    /* Calendar event */
+    .cal-event-card {
+      background: var(--c-s2);
+      border: 1px solid var(--c-border);
+      border-radius: 12px; padding: 16px;
+      display: flex; gap: 16px; align-items: flex-start;
+      position: relative; overflow: hidden;
+    }
+    .cal-event-card::before { content:''; position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--c-accent); }
+    .cal-date-block { background: var(--c-adim); border: 1px solid rgba(94,156,255,.2); border-radius: 10px; padding: 10px 14px; text-align: center; flex-shrink: 0; min-width: 64px; }
+    .cal-month { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-accent); }
+    .cal-day { font-family: var(--ff-d); font-size: 28px; font-weight: 700; color: var(--c-text); line-height: 1; }
+    .cal-event-title { font-family: var(--ff-u); font-size: 14px; font-weight: 700; color: var(--c-text); margin-bottom: 4px; }
+    .cal-event-detail { font-size: 12px; color: var(--c-t2); line-height: 1.5; }
+    .cal-event-tag { display: inline-block; font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .06em; padding: 3px 10px; border-radius: 100px; margin-top: 8px; background: var(--c-adim); color: var(--c-accent); border: 1px solid rgba(94,156,255,.2); }
+
+    /* Content opportunity */
+    .opportunity-list { display: flex; flex-direction: column; gap: 10px; }
+    .opp-card {
+      display: flex; gap: 14px; padding: 14px 16px;
+      background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 10px;
+      cursor: pointer; transition: all .2s;
+    }
+    .opp-card:hover { border-color: var(--c-bsoft); background: var(--c-s3); }
+    .opp-card.selected { border-color: rgba(94,156,255,.4); background: var(--c-adim); }
+    .opp-timing { font-family: var(--ff-u); font-size: 11px; font-weight: 700; color: var(--c-accent); min-width: 60px; margin-top: 2px; }
+    .opp-body { flex: 1; }
+    .opp-title { font-family: var(--ff-u); font-size: 13px; font-weight: 600; color: var(--c-text); margin-bottom: 3px; }
+    .opp-desc { font-size: 12px; color: var(--c-t2); line-height: 1.5; }
+    .opp-platform { font-family: var(--ff-u); font-size: 10px; font-weight: 600; color: var(--c-t3); background: var(--c-s3); padding: 3px 8px; border-radius: 100px; align-self: flex-start; flex-shrink: 0; }
+
+    /* Document RAG */
+    .rag-file {
+      display: flex; align-items: center; gap: 14px; padding: 12px 16px;
+      background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 10px;
+      margin-bottom: 8px;
+    }
+    .rag-icon { font-size: 24px; flex-shrink: 0; }
+    .rag-name { font-family: var(--ff-u); font-size: 13px; font-weight: 600; color: var(--c-text); margin-bottom: 2px; }
+    .rag-meta { font-size: 11px; color: var(--c-t3); }
+    .rag-status { margin-left: auto; font-family: var(--ff-u); font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+    .encrypted { background: rgba(94,255,156,.1); color: var(--c-green); border: 1px solid rgba(94,255,156,.2); }
+    .indexing { background: var(--c-adim); color: var(--c-accent); border: 1px solid rgba(94,156,255,.2); }
+
+    /* LinkedIn post drafts */
+    .post-draft {
+      background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 12px;
+      padding: 16px; cursor: pointer; transition: all .2s; margin-bottom: 10px;
+    }
+    .post-draft:hover { border-color: var(--c-bsoft); }
+    .post-draft.selected { border-color: rgba(94,156,255,.4); background: var(--c-adim); }
+    .post-draft-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .li-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,var(--c-accent),#9BC8FF); display:flex;align-items:center;justify-content:center;font-size:14px; }
+    .li-name { font-family: var(--ff-u); font-size: 12px; font-weight: 700; color: var(--c-text); }
+    .li-title { font-size: 11px; color: var(--c-t3); }
+    .post-body { font-size: 13px; color: var(--c-t2); line-height: 1.7; }
+    .post-body strong { color: var(--c-text); }
+    .post-hashtags { margin-top: 10px; font-size: 12px; color: var(--c-accent); }
+    .post-meta { margin-top: 10px; display:flex; gap:12px; }
+    .post-score { font-family: var(--ff-u); font-size: 11px; font-weight: 600; color: var(--c-accent); background: var(--c-adim); padding: 3px 10px; border-radius: 100px; }
+    .post-format { font-family: var(--ff-u); font-size: 11px; font-weight: 500; color: var(--c-t3); background: var(--c-s3); padding: 3px 10px; border-radius: 100px; }
+
+    /* Compliance */
+    .comp-check { display:flex; align-items:flex-start; gap:12px; padding:12px 14px; background:var(--c-s2); border:1px solid var(--c-border); border-radius:10px; margin-bottom:8px; }
+    .comp-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+    .comp-body { flex:1; }
+    .comp-title { font-family:var(--ff-u); font-size:12px; font-weight:600; color:var(--c-text); margin-bottom:3px; }
+    .comp-sub { font-size:11px; color:var(--c-t3); line-height:1.5; }
+    .comp-status { font-family:var(--ff-u); font-size:10px; font-weight:600; letter-spacing:.06em; padding:3px 8px; border-radius:100px; flex-shrink:0; }
+    .s-pass { background:rgba(94,255,156,.1);color:var(--c-green);border:1px solid rgba(94,255,156,.2); }
+    .s-info { background:var(--c-adim);color:var(--c-accent);border:1px solid rgba(94,156,255,.2); }
+
+    /* Engagement metrics */
+    .eng-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:12px; }
+    .eng-box { background:var(--c-s2); border:1px solid var(--c-border); border-radius:10px; padding:14px; }
+    .eng-lbl { font-family:var(--ff-u); font-size:10px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--c-t3); margin-bottom:6px; }
+    .eng-num { font-family:var(--ff-d); font-size:24px; font-weight:700; letter-spacing:-.02em; color:var(--c-text); line-height:1; }
+    .eng-chg { font-size:11px; margin-top:4px; }
+    .up { color:var(--c-green); }
+
+    /* AGENT */
+    .agent-panel { background:var(--c-s1); border-left:1px solid var(--c-border); display:flex; flex-direction:column; overflow:hidden; }
+    .agent-header { padding:16px 20px; border-bottom:1px solid var(--c-border); display:flex; align-items:center; gap:10px; flex-shrink:0; }
+    .agent-avatar { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--c-accent),#9BC8FF); display:flex; align-items:center; justify-content:center; font-family:var(--ff-u); font-weight:800; color:#070A14; font-size:14px; }
+    .agent-name { font-family:var(--ff-u); font-size:13px; font-weight:700; color:var(--c-text); }
+    .agent-status-row { display:flex; align-items:center; gap:6px; }
+    .agent-dot { width:6px; height:6px; border-radius:50%; background:var(--c-accent); animation:pulse 1.5s infinite; }
+    .agent-status-text { font-size:11px; color:var(--c-t3); }
+    .agent-model { margin-left:auto; font-family:var(--ff-u); font-size:10px; font-weight:500; color:var(--c-t3); background:var(--c-s2); border:1px solid var(--c-border); padding:3px 8px; border-radius:100px; }
+    .agent-messages { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; }
+    .agent-msg { padding:10px 12px; border-radius:10px; font-size:12px; line-height:1.6; animation:fadeIn .3s ease; }
+    .agent-msg.thought { background:var(--c-s2); border:1px solid var(--c-border); color:var(--c-t2); border-left:3px solid var(--c-t3); }
+    .agent-msg.action { background:var(--c-adim); border:1px solid rgba(94,156,255,.15); color:var(--c-t2); font-family:monospace; font-size:11px; }
+    .agent-msg.action strong { color:var(--c-accent); }
+    .agent-msg.result { background:var(--c-s2); border:1px solid var(--c-border); color:var(--c-t2); border-left:3px solid var(--c-accent); }
+    .agent-msg.result strong { color:var(--c-accent); }
+    .msg-type { font-family:var(--ff-u); font-size:9px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--c-t3); margin-bottom:4px; }
+    .agent-msg.action .msg-type, .agent-msg.result .msg-type { color:var(--c-accent); }
+    .typing-indicator { display:flex; align-items:center; gap:4px; padding:10px 14px; }
+    .typing-dot { width:6px; height:6px; border-radius:50%; background:var(--c-t3); animation:typing-bounce .8s ease infinite; }
+    .typing-dot:nth-child(2) { animation-delay:.15s; }
+    .typing-dot:nth-child(3) { animation-delay:.3s; }
+    @keyframes typing-bounce { 0%,60%,100%{transform:translateY(0);opacity:.4} 30%{transform:translateY(-6px);opacity:1} }
+    .agent-footer { padding:16px; border-top:1px solid var(--c-border); flex-shrink:0; }
+    .next-btn { width:100%; font-family:var(--ff-u); font-size:13px; font-weight:700; background:var(--c-accent); color:#070A14; border:none; border-radius:10px; padding:12px; cursor:pointer; transition:all .2s; display:flex; align-items:center; justify-content:center; gap:8px; }
+    .next-btn:hover { background:#9BC8FF; box-shadow:0 0 24px rgba(94,156,255,.3); }
+    .btn-label { font-size:11px; color:var(--c-t3); text-align:center; margin-top:8px; }
+    .arrow { transition:transform .2s; }
+    .next-btn:hover .arrow { transform:translateX(4px); }
+    .done-state { text-align:center; padding:20px 16px; }
+    .done-icon { font-size:40px; margin-bottom:12px; }
+    .done-title { font-family:var(--ff-d); font-size:18px; font-weight:700; color:var(--c-text); margin-bottom:8px; }
+    .done-sub { font-size:12px; color:var(--c-t3); line-height:1.6; margin-bottom:16px; }
+    .done-btns { display:flex; flex-direction:column; gap:8px; }
+    .done-btn { font-family:var(--ff-u); font-size:12px; font-weight:600; text-decoration:none; padding:10px; border-radius:8px; text-align:center; transition:all .2s; }
+    .done-btn.primary { background:var(--c-accent); color:#070A14; }
+    .done-btn.primary:hover { background:#9BC8FF; }
+    .done-btn.ghost { background:transparent; border:1px solid var(--c-border); color:var(--c-t2); }
+    .done-btn.ghost:hover { border-color:var(--c-bsoft); }
+    ::-webkit-scrollbar { width:4px; height:4px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:var(--c-border); border-radius:2px; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <a href="index.html" class="topbar-logo">
+    <span class="logo-dot"></span>
+    Creators Pod
+  </a>
+  <div class="topbar-sep"></div>
+  <span class="topbar-persona">Executive Walkthrough</span>
+  <span class="topbar-title">Dr. Sarah Chen — VC Partner & Tech Thought Leader</span>
+  <div class="topbar-steps" id="stepPips"></div>
+  <span class="step-counter" id="stepCounter">Step 1 of 6</span>
+  <a href="index.html" class="topbar-back">← Back to site</a>
+</div>
+
+<!-- LAYOUT -->
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-profile">
+      <div class="profile-avatar">💼</div>
+      <div class="profile-name">Dr. Sarah Chen</div>
+      <div class="profile-sub">VC Partner · TechForward Capital · LinkedIn: 28K followers</div>
+      <div class="profile-goal-label">Active Goal</div>
+      <div class="profile-goal">🎯 Become a recognised voice in deep tech & AI investing on LinkedIn — 50K followers in 6 months</div>
+    </div>
+
+    <div class="sidebar-nav-label">Workflow Steps</div>
+    <div class="sidebar-steps" id="sidebarSteps">
+      <div class="sidebar-step active" data-step="0"><span class="step-icon">📅</span><div class="step-info"><div class="step-name">Calendar Trigger</div><div class="step-status">In progress</div></div></div>
+      <div class="sidebar-step" data-step="1"><span class="step-icon">💡</span><div class="step-info"><div class="step-name">Content Opportunity</div><div class="step-status">Pending</div></div></div>
+      <div class="sidebar-step" data-step="2"><span class="step-icon">🔒</span><div class="step-info"><div class="step-name">Secure RAG</div><div class="step-status">Pending</div></div></div>
+      <div class="sidebar-step" data-step="3"><span class="step-icon">✍️</span><div class="step-info"><div class="step-name">Post Drafts</div><div class="step-status">Pending</div></div></div>
+      <div class="sidebar-step" data-step="4"><span class="step-icon">🛡️</span><div class="step-info"><div class="step-name">Compliance Review</div><div class="step-status">Pending</div></div></div>
+      <div class="sidebar-step" data-step="5"><span class="step-icon">📊</span><div class="step-info"><div class="step-name">Engagement Results</div><div class="step-status">Pending</div></div></div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-nav-label">Presence Stats</div>
+    <div class="sidebar-stat"><div class="stat-label">LinkedIn Followers</div><div class="stat-value">28.4K</div><div class="stat-change">+1.2K this month ↑</div></div>
+    <div class="sidebar-stat"><div class="stat-label">Avg Post Impressions</div><div class="stat-value">12.6K</div><div class="stat-change">+38% vs 3 months ago</div></div>
+    <div class="sidebar-stat"><div class="stat-label">Content Time Saved</div><div class="stat-value" style="color:var(--c-green)">3.8h</div><div class="stat-change">Per post (was 4+ hrs)</div></div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- STEP 0: Calendar Trigger -->
+    <div class="step-view active" id="step-0">
+      <div class="view-header">
+        <span class="view-step-badge">Step 1 · Calendar Agent</span>
+        <div class="view-title">Upcoming event detected.<br>Content opportunity triggered.</div>
+        <div class="view-sub">The Calendar Agent detected "World AI Infrastructure Summit" in Sarah's Google Calendar — 3 days out. It proactively flagged a content opportunity without prompting.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Upcoming Calendar Events <span class="card-badge badge-trigger">Auto-detected</span></div>
+        <div class="cal-event-card" style="margin-bottom:10px">
+          <div class="cal-date-block">
+            <div class="cal-month">MAR</div>
+            <div class="cal-day">20</div>
+          </div>
+          <div>
+            <div class="cal-event-title">World AI Infrastructure Summit — Panel Speaker</div>
+            <div class="cal-event-detail">Keynote: "The next wave of AI infrastructure investment — what VCs are actually betting on in 2026"<br>Venue: London ExCeL · Expected attendance: 4,200 · Livestream: 80K viewers</div>
+            <span class="cal-event-tag">🎤 Speaking Engagement</span>
+          </div>
+        </div>
+        <div style="background:var(--c-adim);border:1px solid rgba(94,156,255,.2);border-radius:10px;padding:14px">
+          <div style="font-family:var(--ff-u);font-size:11px;font-weight:600;color:var(--c-accent);margin-bottom:6px">🤖 AGENT PROACTIVE ALERT</div>
+          <div style="font-size:13px;color:var(--c-t2);line-height:1.6">"High-value speaking engagement detected 3 days out. This is a prime opportunity for a pre-event LinkedIn series (3 posts) and a post-event insight thread. Based on your 28K followers and this event's 80K livestream audience, projected reach: 45K–60K impressions. Shall I generate a content plan?"</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Other This Week</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:8px">
+            <div style="font-family:var(--ff-u);font-size:10px;font-weight:600;color:var(--c-t3);min-width:36px">MON</div>
+            <div style="flex:1;font-size:12px;color:var(--c-t2)">Portfolio review — TechForward Q1 report (internal, private)</div>
+            <div style="font-size:10px;color:var(--c-t3)">No content</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:8px">
+            <div style="font-family:var(--ff-u);font-size:10px;font-weight:600;color:var(--c-t3);min-width:36px">WED</div>
+            <div style="flex:1;font-size:12px;color:var(--c-t2)">Board meeting — portfolio company Neuraltek</div>
+            <div style="font-size:10px;color:var(--c-accent)">→ Post opportunity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Content Opportunity -->
+    <div class="step-view" id="step-1">
+      <div class="view-header">
+        <span class="view-step-badge">Step 2 · Strategy Agent</span>
+        <div class="view-title">3-post content series<br>proposed.</div>
+        <div class="view-sub">Based on the summit and Sarah's goal of becoming a recognised voice in deep tech investing, the agent has proposed a pre-event, live-event, and post-event series.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Proposed LinkedIn Content Series</div>
+        <div class="opportunity-list">
+          <div class="opp-card selected" data-opp="0">
+            <div class="opp-timing">MAR 18</div>
+            <div class="opp-body">
+              <div class="opp-title">Pre-Event: "What I'm watching at the AI Infrastructure Summit"</div>
+              <div class="opp-desc">Thought-leadership post establishing Sarah's expertise and anticipated themes. Creates anticipation and primes the audience for post-event insight. Uses internal board data (private RAG — redacted).</div>
+            </div>
+            <div class="opp-platform">LinkedIn</div>
+          </div>
+          <div class="opp-card" data-opp="1">
+            <div class="opp-timing">MAR 20</div>
+            <div class="opp-body">
+              <div class="opp-title">Live-Event: "Three things I said on stage today at #AIInfraSummit"</div>
+              <div class="opp-desc">Real-time post from the event pulling 3 key talking points from Sarah's keynote. High immediacy, drives engagement while audience is watching the livestream.</div>
+            </div>
+            <div class="opp-platform">LinkedIn</div>
+          </div>
+          <div class="opp-card" data-opp="2">
+            <div class="opp-timing">MAR 22</div>
+            <div class="opp-body">
+              <div class="opp-title">Post-Event: "What the VC community got wrong about AI infrastructure this week"</div>
+              <div class="opp-desc">Contrarian take post-event. Highest viral potential. Uses Sarah's unique perspective as a VC insider to challenge consensus narrative from the summit.</div>
+            </div>
+            <div class="opp-platform">LinkedIn</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Secure RAG -->
+    <div class="step-view" id="step-2">
+      <div class="view-header">
+        <span class="view-step-badge">Step 3 · Secure RAG Agent</span>
+        <div class="view-title">Private documents indexed.<br>Data never leaves your device.</div>
+        <div class="view-sub">Sarah has selected documents to inform her posts. The RAG Agent indexes them with AES-256 encryption on her private ClawDB. Raw text is never sent to any external server.</div>
+      </div>
+      <div class="card" style="border-color:rgba(94,255,156,.2)">
+        <div class="card-label">Private Knowledge Sources <span class="card-badge badge-secure">🔒 Encrypted</span></div>
+        <div class="rag-file">
+          <div class="rag-icon">📊</div>
+          <div>
+            <div class="rag-name">TechForward_Q1_2026_Portfolio_Review.pdf</div>
+            <div class="rag-meta">Internal · 42 pages · AES-256 encrypted · Client-side vectorised</div>
+          </div>
+          <div class="rag-status encrypted">🔒 Indexed</div>
+        </div>
+        <div class="rag-file">
+          <div class="rag-icon">📝</div>
+          <div>
+            <div class="rag-name">AIInfra_Summit_Keynote_Notes.docx</div>
+            <div class="rag-meta">Personal · Keynote talking points · Vectorised privately</div>
+          </div>
+          <div class="rag-status encrypted">🔒 Indexed</div>
+        </div>
+        <div class="rag-file">
+          <div class="rag-icon">🌐</div>
+          <div>
+            <div class="rag-name">AI Infrastructure Market Report — Q1 2026</div>
+            <div class="rag-meta">Public source · Goldman Sachs / Deloitte · Fetched and indexed</div>
+          </div>
+          <div class="rag-status indexing">✓ Indexed</div>
+        </div>
+        <div style="margin-top:12px;padding:12px 14px;background:rgba(94,255,156,.06);border:1px solid rgba(94,255,156,.15);border-radius:10px;font-size:12px;color:var(--c-t2)">
+          <strong style="color:var(--c-green)">Privacy guarantee:</strong> All private documents are vectorised on Sarah's local ClawDB instance. Only semantic embeddings are used for content generation — no raw text is ever transmitted. Data residency: local device.
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: Post Drafts -->
+    <div class="step-view" id="step-3">
+      <div class="view-header">
+        <span class="view-step-badge">Step 4 · Content Agent</span>
+        <div class="view-title">3 posts drafted.<br>In Sarah's voice, not a chatbot's.</div>
+        <div class="view-sub">The Content Agent generated all three posts grounded in Sarah's private keynote notes and public market data. Voice DNA score: 91/100 across all drafts.</div>
+      </div>
+      <div class="post-draft selected" data-post="0">
+        <div class="post-draft-header">
+          <div class="li-avatar">💼</div>
+          <div><div class="li-name">Dr. Sarah Chen</div><div class="li-title">Partner at TechForward Capital · 28,400 followers</div></div>
+        </div>
+        <div class="post-body">
+          I'm heading to the <strong>World AI Infrastructure Summit</strong> in 3 days to speak about something I've been watching closely: the gap between what founders are building and what the market actually needs.<br><br>
+          Most of the AI infrastructure investment thesis right now is still anchored in 2023 assumptions. GPU compute. Model training. The "picks and shovels" narrative.<br><br>
+          But here's what I'm actually seeing in our portfolio — and what I'll argue on stage Thursday:<br><br>
+          <strong>The next wave isn't about building AI. It's about making AI that's already been built actually work at enterprise scale.</strong><br><br>
+          That means inference optimisation, RAG architecture, and orchestration layers. Not the exciting stuff. The essential stuff.<br><br>
+          Curious what others are watching. See you at ExCeL →
+        </div>
+        <div class="post-hashtags">#AIInfrastructure #VentureCapital #DeepTech #AIInfraSummit</div>
+        <div class="post-meta">
+          <span class="post-score">Voice: 93/100</span>
+          <span class="post-format">Pre-event · Thought leadership</span>
+        </div>
+      </div>
+      <div class="post-draft" data-post="1">
+        <div class="post-draft-header">
+          <div class="li-avatar">💼</div>
+          <div><div class="li-name">Dr. Sarah Chen</div><div class="li-title">Partner at TechForward Capital</div></div>
+        </div>
+        <div class="post-body">
+          Just left the stage at <strong>#AIInfraSummit</strong>. Three things I said that I want to repeat here:<br><br>
+          <strong>1.</strong> The AI infrastructure winners of 2027 aren't the ones building the best models — they're the ones making existing models 10× cheaper to run at scale.<br><br>
+          <strong>2.</strong> RAG isn't a nice-to-have. For any enterprise deploying AI in production, it's the difference between a demo and a product.<br><br>
+          <strong>3.</strong> The VC community is still funding the wrong layer of the stack. We're all looking at the kitchen — nobody's funding the plumbing.<br><br>
+          Full keynote replay link in comments.
+        </div>
+        <div class="post-hashtags">#AIInfraSummit #AIInfrastructure #TechInvesting</div>
+        <div class="post-meta">
+          <span class="post-score">Voice: 91/100</span>
+          <span class="post-format">Live-event · Real-time</span>
+        </div>
+      </div>
+      <div class="post-draft" data-post="2">
+        <div class="post-draft-header">
+          <div class="li-avatar">💼</div>
+          <div><div class="li-name">Dr. Sarah Chen</div><div class="li-title">Partner at TechForward Capital</div></div>
+        </div>
+        <div class="post-body">
+          Hot take from #AIInfraSummit that nobody wants to hear:<br><br>
+          <strong>The VC community got the AI infrastructure story wrong this week.</strong><br><br>
+          We spent 3 days congratulating ourselves on GPU investments and model benchmarks. What we barely touched: the 78% of enterprise AI projects that fail in production because of <em>integration architecture</em> — not model quality.<br><br>
+          The unsexy truth from our portfolio data: companies that invest in orchestration and RAG pipelines before model selection are 3× more likely to reach deployment.<br><br>
+          We're funding the wrong part of the stack. The market will correct this in 18 months. I'd rather be early.
+        </div>
+        <div class="post-hashtags">#AIInfrastructure #EnterpriseAI #VentureCapital #Contrarian</div>
+        <div class="post-meta">
+          <span class="post-score">Voice: 90/100</span>
+          <span class="post-format">Post-event · Contrarian take</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: Compliance -->
+    <div class="step-view" id="step-4">
+      <div class="view-header">
+        <span class="view-step-badge">Step 5 · Compliance Agent</span>
+        <div class="view-title">All 3 posts cleared.<br>Zero confidentiality risks.</div>
+        <div class="view-sub">The Compliance Agent scanned all posts for potential confidentiality breaches, regulatory disclosure requirements, and EU AI Act labeling rules before publishing.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Compliance Scan Results</div>
+        <div class="comp-check">
+          <div class="comp-icon">✅</div>
+          <div class="comp-body"><div class="comp-title">Confidentiality Guardrails</div><div class="comp-sub">No specific portfolio company financials, deal terms, or non-public investment details detected in any post. Raw data from private documents was not surfaced — only general narrative insights derived from patterns.</div></div>
+          <div class="comp-status s-pass">PASS</div>
+        </div>
+        <div class="comp-check">
+          <div class="comp-icon">✅</div>
+          <div class="comp-body"><div class="comp-title">FCA / SEC Disclosure Rules</div><div class="comp-sub">No language that could be construed as investment advice or promotion of specific securities. Posts frame views as personal perspective, not professional investment recommendations.</div></div>
+          <div class="comp-status s-pass">PASS</div>
+        </div>
+        <div class="comp-check">
+          <div class="comp-icon">ℹ️</div>
+          <div class="comp-body"><div class="comp-title">AI-Generated Content Disclosure (EU AI Act)</div><div class="comp-sub">These posts were AI-assisted. Platform recommends adding "Written with AI assistance" to Sarah's profile bio (one-time disclosure). Individual posts do not require per-post labeling under current guidelines for editorial AI assistance.</div></div>
+          <div class="comp-status s-info">INFO</div>
+        </div>
+        <div class="comp-check">
+          <div class="comp-icon">✅</div>
+          <div class="comp-body"><div class="comp-title">Brand Voice Consistency</div><div class="comp-sub">All 3 posts score 90–93/100 against Sarah's voice fingerprint. Tone: analytical, direct, contrarian-but-grounded. No off-brand language detected.</div></div>
+          <div class="comp-status s-pass">PASS</div>
+        </div>
+        <div class="comp-check">
+          <div class="comp-icon">✅</div>
+          <div class="comp-body"><div class="comp-title">Factual Citation Check</div><div class="comp-sub">"78% of enterprise AI projects fail in production" — verified against Gartner 2025 report (indexed in ClawDB). All statistical claims cross-referenced to source documents.</div></div>
+          <div class="comp-status s-pass">PASS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: Results -->
+    <div class="step-view" id="step-5">
+      <div class="view-header">
+        <span class="view-step-badge">Step 6 · Analytics Agent</span>
+        <div class="view-title">Series outperformed.<br>2.1× engagement increase.</div>
+        <div class="view-sub">One week after the summit series. The Analytics Agent has aggregated results and updated Sarah's content strategy for the next 30 days.</div>
+      </div>
+      <div class="eng-grid">
+        <div class="eng-box"><div class="eng-lbl">Total Impressions</div><div class="eng-num">186K</div><div class="eng-chg up">↑ vs 38K avg / post</div></div>
+        <div class="eng-box"><div class="eng-lbl">New Followers</div><div class="eng-num">+2,840</div><div class="eng-chg up">↑ Best week ever</div></div>
+        <div class="eng-box"><div class="eng-lbl">Engagement Rate</div><div class="eng-num">11.2%</div><div class="eng-chg up">↑ Platform avg: 3.1%</div></div>
+        <div class="eng-box"><div class="eng-lbl">Post 3 (Contrarian)</div><div class="eng-num">94K</div><div class="eng-chg up">↑ Went viral</div></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Post Performance Breakdown</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:10px">
+            <div style="font-family:var(--ff-u);font-size:11px;font-weight:600;color:var(--c-t3);min-width:60px">MAR 18</div>
+            <div style="flex:1;font-size:12px;color:var(--c-t2)">Pre-event thought leadership</div>
+            <div style="font-family:var(--ff-d);font-size:18px;font-weight:700;color:var(--c-accent)">52K views</div>
+            <div style="font-size:11px;color:var(--c-green)">↑ 8.4% eng.</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:10px">
+            <div style="font-family:var(--ff-u);font-size:11px;font-weight:600;color:var(--c-t3);min-width:60px">MAR 20</div>
+            <div style="flex:1;font-size:12px;color:var(--c-t2)">Live-event 3-point thread</div>
+            <div style="font-family:var(--ff-d);font-size:18px;font-weight:700;color:var(--c-accent)">40K views</div>
+            <div style="font-size:11px;color:var(--c-green)">↑ 9.1% eng.</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--c-adim);border:1px solid rgba(94,156,255,.3);border-radius:10px">
+            <div style="font-family:var(--ff-u);font-size:11px;font-weight:600;color:var(--c-accent);min-width:60px">MAR 22 🔥</div>
+            <div style="flex:1;font-size:12px;color:var(--c-t2)">Post-event contrarian take — went viral</div>
+            <div style="font-family:var(--ff-d);font-size:18px;font-weight:700;color:var(--c-accent)">94K views</div>
+            <div style="font-size:11px;color:var(--c-green)">↑ 14.3% eng.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Agent Strategy Update</div>
+        <div style="padding:14px;background:var(--c-adim);border:1px solid rgba(94,156,255,.2);border-radius:10px;font-size:13px;color:var(--c-t2)">
+          "Contrarian-take format generated 2.4× more engagement than standard thought leadership. Agent is re-prioritising this format for 40% of next 30 days' content. Next opportunity: Board meeting at Neuraltek (Wednesday) — pre-detected content trigger ready. Content time spent this week: <strong style='color:var(--c-green)'>22 minutes</strong> (vs your previous 4+ hours per post)."
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AGENT PANEL -->
+  <div class="agent-panel">
+    <div class="agent-header">
+      <div class="agent-avatar">P</div>
+      <div>
+        <div class="agent-name">Executive Agent</div>
+        <div class="agent-status-row">
+          <span class="agent-dot"></span>
+          <span class="agent-status-text" id="agentStatusText">Calendar monitoring active...</span>
+        </div>
+      </div>
+      <div class="agent-model">ReAct · GPT-4o</div>
+    </div>
+    <div class="agent-messages" id="agentMessages"></div>
+    <div class="agent-footer" id="agentFooter">
+      <button class="next-btn" onclick="nextStep()"><span>Continue →</span><span class="arrow">→</span></button>
+      <div class="btn-label" id="btnLabel">Step 1 of 6</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const TOTAL=6; let cur=0;
+  const stepData=[
+    {
+      status:"Calendar monitoring active...",
+      messages:[
+        {type:'thought',text:"Monitoring Google Calendar and Outlook for upcoming high-value events. Scanning next 14 days for speaking engagements, industry events, and content triggers..."},
+        {type:'action',text:"<strong>scan_calendar</strong>(user='sarah_chen', lookahead_days=14, signal_types=['speaking','conference','board_meeting','industry_event'])"},
+        {type:'result',text:"<strong>✓ High-value trigger detected:</strong> 'World AI Infrastructure Summit — Panel Speaker' on Mar 20, 3 days out. Audience: 80K livestream. Recommended action: 3-post content series."},
+        {type:'thought',text:"Calculating content opportunity score: 94/100. Proactive alert sent to Sarah. Awaiting approval to generate content plan..."},
+      ],
+      nextLabel:"Generate Content Strategy →", btnSub:"Step 1 of 6 · Calendar trigger detected"
+    },
+    {
+      status:"Building content opportunity plan...",
+      messages:[
+        {type:'thought',text:"Summit confirmed as high-value trigger. Designing 3-post series: pre-event authority building, live-event immediacy, post-event contrarian take. Optimising for Sarah's goal: thought leadership in deep tech investing."},
+        {type:'action',text:"<strong>plan_content_series</strong>(trigger='ai_infra_summit', series_type='event_arc', posts=3, platform='linkedin', goal=sarah_goal_dna)"},
+        {type:'result',text:"<strong>✓ Series plan complete.</strong> Mar 18: pre-event thought leadership. Mar 20: live-event thread. Mar 22: post-event contrarian. Projected reach: 45K–60K impressions."},
+        {type:'thought',text:"Plan approved. Activating Secure RAG Agent to index private documents for context. Privacy mode: local ClawDB only — no external transmission of raw text."},
+      ],
+      nextLabel:"Index Private Documents →", btnSub:"Step 2 of 6 · Content plan ready"
+    },
+    {
+      status:"Indexing documents securely...",
+      messages:[
+        {type:'thought',text:"Initiating secure document ingestion. AES-256 encryption enabled. Client-side vectorisation for private files — raw text never transmitted externally."},
+        {type:'action',text:"<strong>ingest_documents</strong>(files=['Q1_portfolio_review.pdf','keynote_notes.docx'], mode='client_side_encrypted', store='local_clawdb')"},
+        {type:'result',text:"<strong>✓ 2 private documents indexed locally.</strong> 1 public source (Goldman Sachs AI report) fetched and indexed. All semantic embeddings stored in Sarah's local ClawDB. Zero external data exposure."},
+        {type:'thought',text:"Knowledge base ready. Content Agent can now query insights without accessing raw documents. Privacy-preserving RAG pipeline active."},
+      ],
+      nextLabel:"Draft All 3 Posts →", btnSub:"Step 3 of 6 · Documents secure"
+    },
+    {
+      status:"Drafting posts in Sarah's voice...",
+      messages:[
+        {type:'thought',text:"Querying ClawDB with semantic embedding of 'AI infrastructure investment thesis' to surface relevant insights from Sarah's keynote notes and Q1 portfolio review..."},
+        {type:'action',text:"<strong>generate_posts</strong>(series_plan_id='summit_arc_001', voice=sarah_dna, rag_source='local_clawdb', count=3, style='thought_leadership')"},
+        {type:'result',text:"<strong>✓ 3 posts drafted.</strong> Voice scores: 90–93/100. Post 3 (contrarian) predicted highest engagement based on Sarah's historical data. All posts grounded in private insights without exposing raw data."},
+        {type:'thought',text:"Posts ready for compliance review. Sending to Compliance Agent: checking for confidentiality, FCA/SEC rules, AI Act disclosure, factual accuracy..."},
+      ],
+      nextLabel:"Run Compliance Check →", btnSub:"Step 4 of 6 · Review drafts above"
+    },
+    {
+      status:"Running compliance scan...",
+      messages:[
+        {type:'thought',text:"Scanning 3 posts for: (1) Confidentiality breaches, (2) FCA/SEC investment advice rules, (3) EU AI Act disclosure requirements, (4) Voice consistency, (5) Factual accuracy vs cited sources..."},
+        {type:'action',text:"<strong>compliance_scan</strong>(posts=3, checks=['confidentiality','fca_sec','ai_act','voice','factual'], context=sarah_professional_profile)"},
+        {type:'result',text:"<strong>✓ All 3 posts cleared.</strong> Zero confidentiality risks. No investment advice language. One informational note: recommend 'AI-assisted' bio disclosure (one-time, not per-post). Factual claims verified."},
+        {type:'thought',text:"All posts approved. Scheduling for optimal LinkedIn posting times based on Sarah's audience peak activity. Confirming schedule with Sarah before publishing..."},
+      ],
+      nextLabel:"View Results →", btnSub:"Step 5 of 6 · Posts approved"
+    },
+    {
+      status:"Series complete · Results tracked",
+      messages:[
+        {type:'thought',text:"All 3 posts published on schedule. Monitoring engagement data across the week. Aggregating final results from LinkedIn Analytics..."},
+        {type:'action',text:"<strong>aggregate_engagement</strong>(user='sarah_chen', posts=['mar18','mar20','mar22'], metrics=['impressions','followers_gained','engagement_rate'])"},
+        {type:'result',text:"<strong>✓ Viral performance.</strong> 186K total impressions. +2,840 followers. Contrarian post: 94K views, 14.3% engagement. Content time: 22 minutes total."},
+        {type:'thought',text:"Contrarian format flagged HIGH IMPACT. Updating Sarah's strategy profile in ClawDB. Next trigger: Neuraltek board meeting Wednesday — content opportunity pre-queued."},
+      ],
+      nextLabel: null, btnSub:"Step 6 of 6 · Loop complete"
+    }
+  ];
+
+  function renderPips(){const c=document.getElementById('stepPips');c.innerHTML='';for(let i=0;i<TOTAL;i++){const p=document.createElement('div');p.className='step-pip'+(i<cur?' done':i===cur?' active':'');p.onclick=()=>go(i);c.appendChild(p);}}
+  function renderSidebar(){document.querySelectorAll('.sidebar-step').forEach((el,i)=>{el.classList.remove('active','done');const s=el.querySelector('.step-status');if(i<cur){el.classList.add('done');s.textContent='Complete ✓';}else if(i===cur){el.classList.add('active');s.textContent='In progress';}else{s.textContent='Pending';}});}
+  let mt=null;
+  function renderAgent(){
+    const c=document.getElementById('agentMessages');const d=stepData[cur];
+    document.getElementById('agentStatusText').textContent=d.status;c.innerHTML='';
+    let idx=0;
+    const showTyping=()=>{const t=document.createElement('div');t.className='typing-indicator';t.id='typing';t.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';c.appendChild(t);c.scrollTop=c.scrollHeight;};
+    const next=()=>{const t=document.getElementById('typing');if(t)t.remove();if(idx<d.messages.length){const m=d.messages[idx];const div=document.createElement('div');div.className='agent-msg '+m.type;const labels={thought:'Thinking',action:'Tool Call',result:'Observation'};div.innerHTML=`<div class="msg-type">${labels[m.type]}</div>${m.text}`;c.appendChild(div);c.scrollTop=c.scrollHeight;idx++;showTyping();mt=setTimeout(next,900+Math.random()*400);}};
+    showTyping();mt=setTimeout(next,800);
+  }
+  function go(idx){
+    if(idx<0||idx>=TOTAL)return;if(mt)clearTimeout(mt);
+    document.getElementById('step-'+cur).classList.remove('active');cur=idx;document.getElementById('step-'+cur).classList.add('active');
+    renderPips();renderSidebar();renderAgent();
+    document.getElementById('stepCounter').textContent=`Step ${cur+1} of ${TOTAL}`;
+    const d=stepData[cur];const f=document.getElementById('agentFooter');
+    if(!d.nextLabel){
+      f.innerHTML=`<div class="done-state"><div class="done-icon">⭐</div><div class="done-title">Presence campaign complete!</div><div class="done-sub">Sarah grew her following by 2,840 in one week — with 22 minutes of content effort. The agent's already queued next week's opportunity.</div><div class="done-btns"><a href="index.html" class="done-btn primary">← Back to landing page</a><a href="walkthrough-creator.html" class="done-btn ghost">See Creator Demo</a></div></div>`;
+    } else {
+      f.innerHTML=`<button class="next-btn" onclick="nextStep()"><span>${d.nextLabel}</span><span class="arrow">→</span></button><div class="btn-label">${d.btnSub}</div>`;
+    }
+  }
+  function nextStep(){go(cur+1);}
+  document.addEventListener('click',e=>{
+    const s=e.target.closest('.sidebar-step');if(s){const i=parseInt(s.dataset.step);if(!isNaN(i)&&i<=cur+1)go(i);}
+    const p=e.target.closest('.post-draft');if(p){document.querySelectorAll('.post-draft').forEach(c=>c.classList.remove('selected'));p.classList.add('selected');}
+    const o=e.target.closest('.opp-card');if(o){document.querySelectorAll('.opp-card').forEach(c=>c.classList.remove('selected'));o.classList.add('selected');}
+  });
+  renderPips();renderSidebar();renderAgent();
+</script>
+</body>
+</html>

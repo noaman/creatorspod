@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creators Pod | Brand Onboarding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <script src="../../assets/app.js" defer></script>
+  </head>
+  <body data-theme="light" data-persona="brand">
+    <header class="site-header">
+      <div class="shell persona-nav">
+        <a class="brand-lockup" href="../../index.html">
+          <span class="brand-lockup__mark">C</span>
+          <span class="brand-lockup__text">
+            <span class="brand-lockup__eyebrow">Brand flow</span>
+            <span>Creators Pod</span>
+          </span>
+        </a>
+        <div class="inline-links">
+          <a class="inline-link" href="../../index.html">Home</a>
+          <a class="inline-link" href="./dashboard.html">Dashboard preview</a>
+          <a class="inline-link" href="../creator/onboarding.html">Creator flow</a>
+          <a class="inline-link" href="../executive/onboarding.html">Executive flow</a>
+        </div>
+        <button class="button-ghost theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+          Dark
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-intro">
+        <div class="shell page-intro__grid">
+          <article class="panel hero-panel reveal">
+            <div class="kicker">Brands and agencies</div>
+            <h1 style="font-size: clamp(2.6rem, 5vw, 4.8rem);">Stand up an AI-mediated campaign studio in minutes.</h1>
+            <p style="margin-top: 20px;">
+              This onboarding path configures brand voice, imported knowledge, campaign goals, team
+              connections, and the first multi-agent execution sprint.
+            </p>
+            <div class="hero-actions">
+              <button class="button-secondary" type="button" data-step-target="0">Begin setup</button>
+              <a class="button-ghost" href="./dashboard.html">Skip to dashboard</a>
+            </div>
+          </article>
+
+          <aside class="panel progress-shell reveal reveal-delay-1">
+            <div class="meta-label">Launch readiness</div>
+            <h3>Campaign operating system setup</h3>
+            <p>
+              The first pass is optimized for fast activation: voice enforcement, source imports,
+              goals, channels, and agent permissions.
+            </p>
+            <div class="progress-track">
+              <span data-progress-fill></span>
+            </div>
+            <p style="margin-top: 12px;" data-progress-label>Step 1 of 5</p>
+            <div class="summary-list">
+              <div>
+                <strong>Primary outcome</strong>
+                <span>Brand-safe asset generation, influencer matching, and reporting loops.</span>
+              </div>
+              <div>
+                <strong>Suggested control mode</strong>
+                <span data-autonomy-output>Orchestrated</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell steps-layout">
+          <div class="steps-stack" data-onboarding-flow>
+            <article class="step-card is-active" data-step="0">
+              <div class="meta-label">Step 01</div>
+              <h3>Encode the brand voice and approval rules</h3>
+              <p>
+                The first setup layer focuses on consistency and risk. It teaches the platform how
+                the brand sounds and what must always be reviewed before launch.
+              </p>
+              <div class="step-grid">
+                <label class="input-shell">
+                  <span>Brand name</span>
+                  <input type="text" value="Northstar Studio" />
+                </label>
+                <label class="input-shell">
+                  <span>Team type</span>
+                  <select>
+                    <option>Performance agency</option>
+                    <option>In-house marketing team</option>
+                    <option>Creative studio</option>
+                  </select>
+                </label>
+                <label class="input-shell" style="grid-column: 1 / -1;">
+                  <span>Voice and guardrails</span>
+                  <textarea>Sharp, strategic, confident, premium, never casual. Avoid unsupported claims and unapproved pricing statements.</textarea>
+                </label>
+              </div>
+            </article>
+
+            <article class="step-card" data-step="1">
+              <div class="meta-label">Step 02</div>
+              <h3>Import campaign knowledge and performance history</h3>
+              <p>
+                Bring in briefs, historical assets, audience insights, and reporting exports so the
+                workspace can reason with real context.
+              </p>
+              <div class="step-grid">
+                <div class="selection-card is-selected">
+                  <div class="field-title">Brand guidelines</div>
+                  <p>Messaging pillars, legal guardrails, visual standards, and banned terms.</p>
+                </div>
+                <div class="selection-card is-selected">
+                  <div class="field-title">Campaign archive</div>
+                  <p>Past assets, CTR, ROAS, engagement rate, and learnings.</p>
+                </div>
+                <div class="selection-card is-selected">
+                  <div class="field-title">CRM and audience segments</div>
+                  <p>Performance context tied to downstream lead quality.</p>
+                </div>
+                <div class="selection-card">
+                  <div class="field-title">Influencer database</div>
+                  <p>Creator fit, pricing history, contract status, and niche metadata.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="step-card" data-step="2">
+              <div class="meta-label">Step 03</div>
+              <h3>Configure the campaign objective and automation boundary</h3>
+              <p>
+                Choose the result you want, then set how far the system can go before a human needs
+                to intervene.
+              </p>
+              <div class="step-grid">
+                <label class="input-shell" style="grid-column: 1 / -1;">
+                  <span>Quarterly objective</span>
+                  <textarea>Launch the Q2 creator partnership campaign, increase qualified reach by 25%, and keep brand compliance incidents at zero.</textarea>
+                </label>
+              </div>
+              <div class="slider-row">
+                <div class="field-title">Autonomy level</div>
+                <input type="range" min="0" max="2" value="1" data-autonomy-range />
+                <div class="slider-scale">
+                  <span>Guarded</span>
+                  <span>Orchestrated</span>
+                  <span>Campaign autopilot</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="step-card" data-step="3">
+              <div class="meta-label">Step 04</div>
+              <h3>Connect channels, analytics, and review roles</h3>
+              <p>
+                Choose the systems the agents can touch. This includes content destinations, analytics
+                sources, and the people who must approve specific actions.
+              </p>
+              <div class="step-grid">
+                <div class="toggle-card is-selected">
+                  <div class="field-title">Meta and Instagram</div>
+                  <p>Creative testing, short-form publishing, and campaign tracking.</p>
+                </div>
+                <div class="toggle-card is-selected">
+                  <div class="field-title">YouTube</div>
+                  <p>Video campaign distribution and metadata optimization.</p>
+                </div>
+                <div class="toggle-card is-selected">
+                  <div class="field-title">HubSpot</div>
+                  <p>Lead and conversion context for attribution.</p>
+                </div>
+                <div class="toggle-card is-selected">
+                  <div class="field-title">Analytics reviewers</div>
+                  <p>Strategist, legal, and account lead approval chain.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="step-card" data-step="4">
+              <div class="meta-label">Step 05</div>
+              <h3>Generate the first campaign sprint</h3>
+              <p>
+                Creators Pod now prepares the first week of activity: research, influencer scoring,
+                asset bundles, reporting views, and review-ready deliverables.
+              </p>
+              <div class="summary-list">
+                <div>
+                  <strong>Generated assets</strong>
+                  <span>Launch brief, hero copy set, short-form concepts, influencer shortlist, performance dashboard.</span>
+                </div>
+                <div>
+                  <strong>Review posture</strong>
+                  <span>Compliance and brand review are mandatory before any publish or outreach action.</span>
+                </div>
+                <div>
+                  <strong>Weekly loop</strong>
+                  <span>Every Friday the system narrates performance and recommends the next sprint.</span>
+                </div>
+              </div>
+            </article>
+
+            <div class="step-actions">
+              <button class="button-ghost" type="button" data-prev-step>Previous</button>
+              <button class="button-secondary" type="button" data-next-step>Next step</button>
+              <button class="button" type="button" data-complete-onboarding hidden>Compile first sprint</button>
+            </div>
+          </div>
+
+          <aside class="panel preview-card">
+            <div class="meta-label">Workspace preview</div>
+            <h3>What the brand dashboard emphasizes</h3>
+            <div class="check-list">
+              <span>Brand-safe creative operations across multiple channels and teams.</span>
+              <span>Influencer discovery with scoring and pricing context.</span>
+              <span>Explainable compliance checks and approval gates.</span>
+              <span>Unified reporting with next-step recommendations.</span>
+            </div>
+            <div class="panel-actions" style="margin-top: 22px;">
+              <a class="button" href="./dashboard.html">Open brand dashboard</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer__inner">
+        <p>Brand onboarding prototype for Creators Pod.</p>
+        <div class="inline-links">
+          <a class="inline-link" href="../creator/onboarding.html">Creator onboarding</a>
+          <a class="inline-link" href="../executive/onboarding.html">Executive onboarding</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

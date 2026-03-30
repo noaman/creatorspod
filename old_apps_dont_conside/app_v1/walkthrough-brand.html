@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand & Agency Walkthrough — Creators Pod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,400&family=Syne:wght@400;500;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --c-bg: #0E0906;
+      --c-s1: #16100B;
+      --c-s2: #1E160F;
+      --c-s3: #271D14;
+      --c-border: #2D2018;
+      --c-bsoft: #382818;
+      --c-accent: #FF6E4A;
+      --c-adim: rgba(255,110,74,.1);
+      --c-aglow: rgba(255,110,74,.25);
+      --c-green: #5EFF9C;
+      --c-blue: #5E9CFF;
+      --c-text: #FFF0E8;
+      --c-t2: #B59080;
+      --c-t3: #6B4A38;
+      --ff-d: 'Fraunces', Georgia, serif;
+      --ff-u: 'Syne', sans-serif;
+      --ff-b: 'Epilogue', sans-serif;
+    }
+    html, body { height: 100%; overflow: hidden; }
+    body { background: var(--c-bg); color: var(--c-text); font-family: var(--ff-b); font-size: 14px; display: flex; flex-direction: column; }
+
+    /* TOP BAR */
+    .topbar {
+      height: 56px; background: var(--c-s1);
+      border-bottom: 1px solid var(--c-border);
+      display: flex; align-items: center;
+      padding: 0 24px; gap: 20px;
+      flex-shrink: 0; position: relative; z-index: 50;
+    }
+    .topbar-logo {
+      font-family: var(--ff-u); font-size: 15px; font-weight: 800;
+      color: var(--c-text); display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .logo-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--c-accent);
+      box-shadow: 0 0 10px var(--c-accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 10px var(--c-accent)} 50%{opacity:.6;box-shadow:0 0 20px var(--c-accent)} }
+    .topbar-sep { width: 1px; height: 24px; background: var(--c-border); }
+    .topbar-persona {
+      font-family: var(--ff-u); font-size: 12px; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--c-accent);
+      background: var(--c-adim);
+      border: 1px solid rgba(255,110,74,.2);
+      border-radius: 100px; padding: 4px 12px;
+    }
+    .topbar-title { font-family: var(--ff-u); font-size: 13px; font-weight: 500; color: var(--c-t2); }
+    .topbar-steps { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+    .step-pip { width: 28px; height: 4px; border-radius: 2px; background: var(--c-border); transition: background .4s; cursor: pointer; }
+    .step-pip.done { background: rgba(255,110,74,.4); }
+    .step-pip.active { background: var(--c-accent); box-shadow: 0 0 8px var(--c-aglow); }
+    .step-counter { font-family: var(--ff-u); font-size: 12px; font-weight: 600; color: var(--c-t3); min-width: 50px; text-align: right; }
+    .topbar-back { font-family: var(--ff-u); font-size: 12px; font-weight: 500; color: var(--c-t3); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s; margin-left: 16px; }
+    .topbar-back:hover { color: var(--c-t2); }
+
+    /* LAYOUT */
+    .app-layout { flex: 1; display: grid; grid-template-columns: 240px 1fr 320px; overflow: hidden; }
+
+    /* SIDEBAR */
+    .sidebar { background: var(--c-s1); border-right: 1px solid var(--c-border); display: flex; flex-direction: column; overflow-y: auto; padding: 24px 16px; }
+    .sidebar-profile { background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+    .profile-avatar { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--c-accent), #FF9C7A); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 10px; }
+    .profile-name { font-family: var(--ff-u); font-size: 14px; font-weight: 700; color: var(--c-text); margin-bottom: 2px; }
+    .profile-sub { font-size: 12px; color: var(--c-t3); margin-bottom: 10px; }
+    .profile-goal-label { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-t3); margin-bottom: 6px; }
+    .profile-goal { font-size: 12px; color: var(--c-t2); line-height: 1.5; padding: 8px 10px; background: var(--c-adim); border: 1px solid rgba(255,110,74,.15); border-radius: 8px; }
+    .sidebar-nav-label { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--c-t3); padding: 0 8px; margin-bottom: 8px; }
+    .sidebar-steps { display: flex; flex-direction: column; gap: 4px; margin-bottom: 24px; }
+    .sidebar-step { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: background .2s; border: 1px solid transparent; }
+    .sidebar-step:hover { background: var(--c-s2); }
+    .sidebar-step.active { background: var(--c-adim); border-color: rgba(255,110,74,.2); }
+    .sidebar-step.done .step-icon, .sidebar-step.active .step-icon { color: var(--c-accent); }
+    .step-icon { font-size: 16px; width: 20px; text-align: center; color: var(--c-t3); flex-shrink: 0; }
+    .step-info { flex: 1; min-width: 0; }
+    .step-name { font-family: var(--ff-u); font-size: 12px; font-weight: 600; color: var(--c-t2); margin-bottom: 1px; }
+    .sidebar-step.active .step-name { color: var(--c-text); }
+    .step-status { font-size: 11px; color: var(--c-t3); }
+    .sidebar-step.done .step-status, .sidebar-step.active .step-status { color: var(--c-accent); }
+    .sidebar-divider { height: 1px; background: var(--c-border); margin: 16px 0; }
+    .sidebar-stat { padding: 12px; background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 10px; margin-bottom: 8px; }
+    .stat-label { font-family: var(--ff-u); font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--c-t3); margin-bottom: 4px; }
+    .stat-value { font-family: var(--ff-d); font-size: 22px; font-weight: 700; letter-spacing: -.02em; color: var(--c-accent); }
+    .stat-change { font-size: 11px; color: var(--c-t3); }
+
+    /* MAIN */
+    .main-content { overflow-y: auto; padding: 28px; display: flex; flex-direction: column; }
+    .step-view { display: none; flex-direction: column; gap: 20px; animation: fadeIn .4s ease; }
+    .step-view.active { display: flex; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    .view-header { margin-bottom: 4px; }
+    .view-step-badge { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--c-accent); margin-bottom: 8px; display: block; }
+    .view-title { font-family: var(--ff-d); font-size: 26px; font-weight: 700; letter-spacing: -.02em; color: var(--c-text); margin-bottom: 6px; }
+    .view-sub { font-size: 13px; color: var(--c-t2); line-height: 1.6; }
+    .card { background: var(--c-s1); border: 1px solid var(--c-border); border-radius: 14px; padding: 20px; }
+    .card-label { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-t3); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+    .card-badge { font-size: 10px; font-weight: 600; letter-spacing: .06em; padding: 3px 8px; border-radius: 100px; }
+    .badge-live { background: var(--c-adim); color: var(--c-accent); border: 1px solid rgba(255,110,74,.2); }
+    .badge-ok { background: rgba(94,255,156,.1); color: var(--c-green); border: 1px solid rgba(94,255,156,.2); }
+    .badge-warn { background: rgba(255,110,74,.1); color: var(--c-accent); border: 1px solid rgba(255,110,74,.2); }
+
+    /* Brief upload area */
+    .brief-upload {
+      border: 2px dashed var(--c-border);
+      border-radius: 12px; padding: 32px;
+      text-align: center;
+      transition: all .2s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .brief-upload.loaded {
+      border-style: solid;
+      border-color: rgba(255,110,74,.4);
+      background: var(--c-adim);
+    }
+    .brief-upload-icon { font-size: 36px; margin-bottom: 12px; }
+    .brief-upload-title { font-family: var(--ff-u); font-size: 14px; font-weight: 600; color: var(--c-text); margin-bottom: 6px; }
+    .brief-upload-sub { font-size: 12px; color: var(--c-t3); }
+
+    /* Brief extracted fields */
+    .brief-fields { display: flex; flex-direction: column; gap: 10px; }
+    .brief-field { display: flex; gap: 14px; padding: 12px 14px; background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 10px; }
+    .field-label { font-family: var(--ff-u); font-size: 11px; font-weight: 600; color: var(--c-t3); min-width: 100px; flex-shrink: 0; letter-spacing: .04em; text-transform: uppercase; margin-top: 1px; }
+    .field-value { font-size: 13px; color: var(--c-t2); line-height: 1.5; }
+    .field-value strong { color: var(--c-text); }
+
+    /* Voice DNA analysis */
+    .dna-bar-list { display: flex; flex-direction: column; gap: 12px; }
+    .dna-row { display: flex; align-items: center; gap: 12px; }
+    .dna-label { font-size: 12px; color: var(--c-t2); min-width: 110px; }
+    .dna-track { flex: 1; height: 6px; background: var(--c-s3); border-radius: 3px; overflow: hidden; }
+    .dna-fill { height: 100%; border-radius: 3px; background: var(--c-accent); }
+    .dna-val { font-family: var(--ff-u); font-size: 11px; font-weight: 600; color: var(--c-t2); min-width: 36px; text-align: right; }
+
+    /* Asset grid */
+    .asset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .asset-card {
+      background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 12px; padding: 16px;
+      position: relative; overflow: hidden; transition: all .2s;
+    }
+    .asset-card:hover { border-color: var(--c-bsoft); background: var(--c-s3); }
+    .asset-type { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .asset-type-icon { font-size: 16px; }
+    .asset-preview { font-size: 12px; color: var(--c-t2); line-height: 1.65; }
+    .asset-score { position: absolute; top: 14px; right: 14px; font-family: var(--ff-u); font-size: 11px; font-weight: 700; color: var(--c-accent); background: var(--c-adim); padding: 2px 8px; border-radius: 100px; }
+
+    /* Compliance checks */
+    .compliance-list { display: flex; flex-direction: column; gap: 8px; }
+    .compliance-row {
+      display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px;
+      background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 10px;
+    }
+    .check-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .check-body { flex: 1; }
+    .check-title { font-family: var(--ff-u); font-size: 12px; font-weight: 600; color: var(--c-text); margin-bottom: 3px; }
+    .check-sub { font-size: 11px; color: var(--c-t3); line-height: 1.5; }
+    .check-status { font-family: var(--ff-u); font-size: 10px; font-weight: 600; letter-spacing: .06em; padding: 3px 8px; border-radius: 100px; flex-shrink: 0; }
+    .status-pass { background: rgba(94,255,156,.1); color: var(--c-green); border: 1px solid rgba(94,255,156,.2); }
+    .status-warn { background: var(--c-adim); color: var(--c-accent); border: 1px solid rgba(255,110,74,.2); }
+
+    /* Publish calendar */
+    .calendar-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .cal-day { background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 10px; padding: 12px; transition: background .2s; }
+    .cal-day:hover { background: var(--c-s3); }
+    .cal-date { font-family: var(--ff-u); font-size: 11px; font-weight: 600; color: var(--c-t3); margin-bottom: 8px; }
+    .cal-event {
+      background: var(--c-adim); border: 1px solid rgba(255,110,74,.15);
+      border-radius: 6px; padding: 5px 7px; margin-bottom: 5px;
+      font-size: 10px; color: var(--c-t2); line-height: 1.4; cursor: pointer;
+    }
+    .cal-event:hover { border-color: rgba(255,110,74,.3); }
+    .cal-event.social { background: rgba(94,255,156,.08); border-color: rgba(94,255,156,.15); }
+    .cal-event.email { background: rgba(94,156,255,.08); border-color: rgba(94,156,255,.15); }
+
+    /* Campaign metrics */
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 12px; }
+    .metric-box { background: var(--c-s2); border: 1px solid var(--c-border); border-radius: 10px; padding: 14px; }
+    .metric-lbl { font-family: var(--ff-u); font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--c-t3); margin-bottom: 6px; }
+    .metric-num { font-family: var(--ff-d); font-size: 24px; font-weight: 700; letter-spacing: -.02em; color: var(--c-text); line-height: 1; }
+    .metric-chg { font-size: 11px; margin-top: 4px; }
+    .up { color: var(--c-green); }
+    .down { color: var(--c-accent); }
+
+    /* AGENT PANEL */
+    .agent-panel { background: var(--c-s1); border-left: 1px solid var(--c-border); display: flex; flex-direction: column; overflow: hidden; }
+    .agent-header { padding: 16px 20px; border-bottom: 1px solid var(--c-border); display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .agent-avatar { width: 32px; height: 32px; border-radius: 10px; background: linear-gradient(135deg, var(--c-accent), #FF9C7A); display: flex; align-items: center; justify-content: center; font-family: var(--ff-u); font-weight: 800; color: #0E0906; font-size: 14px; }
+    .agent-name { font-family: var(--ff-u); font-size: 13px; font-weight: 700; color: var(--c-text); }
+    .agent-status-row { display: flex; align-items: center; gap: 6px; }
+    .agent-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c-accent); animation: pulse 1.5s infinite; }
+    .agent-status-text { font-size: 11px; color: var(--c-t3); }
+    .agent-model { margin-left: auto; font-family: var(--ff-u); font-size: 10px; font-weight: 500; color: var(--c-t3); background: var(--c-s2); border: 1px solid var(--c-border); padding: 3px 8px; border-radius: 100px; }
+    .agent-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .agent-msg { padding: 10px 12px; border-radius: 10px; font-size: 12px; line-height: 1.6; animation: fadeIn .3s ease; }
+    .agent-msg.thought { background: var(--c-s2); border: 1px solid var(--c-border); color: var(--c-t2); border-left: 3px solid var(--c-t3); }
+    .agent-msg.action { background: var(--c-adim); border: 1px solid rgba(255,110,74,.15); color: var(--c-t2); font-family: monospace; font-size: 11px; }
+    .agent-msg.action strong { color: var(--c-accent); }
+    .agent-msg.result { background: var(--c-s2); border: 1px solid var(--c-border); color: var(--c-t2); border-left: 3px solid var(--c-accent); }
+    .agent-msg.result strong { color: var(--c-accent); }
+    .msg-type { font-family: var(--ff-u); font-size: 9px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-t3); margin-bottom: 4px; }
+    .agent-msg.action .msg-type, .agent-msg.result .msg-type { color: var(--c-accent); }
+    .typing-indicator { display: flex; align-items: center; gap: 4px; padding: 10px 14px; }
+    .typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c-t3); animation: typing-bounce .8s ease infinite; }
+    .typing-dot:nth-child(2) { animation-delay: .15s; }
+    .typing-dot:nth-child(3) { animation-delay: .3s; }
+    @keyframes typing-bounce { 0%,60%,100%{transform:translateY(0);opacity:.4} 30%{transform:translateY(-6px);opacity:1} }
+    .agent-footer { padding: 16px; border-top: 1px solid var(--c-border); flex-shrink: 0; }
+    .next-btn { width: 100%; font-family: var(--ff-u); font-size: 13px; font-weight: 700; background: var(--c-accent); color: #0E0906; border: none; border-radius: 10px; padding: 12px; cursor: pointer; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .next-btn:hover { background: #FF9C7A; box-shadow: 0 0 24px rgba(255,110,74,.3); }
+    .btn-label { font-size: 11px; color: var(--c-t3); text-align: center; margin-top: 8px; }
+    .arrow { transition: transform .2s; }
+    .next-btn:hover .arrow { transform: translateX(4px); }
+    .done-state { text-align: center; padding: 20px 16px; }
+    .done-icon { font-size: 40px; margin-bottom: 12px; }
+    .done-title { font-family: var(--ff-d); font-size: 18px; font-weight: 700; color: var(--c-text); margin-bottom: 8px; }
+    .done-sub { font-size: 12px; color: var(--c-t3); line-height: 1.6; margin-bottom: 16px; }
+    .done-btns { display: flex; flex-direction: column; gap: 8px; }
+    .done-btn { font-family: var(--ff-u); font-size: 12px; font-weight: 600; text-decoration: none; padding: 10px; border-radius: 8px; text-align: center; transition: all .2s; }
+    .done-btn.primary { background: var(--c-accent); color: #0E0906; }
+    .done-btn.primary:hover { background: #FF9C7A; }
+    .done-btn.ghost { background: transparent; border: 1px solid var(--c-border); color: var(--c-t2); }
+    .done-btn.ghost:hover { border-color: var(--c-bsoft); }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <a href="index.html" class="topbar-logo">
+    <span class="logo-dot"></span>
+    Creators Pod
+  </a>
+  <div class="topbar-sep"></div>
+  <span class="topbar-persona">Brand & Agency Walkthrough</span>
+  <span class="topbar-title">Apex Agency's Q4 Fitness Campaign — brief to published in one workflow</span>
+  <div class="topbar-steps" id="stepPips"></div>
+  <span class="step-counter" id="stepCounter">Step 1 of 6</span>
+  <a href="index.html" class="topbar-back">← Back to site</a>
+</div>
+
+<!-- LAYOUT -->
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-profile">
+      <div class="profile-avatar">🏢</div>
+      <div class="profile-name">Apex Creative Agency</div>
+      <div class="profile-sub">Managing: FitLife Brand · Q4 2026</div>
+      <div class="profile-goal-label">Campaign Goal</div>
+      <div class="profile-goal">🎯 Launch FitLife Q4 product line across Instagram, YouTube & email — 30% above last quarter's engagement</div>
+    </div>
+
+    <div class="sidebar-nav-label">Campaign Steps</div>
+    <div class="sidebar-steps" id="sidebarSteps">
+      <div class="sidebar-step active" data-step="0"><span class="step-icon">📋</span><div class="step-info"><div class="step-name">Brief Ingestion</div><div class="step-status">In progress</div></div></div>
+      <div class="sidebar-step" data-step="1"><span class="step-icon">🧬</span><div class="step-info"><div class="step-name">Brand Voice DNA</div><div class="step-status">Pending</div></div></div>
+      <div class="sidebar-step" data-step="2"><span class="step-icon">✨</span><div class="step-info"><div class="step-name">Asset Generation</div><div class="step-status">Pending</div></div></div>
+      <div class="sidebar-step" data-step="3"><span class="step-icon">🛡️</span><div class="step-info"><div class="step-name">Compliance Check</div><div class="step-status">Pending</div></div></div>
+      <div class="sidebar-step" data-step="4"><span class="step-icon">📅</span><div class="step-info"><div class="step-name">Campaign Calendar</div><div class="step-status">Pending</div></div></div>
+      <div class="sidebar-step" data-step="5"><span class="step-icon">📊</span><div class="step-info"><div class="step-name">Campaign Analytics</div><div class="step-status">Pending</div></div></div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-nav-label">Agency Stats</div>
+    <div class="sidebar-stat"><div class="stat-label">Active Campaigns</div><div class="stat-value">7</div><div class="stat-change">Across 4 clients</div></div>
+    <div class="sidebar-stat"><div class="stat-label">Assets This Month</div><div class="stat-value">148</div><div class="stat-change">+34% vs last month ↑</div></div>
+    <div class="sidebar-stat"><div class="stat-label">Avg. Compliance Score</div><div class="stat-value" style="color:var(--c-green)">97%</div><div class="stat-change">All brands cleared</div></div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- STEP 0: Brief Ingestion -->
+    <div class="step-view active" id="step-0">
+      <div class="view-header">
+        <span class="view-step-badge">Step 1 · Brief Ingestion</span>
+        <div class="view-title">Campaign brief uploaded.<br>Parsing in progress.</div>
+        <div class="view-sub">The agent has ingested the FitLife Q4 campaign brief and extracted all key parameters. Review the extracted fields below.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Source Document <span class="card-badge badge-ok">Parsed ✓</span></div>
+        <div class="brief-upload loaded">
+          <div class="brief-upload-icon">📄</div>
+          <div class="brief-upload-title">FitLife_Q4_Campaign_Brief_2026.pdf</div>
+          <div class="brief-upload-sub">Uploaded 2 minutes ago · 8 pages · Parsed by Document Agent</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Extracted Campaign Parameters</div>
+        <div class="brief-fields">
+          <div class="brief-field"><div class="field-label">Product</div><div class="field-value"><strong>FitLife ProX Series</strong> — new protein & recovery supplement line</div></div>
+          <div class="brief-field"><div class="field-label">Campaign Goal</div><div class="field-value"><strong>Product launch awareness + direct-to-consumer sales</strong>. KPI: 30% above Q3 engagement across channels.</div></div>
+          <div class="brief-field"><div class="field-label">Target Audience</div><div class="field-value"><strong>25–40 yr old fitness enthusiasts</strong>, primarily female, social-first. Secondary: male gym-goers 22–35.</div></div>
+          <div class="brief-field"><div class="field-label">Tone & Voice</div><div class="field-value"><strong>Empowering, science-backed, honest.</strong> Avoid overly aggressive "hustle" language. Brand is inclusive.</div></div>
+          <div class="brief-field"><div class="field-label">Key Messages</div><div class="field-value"><strong>1)</strong> Real results, real science. <strong>2)</strong> Built for consistency, not extremes. <strong>3)</strong> Tastes as good as it works.</div></div>
+          <div class="brief-field"><div class="field-label">Deliverables</div><div class="field-value"><strong>Instagram:</strong> 4 Reels + 8 feed posts. <strong>YouTube:</strong> 2 sponsored integrations. <strong>Email:</strong> 3-part drip sequence.</div></div>
+          <div class="brief-field"><div class="field-label">Timeline</div><div class="field-value"><strong>Launch: Nov 1.</strong> Pre-launch teaser: Oct 20. Post-launch follow-up: Nov 14.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Brand Voice DNA -->
+    <div class="step-view" id="step-1">
+      <div class="view-header">
+        <span class="view-step-badge">Step 2 · Brand Voice DNA</span>
+        <div class="view-title">FitLife voice profile<br>built from 240 assets.</div>
+        <div class="view-sub">The Voice DNA Agent analysed 240 historical FitLife assets — posts, emails, video scripts — and built a multi-dimensional brand voice fingerprint.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px">
+        <div class="card">
+          <div class="card-label">Voice Fingerprint Dimensions</div>
+          <div class="dna-bar-list">
+            <div class="dna-row"><div class="dna-label">Empowering tone</div><div class="dna-track"><div class="dna-fill" style="width:92%"></div></div><div class="dna-val">92%</div></div>
+            <div class="dna-row"><div class="dna-label">Science-backed refs</div><div class="dna-track"><div class="dna-fill" style="width:85%"></div></div><div class="dna-val">85%</div></div>
+            <div class="dna-row"><div class="dna-label">Inclusive language</div><div class="dna-track"><div class="dna-fill" style="width:88%"></div></div><div class="dna-val">88%</div></div>
+            <div class="dna-row"><div class="dna-label">Sentence brevity</div><div class="dna-track"><div class="dna-fill" style="width:74%"></div></div><div class="dna-val">74%</div></div>
+            <div class="dna-row"><div class="dna-label">Emoji frequency</div><div class="dna-track"><div class="dna-fill" style="width:45%"></div></div><div class="dna-val">45%</div></div>
+            <div class="dna-row"><div class="dna-label">CTA directness</div><div class="dna-track"><div class="dna-fill" style="width:80%"></div></div><div class="dna-val">80%</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">Voice Rules Extracted</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="padding:10px 12px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:8px;font-size:12px;color:var(--c-t2)"><strong style="color:var(--c-green)">✓ Use:</strong> "Built for real people", "science says", "your journey", "progress over perfection"</div>
+            <div style="padding:10px 12px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:8px;font-size:12px;color:var(--c-t2)"><strong style="color:var(--c-accent)">✗ Avoid:</strong> "Crush it", "no excuses", "beast mode", "grind culture" language</div>
+            <div style="padding:10px 12px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:8px;font-size:12px;color:var(--c-t2)"><strong style="color:var(--c-blue)">Format:</strong> Short sentences (≤12 words). Always include 1 science reference. CTAs end with "→" not "!"</div>
+            <div style="padding:10px 12px;background:var(--c-adim);border:1px solid rgba(255,110,74,.15);border-radius:8px;font-size:12px;color:var(--c-t2)">
+              <strong style="color:var(--c-accent)">Overall DNA Score: 91/100</strong> — Strong consistency. Ready for asset generation.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Asset Generation -->
+    <div class="step-view" id="step-2">
+      <div class="view-header">
+        <span class="view-step-badge">Step 3 · Asset Generation</span>
+        <div class="view-title">14 assets generated.<br>All voice-matched.</div>
+        <div class="view-sub">The Content Agent produced all campaign deliverables in FitLife's voice. Each asset scored against the DNA fingerprint before delivery.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Generated Assets <span class="card-badge badge-ok">14 / 14 Complete</span></div>
+        <div class="asset-grid">
+          <div class="asset-card">
+            <div class="asset-type"><span class="asset-type-icon">📸</span>Instagram Reel Hook</div>
+            <div class="asset-preview">"You've been lied to about recovery. The science is simpler than you think — and ProX finally delivers it in one scoop. Here's what 6 weeks did to my recovery time. 🔬"</div>
+            <div class="asset-score">93</div>
+          </div>
+          <div class="asset-card">
+            <div class="asset-type"><span class="asset-type-icon">📸</span>Instagram Feed Post</div>
+            <div class="asset-preview">"Progress isn't about the grind. It's about recovery. FitLife ProX — built on 3 clinical studies. Real results, no extremes. Link in bio →"</div>
+            <div class="asset-score">91</div>
+          </div>
+          <div class="asset-card">
+            <div class="asset-type"><span class="asset-type-icon">▶</span>YouTube Integration Script</div>
+            <div class="asset-preview">"— and that's why I've been using FitLife ProX for my recovery. I was sceptical of the science claims at first, but the results are actually backed by a 2025 study from... [30-sec integration, natural tone]"</div>
+            <div class="asset-score">89</div>
+          </div>
+          <div class="asset-card">
+            <div class="asset-type"><span class="asset-type-icon">📧</span>Email — Launch Day</div>
+            <div class="asset-preview"><strong>Subject: The protein supplement that actually worked for me (finally)</strong><br>Hi [first name], I've been building to this for a while. Today, FitLife ProX is live — and I want to tell you why I believe in it...</div>
+            <div class="asset-score">94</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:10px 14px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:8px;font-size:12px;color:var(--c-t3)">
+          + 10 additional assets ready: 3 more Reels, 6 feed posts, email parts 2 & 3. All scored 85–96/100 voice match.
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: Compliance Check -->
+    <div class="step-view" id="step-3">
+      <div class="view-header">
+        <span class="view-step-badge">Step 4 · Compliance Agent</span>
+        <div class="view-title">Compliance scan complete.<br>1 item flagged for review.</div>
+        <div class="view-sub">All 14 assets have been scanned against FitLife's brand guardrails, advertising standards, and EU/FTC disclosure requirements.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Compliance Scan Results</div>
+        <div class="compliance-list">
+          <div class="compliance-row">
+            <div class="check-icon">✅</div>
+            <div class="check-body">
+              <div class="check-title">Brand Voice Consistency</div>
+              <div class="check-sub">All 14 assets scored ≥85/100 on Voice DNA. No off-brand language detected. "Crush it" and "grind" terms: 0 instances.</div>
+            </div>
+            <div class="check-status status-pass">PASS</div>
+          </div>
+          <div class="compliance-row">
+            <div class="check-icon">✅</div>
+            <div class="check-body">
+              <div class="check-title">AI-Generated Content Disclosure (EU AI Act)</div>
+              <div class="check-sub">Provenance metadata injected into all assets. "AI-assisted" label applied where required. Audit trail stored in ClawDB.</div>
+            </div>
+            <div class="check-status status-pass">PASS</div>
+          </div>
+          <div class="compliance-row">
+            <div class="check-icon">⚠️</div>
+            <div class="check-body">
+              <div class="check-title">Health Claims — YouTube Script</div>
+              <div class="check-sub">Script references "3 clinical studies" without naming the studies. FTC advertising guidelines require specific citation. Agent has suggested a revised sentence with study names linked in description.</div>
+            </div>
+            <div class="check-status status-warn">REVIEW</div>
+          </div>
+          <div class="compliance-row">
+            <div class="check-icon">✅</div>
+            <div class="check-body">
+              <div class="check-title">Inclusive Language Audit</div>
+              <div class="check-sub">No exclusionary, body-shaming, or culturally insensitive language detected across all 14 assets.</div>
+            </div>
+            <div class="check-status status-pass">PASS</div>
+          </div>
+          <div class="compliance-row">
+            <div class="check-icon">✅</div>
+            <div class="check-body">
+              <div class="check-title">Sponsored Content Disclosure (FTC)</div>
+              <div class="check-sub">"Paid partnership with FitLife" disclosure tag confirmed on all Instagram and YouTube assets.</div>
+            </div>
+            <div class="check-status status-pass">PASS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: Campaign Calendar -->
+    <div class="step-view" id="step-4">
+      <div class="view-header">
+        <span class="view-step-badge">Step 5 · Campaign Calendar</span>
+        <div class="view-title">Full campaign scheduled.<br>Oct 20 → Nov 14.</div>
+        <div class="view-sub">The Publishing Agent has built the complete campaign calendar, timing assets to audience peaks and the product launch date. All slots confirmed.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Campaign Timeline <span class="card-badge badge-live">Auto-scheduled</span></div>
+        <div class="calendar-grid">
+          <div class="cal-day">
+            <div class="cal-date">OCT 20</div>
+            <div class="cal-event">📸 Teaser Reel — IG</div>
+            <div class="cal-event">📧 Pre-launch email</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-date">OCT 25</div>
+            <div class="cal-event">📸 Behind scenes — IG Story</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-date">OCT 28</div>
+            <div class="cal-event">📸 Science post — IG Feed</div>
+            <div class="cal-event social">📧 Countdown email</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-date" style="color:var(--c-accent);font-weight:800">NOV 1 🚀</div>
+            <div class="cal-event">📸 Launch Reel — IG</div>
+            <div class="cal-event social">▶ YouTube integration live</div>
+            <div class="cal-event email">📧 Launch email</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-date">NOV 3</div>
+            <div class="cal-event">📸 Social proof — IG</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-date">NOV 7</div>
+            <div class="cal-event">📸 Results Reel — IG</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-date">NOV 10</div>
+            <div class="cal-event">▶ YouTube integration #2</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-date">NOV 12</div>
+            <div class="cal-event">📸 Community post — IG</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-date">NOV 14</div>
+            <div class="cal-event social">📧 Follow-up email</div>
+            <div class="cal-event">📸 Final push Reel — IG</div>
+          </div>
+          <div class="cal-day">
+            <div class="cal-date">NOV 18</div>
+            <div class="cal-event">📊 Campaign report ready</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <div style="padding:10px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:8px;text-align:center">
+            <div style="font-family:var(--ff-d);font-size:20px;font-weight:700;color:var(--c-accent)">14</div>
+            <div style="font-size:11px;color:var(--c-t3)">Total assets</div>
+          </div>
+          <div style="padding:10px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:8px;text-align:center">
+            <div style="font-family:var(--ff-d);font-size:20px;font-weight:700;color:var(--c-accent)">25 days</div>
+            <div style="font-size:11px;color:var(--c-t3)">Campaign window</div>
+          </div>
+          <div style="padding:10px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:8px;text-align:center">
+            <div style="font-family:var(--ff-d);font-size:20px;font-weight:700;color:var(--c-green)">97%</div>
+            <div style="font-size:11px;color:var(--c-t3)">Compliance score</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: Campaign Analytics -->
+    <div class="step-view" id="step-5">
+      <div class="view-header">
+        <span class="view-step-badge">Step 6 · Campaign Analytics</span>
+        <div class="view-title">Campaign outperformed.<br>+47% above target.</div>
+        <div class="view-sub">The campaign concluded Nov 14. Analytics Agent has aggregated all channel data and generated the client report. Goal was 30% above Q3 — actual result: 47%.</div>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-box"><div class="metric-lbl">Total Reach</div><div class="metric-num">1.24M</div><div class="metric-chg up">↑ +47% vs Q3</div></div>
+        <div class="metric-box"><div class="metric-lbl">Engagement Rate</div><div class="metric-num">8.9%</div><div class="metric-chg up">↑ Industry avg: 3.2%</div></div>
+        <div class="metric-box"><div class="metric-lbl">Email Open Rate</div><div class="metric-num">42%</div><div class="metric-chg up">↑ +18pp vs industry</div></div>
+        <div class="metric-box"><div class="metric-lbl">Direct Sales Attr.</div><div class="metric-num">$84K</div><div class="metric-chg up">↑ ROI: 6.2×</div></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Channel Breakdown</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:10px">
+            <div style="font-size:20px">📸</div>
+            <div style="flex:1"><div style="font-family:var(--ff-u);font-size:12px;font-weight:600;color:var(--c-text)">Instagram</div><div style="font-size:11px;color:var(--c-t3)">4 Reels + 8 feed posts</div></div>
+            <div style="text-align:right"><div style="font-family:var(--ff-d);font-size:18px;font-weight:700;color:var(--c-accent)">890K reach</div><div style="font-size:11px;color:var(--c-green)">↑ 9.2% engagement</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:10px">
+            <div style="font-size:20px">▶</div>
+            <div style="flex:1"><div style="font-family:var(--ff-u);font-size:12px;font-weight:600;color:var(--c-text)">YouTube</div><div style="font-size:11px;color:var(--c-t3)">2 sponsored integrations</div></div>
+            <div style="text-align:right"><div style="font-family:var(--ff-d);font-size:18px;font-weight:700;color:var(--c-accent)">280K views</div><div style="font-size:11px;color:var(--c-green)">↑ 6.8% CTR to product page</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--c-s2);border:1px solid var(--c-border);border-radius:10px">
+            <div style="font-size:20px">📧</div>
+            <div style="flex:1"><div style="font-family:var(--ff-u);font-size:12px;font-weight:600;color:var(--c-text)">Email Campaign</div><div style="font-size:11px;color:var(--c-t3)">3-part drip sequence · 24K subscribers</div></div>
+            <div style="text-align:right"><div style="font-family:var(--ff-d);font-size:18px;font-weight:700;color:var(--c-accent)">42% open rate</div><div style="font-size:11px;color:var(--c-green)">↑ 11.2% click-through</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Agent Recommendation for Next Campaign</div>
+        <div style="padding:14px;background:var(--c-adim);border:1px solid rgba(255,110,74,.2);border-radius:10px;font-size:13px;color:var(--c-t2)">
+          "Social proof Reels (featuring real customer results) outperformed product-feature content by 38%. Recommend allocating 60% of next campaign to testimonial-led formats. Science reference posts drove highest email CTR. Maintain as anchor content for Q1. ClawDB has stored all performance data for future campaign optimisation."
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AGENT PANEL -->
+  <div class="agent-panel">
+    <div class="agent-header">
+      <div class="agent-avatar">P</div>
+      <div>
+        <div class="agent-name">Campaign Agent</div>
+        <div class="agent-status-row">
+          <span class="agent-dot"></span>
+          <span class="agent-status-text" id="agentStatusText">Parsing brief...</span>
+        </div>
+      </div>
+      <div class="agent-model">ReAct Loop · GPT-4o</div>
+    </div>
+    <div class="agent-messages" id="agentMessages"></div>
+    <div class="agent-footer" id="agentFooter">
+      <button class="next-btn" id="nextBtn" onclick="nextStep()">
+        <span id="nextBtnLabel">Continue →</span>
+        <span class="arrow">→</span>
+      </button>
+      <div class="btn-label" id="btnLabel">Step 1 of 6</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const TOTAL = 6;
+  let cur = 0;
+  const stepData = [
+    {
+      status: "Parsing brief document...",
+      messages: [
+        { type:'thought', text:"Brief received: 'FitLife_Q4_Campaign_Brief_2026.pdf'. Running document parser to extract campaign parameters..." },
+        { type:'action', text:"<strong>parse_document</strong>(file='FitLife_Q4_Campaign_Brief.pdf', extract=['goals','audience','deliverables','tone','timeline'])" },
+        { type:'result', text:"<strong>✓ Extracted 7 parameters.</strong> Campaign goal: +30% engagement vs Q3. 14 deliverables across 3 channels. Timeline: Oct 20 – Nov 14." },
+        { type:'thought', text:"Parameters stored in ClawDB. Querying historical FitLife campaign assets to build Brand Voice DNA profile..." },
+      ],
+      nextLabel: "Build Brand Voice DNA →", btnSub: "Step 1 of 6 · Brief parsed"
+    },
+    {
+      status: "Analysing brand voice history...",
+      messages: [
+        { type:'thought', text:"Querying ClawDB for all historical FitLife assets (past 12 months). 240 assets found: 180 Instagram posts, 30 email sequences, 30 scripts..." },
+        { type:'action', text:"<strong>build_voice_dna</strong>(brand='fitlife', asset_count=240, dimensions=['tone','language','sentence_len','emoji_freq','cta_style'])" },
+        { type:'result', text:"<strong>✓ Voice DNA built. Score: 91/100.</strong> Dominant traits: empowering (92%), science-backed (85%), inclusive (88%). 6 vocabulary rules extracted." },
+        { type:'thought', text:"Voice fingerprint stored in ClawDB. All 14 deliverables will be scored against this profile. Activating Content Agent..." },
+      ],
+      nextLabel: "Generate Campaign Assets →", btnSub: "Step 2 of 6 · Voice profile ready"
+    },
+    {
+      status: "Generating 14 campaign assets...",
+      messages: [
+        { type:'thought', text:"Generating all deliverables: 4 Reels, 8 feed posts, 2 YouTube integration scripts, 3-part email sequence. Applying FitLife Voice DNA to each..." },
+        { type:'action', text:"<strong>generate_assets</strong>(brief_id='fitlife_q4', count=14, formats=['reel','feed_post','yt_integration','email'], voice=fitlife_dna)" },
+        { type:'result', text:"<strong>✓ 14 assets complete.</strong> Voice scores: 85–96/100. All assets include required disclosure tags and science references. Sending to Compliance Agent..." },
+        { type:'thought', text:"Asset bundle ready for compliance review. Flagging any health claims for verification against FTC advertising guidelines." },
+      ],
+      nextLabel: "Run Compliance Check →", btnSub: "Step 3 of 6 · Assets generated"
+    },
+    {
+      status: "Running compliance scan...",
+      messages: [
+        { type:'thought', text:"Scanning all 14 assets against: (1) FitLife brand guardrails, (2) EU AI Act disclosure requirements, (3) FTC health claim rules, (4) inclusive language audit..." },
+        { type:'action', text:"<strong>compliance_scan</strong>(assets=14, checks=['brand_voice','ai_disclosure','ftc_health_claims','inclusive_language','sponsored_disclosure'])" },
+        { type:'result', text:"<strong>✓ 13/14 PASS. 1 REVIEW flagged.</strong> YouTube script references '3 clinical studies' without naming them. FTC requires specific citation. Agent has prepared corrected version." },
+        { type:'thought', text:"Flagging YouTube script for human review. All other assets cleared. Proceeding to campaign scheduling..." },
+      ],
+      nextLabel: "Build Campaign Calendar →", btnSub: "Step 4 of 6 · Review flagged item"
+    },
+    {
+      status: "Scheduling campaign timeline...",
+      messages: [
+        { type:'thought', text:"Building campaign calendar Oct 20 – Nov 14 around launch date Nov 1. Checking FitLife's audience peak times from analytics data..." },
+        { type:'action', text:"<strong>build_campaign_calendar</strong>(assets=14, launch_date='2026-11-01', channels=['instagram','youtube','email'], timing='audience_optimal')" },
+        { type:'result', text:"<strong>✓ Calendar built.</strong> 10 publishing slots scheduled. Teaser: Oct 20. Launch: Nov 1 (Reel + YouTube + Email). Follow-up: Nov 14. All slots at audience peak times." },
+        { type:'thought', text:"Campaign fully prepared and queued. Entering monitoring mode. Analytics Agent will aggregate results post-launch and generate client report Nov 18." },
+      ],
+      nextLabel: "View Campaign Results →", btnSub: "Step 5 of 6 · Campaign scheduled"
+    },
+    {
+      status: "Campaign complete · Report ready",
+      messages: [
+        { type:'thought', text:"Campaign concluded Nov 14. Aggregating final metrics from Instagram Insights, YouTube Analytics, and email platform (Klaviyo)..." },
+        { type:'action', text:"<strong>aggregate_campaign_metrics</strong>(campaign_id='fitlife_q4_2026', channels='all', compare_to='q3_2026')" },
+        { type:'result', text:"<strong>✓ Goal exceeded by 57%.</strong> Reach: 1.24M (+47% vs Q3). Engagement: 8.9%. Revenue attributed: $84K. ROI: 6.2×. Client report generated." },
+        { type:'thought', text:"All performance data stored in ClawDB. Social proof formats flagged as HIGH IMPACT for next campaign. Q1 strategy draft queuing automatically." },
+      ],
+      nextLabel: null, btnSub: "Step 6 of 6 · Campaign complete"
+    }
+  ];
+
+  function renderPips() {
+    const c = document.getElementById('stepPips'); c.innerHTML='';
+    for(let i=0;i<TOTAL;i++){const p=document.createElement('div');p.className='step-pip'+(i<cur?' done':i===cur?' active':'');p.onclick=()=>go(i);c.appendChild(p);}
+  }
+  function renderSidebar() {
+    document.querySelectorAll('.sidebar-step').forEach((el,i)=>{
+      el.classList.remove('active','done');
+      const s=el.querySelector('.step-status');
+      if(i<cur){el.classList.add('done');s.textContent='Complete ✓';}
+      else if(i===cur){el.classList.add('active');s.textContent='In progress';}
+      else{s.textContent='Pending';}
+    });
+  }
+  let mt=null;
+  function renderAgent() {
+    const c=document.getElementById('agentMessages');
+    const d=stepData[cur];
+    document.getElementById('agentStatusText').textContent=d.status;
+    c.innerHTML='';
+    let idx=0;
+    const showTyping=()=>{const t=document.createElement('div');t.className='typing-indicator';t.id='typing';t.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';c.appendChild(t);c.scrollTop=c.scrollHeight;};
+    const next=()=>{
+      const t=document.getElementById('typing');if(t)t.remove();
+      if(idx<d.messages.length){
+        const m=d.messages[idx];const div=document.createElement('div');div.className='agent-msg '+m.type;
+        const labels={thought:'Thinking',action:'Tool Call',result:'Observation'};
+        div.innerHTML=`<div class="msg-type">${labels[m.type]}</div>${m.text}`;
+        c.appendChild(div);c.scrollTop=c.scrollHeight;idx++;showTyping();mt=setTimeout(next,900+Math.random()*400);
+      }
+    };
+    showTyping();mt=setTimeout(next,800);
+  }
+  function go(idx){
+    if(idx<0||idx>=TOTAL)return;
+    if(mt)clearTimeout(mt);
+    document.getElementById('step-'+cur).classList.remove('active');
+    cur=idx;
+    document.getElementById('step-'+cur).classList.add('active');
+    renderPips();renderSidebar();renderAgent();
+    document.getElementById('stepCounter').textContent=`Step ${cur+1} of ${TOTAL}`;
+    const d=stepData[cur];
+    const f=document.getElementById('agentFooter');
+    if(!d.nextLabel){
+      f.innerHTML=`<div class="done-state"><div class="done-icon">🏆</div><div class="done-title">Campaign delivered!</div><div class="done-sub">FitLife's Q4 campaign outperformed the target by 47%. The agent is already preparing Q1 recommendations.</div><div class="done-btns"><a href="walkthrough-executive.html" class="done-btn primary">See Executive Demo →</a><a href="index.html" class="done-btn ghost">← Back to landing page</a></div></div>`;
+    } else {
+      f.innerHTML=`<button class="next-btn" onclick="nextStep()"><span>${d.nextLabel}</span><span class="arrow">→</span></button><div class="btn-label">${d.btnSub}</div>`;
+    }
+  }
+  function nextStep(){go(cur+1);}
+  document.addEventListener('click',e=>{const s=e.target.closest('.sidebar-step');if(s){const i=parseInt(s.dataset.step);if(!isNaN(i)&&i<=cur+1)go(i);}});
+  renderPips();renderSidebar();renderAgent();
+</script>
+</body>
+</html>

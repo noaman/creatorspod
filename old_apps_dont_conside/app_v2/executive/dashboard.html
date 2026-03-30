@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive dashboard — Creators Pod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F8F6F2;
+      --surface: #FFFEFB;
+      --surface-2: #EFEDE8;
+      --border: #E2DFD9;
+      --border-strong: #C9C4BA;
+      --text: #1A1814;
+      --text-2: #5C5650;
+      --text-3: #8A847A;
+      --accent: #4A6B9B;
+      --accent-dim: rgba(74, 107, 155, 0.12);
+      --success: #2D6B5C;
+      --ff-display: 'Instrument Serif', Georgia, serif;
+      --ff-body: 'DM Sans', sans-serif;
+      --ff-mono: 'JetBrains Mono', monospace;
+      --radius: 12px;
+    }
+    [data-theme="dark"] {
+      --bg: #0F0E0C;
+      --surface: #181614;
+      --surface-2: #1E1C18;
+      --border: #2A2722;
+      --border-strong: #3D3832;
+      --text: #F2F0EB;
+      --text-2: #B5B0A6;
+      --text-3: #7A756C;
+      --accent: #6B8FC4;
+      --accent-dim: rgba(107, 143, 196, 0.15);
+      --success: #4A9B88;
+    }
+    html, body { height: 100%; font-family: var(--ff-body); font-size: 15px; color: var(--text); background: var(--bg); display: flex; flex-direction: column; transition: background 0.2s, color 0.2s; }
+
+    .topbar { height: 56px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; gap: 20px; flex-shrink: 0; }
+    .topbar-logo { font-family: var(--ff-display); font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .topbar-badge { font-family: var(--ff-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--border); border-radius: 100px; padding: 4px 12px; }
+    .topbar-nav { margin-left: auto; display: flex; gap: 8px; }
+    .topbar-nav a { font-size: 13px; font-weight: 500; color: var(--text-2); text-decoration: none; padding: 8px 14px; border-radius: 8px; transition: all 0.2s; }
+    .topbar-nav a:hover { color: var(--text); background: var(--surface-2); }
+    .topbar-nav a.active { color: var(--accent); background: var(--accent-dim); }
+
+    .layout { flex: 1; display: grid; grid-template-columns: 220px 1fr 300px; overflow: hidden; }
+    .sidebar { background: var(--surface); border-right: 1px solid var(--border); padding: 20px 16px; overflow-y: auto; }
+    .profile-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 20px; }
+    .profile-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #7BA3D4); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 8px; }
+    .profile-name { font-weight: 700; font-size: 13px; color: var(--text); }
+    .profile-sub { font-size: 11px; color: var(--text-3); margin-bottom: 8px; }
+    .profile-goal { font-size: 11px; color: var(--text-2); line-height: 1.45; padding: 8px; background: var(--accent-dim); border-radius: 8px; }
+    .sidebar-label { font-family: var(--ff-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; padding: 0 6px; }
+    .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text-2); text-decoration: none; transition: all 0.2s; margin-bottom: 2px; }
+    .sidebar-link:hover { background: var(--surface-2); color: var(--text); }
+    .sidebar-link.active { background: var(--accent-dim); color: var(--accent); }
+    .stat-box { padding: 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; }
+    .stat-label { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+    .stat-value { font-family: var(--ff-display); font-size: 20px; font-weight: 400; color: var(--accent); }
+    .stat-change { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+    .stat-change.up { color: var(--success); }
+
+    .main { overflow-y: auto; padding: 24px; }
+    .page-title { font-family: var(--ff-display); font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+    .page-sub { font-size: 14px; color: var(--text-2); margin-bottom: 24px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .card-title { font-weight: 700; font-size: 14px; color: var(--text); }
+    .card-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; background: var(--accent-dim); color: var(--accent); }
+    .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+    .metric { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .metric-label { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+    .metric-value { font-family: var(--ff-display); font-size: 24px; font-weight: 400; color: var(--text); }
+    .metric-change { font-size: 12px; margin-top: 4px; }
+    .metric-change.up { color: var(--success); }
+    .event-card {
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .event-card:hover { border-color: var(--accent); background: var(--accent-dim); }
+    .event-date { background: var(--accent-dim); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; text-align: center; min-width: 56px; }
+    .event-month { font-family: var(--ff-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+    .event-day { font-family: var(--ff-display); font-size: 22px; font-weight: 400; color: var(--text); line-height: 1; }
+    .event-title { font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+    .event-detail { font-size: 12px; color: var(--text-3); line-height: 1.5; }
+    .event-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 100px; margin-top: 8px; background: var(--accent-dim); color: var(--accent); }
+    .post-draft {
+      padding: 14px 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .post-draft:hover { border-color: var(--accent); }
+    .post-draft-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .post-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #7BA3D4); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .post-name { font-weight: 700; font-size: 12px; color: var(--text); }
+    .post-meta { font-size: 11px; color: var(--text-3); }
+    .post-body { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+    .post-score { font-size: 11px; font-weight: 600; color: var(--accent); margin-top: 8px; }
+
+    .panel { background: var(--surface); border-left: 1px solid var(--border); padding: 20px; overflow-y: auto; }
+    .panel-title { font-weight: 700; font-size: 13px; color: var(--text); margin-bottom: 12px; }
+    .agent-status { display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: var(--surface-2); border-radius: 8px; margin-bottom: 12px; }
+    .agent-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+    .agent-status span { font-size: 12px; color: var(--text-2); }
+    .quick-action { display: block; width: 100%; text-align: left; padding: 12px 14px; background: var(--accent-dim); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--accent); cursor: pointer; margin-bottom: 8px; transition: all 0.2s; }
+    .quick-action:hover { background: var(--accent); color: #fff; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html" class="topbar-logo"><span class="logo-dot"></span>Creators Pod</a>
+  <span class="topbar-badge">Executive dashboard</span>
+  <nav class="topbar-nav">
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="../index.html">Home</a>
+  </nav>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="profile-card">
+      <div class="profile-avatar">💼</div>
+      <div class="profile-name">Dr. Sarah Chen</div>
+      <div class="profile-sub">VC Partner · 28K LinkedIn</div>
+      <div class="profile-goal">Become recognised voice in deep tech — 50K in 6mo</div>
+    </div>
+    <div class="sidebar-label">Menu</div>
+    <a href="dashboard.html" class="sidebar-link active">📊 Dashboard</a>
+    <a href="#" class="sidebar-link">📅 Calendar triggers</a>
+    <a href="#" class="sidebar-link">✍️ Post drafts</a>
+    <a href="#" class="sidebar-link">🛡️ Compliance</a>
+    <a href="#" class="sidebar-link">📈 Engagement</a>
+    <div class="sidebar-label" style="margin-top:20px">This week</div>
+    <div class="stat-box">
+      <div class="stat-label">Content opportunities</div>
+      <div class="stat-value">3</div>
+      <div class="stat-change">From calendar</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Time saved/post</div>
+      <div class="stat-value" style="color:var(--success)">3.8h</div>
+      <div class="stat-change up">vs 4+ hrs before</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1 class="page-title">Executive dashboard</h1>
+    <p class="page-sub">Calendar-aware content opportunities and LinkedIn presence. Your insights, amplified — without the grind.</p>
+
+    <div class="metrics-row">
+      <div class="metric">
+        <div class="metric-label">LinkedIn followers</div>
+        <div class="metric-value">28.4K</div>
+        <div class="metric-change up">↑ 1.2K this month</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Avg. impressions/post</div>
+        <div class="metric-value">12.6K</div>
+        <div class="metric-change up">↑ 38%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Engagement rate</div>
+        <div class="metric-value">11.2%</div>
+        <div class="metric-change up">Platform avg 3.1%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Content time/post</div>
+        <div class="metric-value">22m</div>
+        <div class="metric-change">vs 4+ hrs before</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Upcoming — content triggers</span>
+        <span class="card-badge">Calendar Agent</span>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="event-month">MAR</div><div class="event-day">20</div></div>
+        <div>
+          <div class="event-title">World AI Infrastructure Summit — Panel Speaker</div>
+          <div class="event-detail">Keynote: "The next wave of AI infrastructure investment." 3 days out — pre- and post-event content suggested.</div>
+          <span class="event-tag">🎤 Speaking</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="event-month">MAR</div><div class="event-day">22</div></div>
+        <div>
+          <div class="event-title">Board meeting — Neuraltek</div>
+          <div class="event-detail">Post-opportunity detected. Thought leadership angle suggested.</div>
+          <span class="event-tag">📋 Board</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Recent drafts (your voice)</span>
+        <span class="card-badge">Voice 91/100</span>
+      </div>
+      <div class="post-draft">
+        <div class="post-draft-header">
+          <div class="post-avatar">💼</div>
+          <div><div class="post-name">Dr. Sarah Chen</div><div class="post-meta">Pre-event · AI Infra Summit</div></div>
+        </div>
+        <div class="post-body">I'm heading to the World AI Infrastructure Summit in 3 days to speak about the gap between what founders are building and what the market actually needs. The next wave isn't about building AI — it's about making AI work at enterprise scale…</div>
+        <div class="post-score">Voice: 93/100</div>
+      </div>
+      <div class="post-draft">
+        <div class="post-draft-header">
+          <div class="post-avatar">💼</div>
+          <div><div class="post-name">Dr. Sarah Chen</div><div class="post-meta">Post-event · Contrarian take</div></div>
+        </div>
+        <div class="post-body">Hot take from #AIInfraSummit: The VC community got the AI infrastructure story wrong this week. We're funding the wrong part of the stack…</div>
+        <div class="post-score">Voice: 90/100</div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="panel">
+    <div class="panel-title">Pod agent</div>
+    <div class="agent-status">
+      <span class="agent-dot"></span>
+      <span>Calendar monitoring & RAG active</span>
+    </div>
+    <button class="quick-action">💬 Ask the agent</button>
+    <button class="quick-action">✍️ New post from notes</button>
+    <button class="quick-action">⚙️ Compliance settings</button>
+  </aside>
+</div>
+<script>if (localStorage.getItem('creatorspod-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');</script>
+</body>
+</html>

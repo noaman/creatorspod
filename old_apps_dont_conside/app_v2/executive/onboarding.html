@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive onboarding — Creators Pod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F8F6F2;
+      --surface: #FFFEFB;
+      --surface-2: #EFEDE8;
+      --border: #E2DFD9;
+      --border-strong: #C9C4BA;
+      --text: #1A1814;
+      --text-2: #5C5650;
+      --text-3: #8A847A;
+      --accent: #4A6B9B;
+      --accent-dim: rgba(74, 107, 155, 0.12);
+      --accent-glow: rgba(74, 107, 155, 0.2);
+      --success: #2D6B5C;
+      --ff-display: 'Instrument Serif', Georgia, serif;
+      --ff-body: 'DM Sans', sans-serif;
+      --ff-mono: 'JetBrains Mono', monospace;
+      --radius: 12px;
+    }
+    [data-theme="dark"] {
+      --bg: #0F0E0C;
+      --surface: #181614;
+      --surface-2: #1E1C18;
+      --border: #2A2722;
+      --border-strong: #3D3832;
+      --text: #F2F0EB;
+      --text-2: #B5B0A6;
+      --text-3: #7A756C;
+      --accent: #6B8FC4;
+      --accent-dim: rgba(107, 143, 196, 0.15);
+      --accent-glow: rgba(107, 143, 196, 0.25);
+      --success: #4A9B88;
+    }
+    html, body { height: 100%; font-family: var(--ff-body); font-size: 15px; color: var(--text); background: var(--bg); display: flex; flex-direction: column; transition: background 0.2s, color 0.2s; }
+
+    .topbar { height: 56px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; gap: 20px; flex-shrink: 0; }
+    .topbar-logo { font-family: var(--ff-display); font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .topbar-badge { font-family: var(--ff-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--border); border-radius: 100px; padding: 4px 12px; }
+    .topbar-steps { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+    .step-pip { width: 24px; height: 4px; border-radius: 2px; background: var(--border); transition: background 0.3s; }
+    .step-pip.done { background: var(--accent); opacity: 0.6; }
+    .step-pip.active { background: var(--accent); }
+    .step-counter { font-size: 12px; font-weight: 600; color: var(--text-3); }
+    .topbar-back { font-size: 12px; font-weight: 500; color: var(--text-3); text-decoration: none; }
+    .topbar-back:hover { color: var(--text-2); }
+
+    .layout { flex: 1; display: grid; grid-template-columns: 260px 1fr; overflow: hidden; }
+    .sidebar { background: var(--surface); border-right: 1px solid var(--border); padding: 24px 16px; overflow-y: auto; }
+    .profile-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 24px; }
+    .profile-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #7BA3D4); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 10px; }
+    .profile-name { font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+    .profile-sub { font-size: 12px; color: var(--text-3); margin-bottom: 10px; }
+    .profile-goal-label { font-family: var(--ff-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+    .profile-goal { font-size: 12px; color: var(--text-2); line-height: 1.5; padding: 8px 10px; background: var(--accent-dim); border: 1px solid var(--border); border-radius: 8px; }
+    .sidebar-label { font-family: var(--ff-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); padding: 0 8px; margin-bottom: 10px; }
+    .sidebar-step { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: background 0.2s; border: 1px solid transparent; margin-bottom: 4px; }
+    .sidebar-step:hover { background: var(--surface-2); }
+    .sidebar-step.active { background: var(--accent-dim); border-color: var(--accent); }
+    .sidebar-step.done .step-num { color: var(--accent); }
+    .step-num { font-size: 14px; width: 24px; text-align: center; color: var(--text-3); }
+    .step-name { font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .sidebar-step.active .step-name { color: var(--text); }
+    .step-status { font-size: 11px; color: var(--text-3); margin-top: 1px; }
+    .sidebar-step.done .step-status, .sidebar-step.active .step-status { color: var(--accent); }
+
+    .main { overflow-y: auto; padding: 32px; }
+    .step-view { display: none; flex-direction: column; gap: 24px; animation: fadeIn 0.4s ease; }
+    .step-view.active { display: flex; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .view-badge { font-family: var(--ff-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .view-title { font-family: var(--ff-display); font-size: 28px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+    .view-sub { font-size: 15px; color: var(--text-2); line-height: 1.6; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .card-label { font-family: var(--ff-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; }
+    .upload-zone { border: 2px dashed var(--border-strong); border-radius: var(--radius); padding: 40px; text-align: center; cursor: pointer; transition: all 0.2s; }
+    .upload-zone:hover, .upload-zone.filled { border-color: var(--accent); background: var(--accent-dim); }
+    .upload-zone .icon { font-size: 36px; margin-bottom: 12px; }
+    .upload-zone .title { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+    .upload-zone .sub { font-size: 12px; color: var(--text-3); }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 12px; font-weight: 600; color: var(--text-2); margin-bottom: 6px; }
+    .form-input { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-family: var(--ff-body); font-size: 14px; }
+    .form-input:focus { outline: none; border-color: var(--accent); }
+    .calendar-note { padding: 12px 14px; background: var(--accent-dim); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text-2); margin-bottom: 16px; }
+    .btn-primary { font-family: var(--ff-body); font-size: 14px; font-weight: 600; background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 12px 24px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+    .btn-primary:hover { filter: brightness(1.1); box-shadow: 0 4px 16px var(--accent-glow); }
+    .btn-secondary { font-size: 14px; font-weight: 600; color: var(--text-2); background: transparent; border: 1px solid var(--border); border-radius: 10px; padding: 12px 24px; cursor: pointer; transition: all 0.2s; }
+    .btn-secondary:hover { border-color: var(--border-strong); background: var(--surface-2); }
+    .actions { display: flex; gap: 12px; align-items: center; margin-top: 24px; }
+    .done-box { text-align: center; padding: 48px 24px; }
+    .done-box .icon { font-size: 48px; margin-bottom: 16px; }
+    .done-box .title { font-family: var(--ff-display); font-size: 24px; color: var(--text); margin-bottom: 8px; }
+    .done-box .sub { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: 24px; }
+    .done-box .actions { justify-content: center; }
+    .persona-picker-label { font-weight: 600; font-size: 14px; color: var(--text); margin: 20px 0 12px; }
+    .persona-picker { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 320px; margin: 0 auto; }
+    .persona-pick-btn { display: block; text-align: center; padding: 14px 20px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.2s; border: 1px solid var(--border); }
+    .persona-pick-btn.creator { background: rgba(45, 107, 92, 0.12); color: #2D6B5C; border-color: #2D6B5C; }
+    .persona-pick-btn.creator:hover { background: #2D6B5C; color: #fff; }
+    .persona-pick-btn.brand { background: rgba(196, 92, 46, 0.12); color: #C45C2E; border-color: #C45C2E; }
+    .persona-pick-btn.brand:hover { background: #C45C2E; color: #fff; }
+    .persona-pick-btn.executive { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
+    .persona-pick-btn.executive:hover { background: var(--accent); color: #fff; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html" class="topbar-logo"><span class="logo-dot"></span>Creators Pod</a>
+  <span class="topbar-badge">Executive · Onboarding</span>
+  <div class="topbar-steps" id="stepPips"></div>
+  <span class="step-counter" id="stepCounter">Step 1 of 5</span>
+  <a href="../index.html" class="topbar-back">← Back</a>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="profile-card">
+      <div class="profile-avatar">💼</div>
+      <div class="profile-name">Thought Leader</div>
+      <div class="profile-sub">VC · Executive · Consultant</div>
+      <div class="profile-goal-label">Presence goal</div>
+      <div class="profile-goal" id="sidebarGoal">Set in Step 3 →</div>
+    </div>
+    <div class="sidebar-label">Onboarding steps</div>
+    <div class="sidebar-step active" data-step="0"><span class="step-num">1</span><div><div class="step-name">Voice & past content</div><div class="step-status">In progress</div></div></div>
+    <div class="sidebar-step" data-step="1"><span class="step-num">2</span><div><div class="step-name">Secure knowledge (RAG)</div><div class="step-status">Pending</div></div></div>
+    <div class="sidebar-step" data-step="2"><span class="step-num">3</span><div><div class="step-name">Presence goals</div><div class="step-status">Pending</div></div></div>
+    <div class="sidebar-step" data-step="3"><span class="step-num">4</span><div><div class="step-name">Calendar & LinkedIn</div><div class="step-status">Pending</div></div></div>
+    <div class="sidebar-step" data-step="4"><span class="step-num">5</span><div><div class="step-name">First run</div><div class="step-status">Pending</div></div></div>
+  </aside>
+
+  <main class="main">
+    <div class="step-view active" id="step-0">
+      <span class="view-badge">Step 1 — Voice DNA</span>
+      <h1 class="view-title">Set up your thought-leadership voice</h1>
+      <p class="view-sub">Upload past LinkedIn posts, articles, or keynote notes. The Voice DNA Agent builds a fingerprint so every draft sounds like you — analytical, direct, and on-brand.</p>
+      <div class="card">
+        <div class="card-label">Upload content samples</div>
+        <div class="upload-zone" id="uploadZone">
+          <div class="icon">📄</div>
+          <div class="title">Drop posts, articles, or notes</div>
+          <div class="sub">PDF, DOCX · 5–10 samples recommended</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn-primary" onclick="nextStep()">Continue →</button>
+      </div>
+    </div>
+
+    <div class="step-view" id="step-1">
+      <span class="view-badge">Step 2 — Secure RAG</span>
+      <h1 class="view-title">Import private knowledge (encrypted)</h1>
+      <p class="view-sub">Connect Google Drive, Outlook, or upload internal reports and meeting notes. Data is encrypted and vectorised locally — only you and the agent use it for context. No raw text is sent externally.</p>
+      <div class="card">
+        <div class="card-label">Private knowledge sources</div>
+        <div class="upload-zone">
+          <div class="icon">🔒</div>
+          <div class="title">Google Drive · Outlook · Upload</div>
+          <div class="sub">AES-256 · Client-side vectorisation option</div>
+        </div>
+        <div class="calendar-note">✓ Private documents stay in your secure storage. Only semantic embeddings are used for generation — no confidential text is transmitted.</div>
+      </div>
+      <div class="actions">
+        <button class="btn-secondary" onclick="prevStep()">← Back</button>
+        <button class="btn-primary" onclick="nextStep()">Continue →</button>
+      </div>
+    </div>
+
+    <div class="step-view" id="step-2">
+      <span class="view-badge">Step 3 — Presence goals</span>
+      <h1 class="view-title">Define your presence goals</h1>
+      <p class="view-sub">What do you want to achieve? The agent will suggest calendar-aware content and track progress.</p>
+      <div class="card">
+        <div class="form-group">
+          <label class="form-label">Primary goal</label>
+          <input type="text" class="form-input" id="goalInput" placeholder="e.g. Become a recognised voice in deep tech investing on LinkedIn — 50K followers in 6 months">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Posting cadence</label>
+          <input type="text" class="form-input" placeholder="e.g. 2–3 LinkedIn posts per week">
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn-secondary" onclick="prevStep()">← Back</button>
+        <button class="btn-primary" onclick="nextStep()">Continue →</button>
+      </div>
+    </div>
+
+    <div class="step-view" id="step-3">
+      <span class="view-badge">Step 4 — Calendar & LinkedIn</span>
+      <h1 class="view-title">Connect calendar and LinkedIn</h1>
+      <p class="view-sub">The Calendar Agent detects speaking engagements and high-value events, then suggests timely content. Connect LinkedIn for publishing.</p>
+      <div class="card">
+        <div class="card-label">Connections</div>
+        <div class="upload-zone">
+          <div class="icon">📅</div>
+          <div class="title">Google Calendar · Outlook Calendar</div>
+          <div class="sub">Read-only · Event-based content triggers</div>
+        </div>
+        <div style="margin-top:12px" class="upload-zone">
+          <div class="icon">in</div>
+          <div class="title">LinkedIn</div>
+          <div class="sub">OAuth · Publish thought leadership</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn-secondary" onclick="prevStep()">← Back</button>
+        <button class="btn-primary" onclick="nextStep()">Continue →</button>
+      </div>
+    </div>
+
+    <div class="step-view" id="step-4">
+      <span class="view-badge">Step 5 — First run</span>
+      <h1 class="view-title">You're ready</h1>
+      <p class="view-sub">The agent will monitor your calendar, suggest pre- and post-event content, and draft posts in your voice. Review in the dashboard or enable supervised approval.</p>
+      <div class="card">
+        <div class="done-box">
+          <div class="icon">✅</div>
+          <div class="title">Onboarding complete</div>
+          <div class="sub">Voice is set, secure RAG is connected, goals and calendar are in place.</div>
+          <p class="persona-picker-label">Which persona do you want to see?</p>
+          <div class="persona-picker">
+            <a href="../creator/dashboard.html" class="persona-pick-btn creator">🎬 Creator dashboard</a>
+            <a href="../brand/dashboard.html" class="persona-pick-btn brand">🏢 Brand dashboard</a>
+            <a href="dashboard.html" class="persona-pick-btn executive">💼 Executive dashboard</a>
+          </div>
+          <a href="../index.html" class="btn-secondary" style="margin-top:16px">Back to home</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const TOTAL = 5;
+  let cur = 0;
+  function renderPips() {
+    const container = document.getElementById('stepPips');
+    container.innerHTML = '';
+    for (let i = 0; i < TOTAL; i++) {
+      const pip = document.createElement('div');
+      pip.className = 'step-pip' + (i < cur ? ' done' : i === cur ? ' active' : '');
+      pip.onclick = () => go(i);
+      container.appendChild(pip);
+    }
+  }
+  function renderSidebar() {
+    document.querySelectorAll('.sidebar-step').forEach((el, i) => {
+      el.classList.remove('active', 'done');
+      const status = el.querySelector('.step-status');
+      if (i < cur) { el.classList.add('done'); status.textContent = 'Done'; }
+      else if (i === cur) { el.classList.add('active'); status.textContent = 'In progress'; }
+      else { status.textContent = 'Pending'; }
+    });
+    var g = document.getElementById('goalInput');
+    if (g && g.value.trim()) document.getElementById('sidebarGoal').textContent = g.value.trim().slice(0, 45) + '…';
+  }
+  function go(i) {
+    if (i < 0 || i >= TOTAL) return;
+    document.querySelectorAll('.step-view').forEach(v => v.classList.remove('active'));
+    document.getElementById('step-' + i).classList.add('active');
+    cur = i;
+    renderPips();
+    renderSidebar();
+    document.getElementById('stepCounter').textContent = 'Step ' + (cur + 1) + ' of ' + TOTAL;
+  }
+  function nextStep() { if (cur < TOTAL - 1) go(cur + 1); }
+  function prevStep() { if (cur > 0) go(cur - 1); }
+  document.getElementById('uploadZone').addEventListener('click', function () {
+    this.classList.add('filled');
+    this.querySelector('.title').textContent = 'Samples uploaded (demo)';
+  });
+  document.getElementById('goalInput').addEventListener('input', function () {
+    var s = document.getElementById('sidebarGoal');
+    if (this.value.trim()) s.textContent = this.value.trim().slice(0, 45) + (this.value.length > 45 ? '…' : '');
+  });
+  if (localStorage.getItem('creatorspod-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  renderPips();
+  renderSidebar();
+</script>
+</body>
+</html>

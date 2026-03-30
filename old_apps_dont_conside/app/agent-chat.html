@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copilot Chat | Creators Pod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/theme.css" />
+  <link rel="stylesheet" href="./css/chat.css" />
+  <script>
+    (function(){var t=localStorage.getItem('creatorspod-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();
+  </script>
+</head>
+
+<body class="chat-page">
+  <header class="header">
+    <div class="header-inner">
+      <a href="./index.html" class="logo">Creators<span>Pod</span></a>
+      <nav class="nav" aria-label="Top actions">
+        <button type="button" class="theme-switch" data-theme-toggle aria-label="Toggle dark mode">
+          <i class="fa-solid fa-sun theme-switch-icon sun" aria-hidden="true"></i>
+          <i class="fa-solid fa-moon theme-switch-icon moon" aria-hidden="true"></i>
+        </button>
+        <button id="chat-back-btn" type="button" class="btn btn-ghost chat-back-btn" aria-label="Back to Agents">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+          Back to Copilot
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="chat-shell">
+    <aside class="chat-sidebar" aria-label="Chat history">
+      <div class="chat-sidebar-header">
+        <div class="chat-sidebar-title">
+          <i class="fa-solid fa-comments" aria-hidden="true"></i>
+          <span>History</span>
+        </div>
+
+        <button id="chat-new-btn" type="button" class="btn btn-primary chat-new-btn">
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          New chat
+        </button>
+      </div>
+
+      <div class="chat-sidebar-meta">
+        <div class="chat-sidebar-meta-row">
+          <span class="chat-meta-label">Agent</span>
+          <span id="chat-sidebar-agent" class="chat-meta-value">-</span>
+        </div>
+        <div class="chat-sidebar-meta-row">
+          <span class="chat-meta-label">Model</span>
+          <span id="chat-sidebar-model" class="chat-meta-value">-</span>
+        </div>
+      </div>
+
+      <ul id="chat-history-list" class="chat-history-list" role="list"></ul>
+    </aside>
+
+    <section class="chat-window" aria-label="Chat panel">
+      <div class="chat-topbar">
+        <div class="chat-topbar-left">
+          <div class="chat-field">
+            <label for="chat-model-select">Model</label>
+            <select id="chat-model-select" class="chat-select">
+              <option value="mini">Mini</option>
+              <option value="max">Max</option>
+              <option value="premium">Premium</option>
+            </select>
+          </div>
+
+          <div class="chat-field">
+            <label for="chat-agent-select">Agent</label>
+            <select id="chat-agent-select" class="chat-select"></select>
+          </div>
+        </div>
+
+        <div class="chat-topbar-right">
+          <button id="chat-voice-btn" type="button" class="btn btn-ghost chat-voice-btn" aria-label="Voice chat">
+            <i id="chat-voice-icon" class="fa-solid fa-microphone" aria-hidden="true"></i>
+            <span class="chat-voice-label">Voice</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"></div>
+
+      <form id="chat-composer" class="chat-composer" autocomplete="off">
+        <div class="chat-attachments-row">
+          <label class="btn btn-ghost chat-attach-btn" for="chat-file-input">
+            <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+            Attach
+            <input id="chat-file-input" type="file" multiple hidden />
+          </label>
+
+          <div id="chat-attachments" class="chat-attachments" aria-label="Selected files"></div>
+        </div>
+
+        <div class="chat-input-row">
+          <textarea id="chat-text" class="chat-textarea" rows="2" placeholder="Ask Copilot anything... (demo UI)"></textarea>
+
+          <div class="chat-send-actions">
+            <button id="chat-send-btn" type="submit" class="btn btn-primary btn-lg chat-send-btn">
+              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+              Send
+            </button>
+          </div>
+        </div>
+
+        <div class="chat-composer-hint">
+          Tip: Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to send. Voice and file upload are UI-only in this demo.
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script src="./js/theme.js"></script>
+  <script src="./js/agent-chat.js"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('chat-back-btn');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        // Prefer returning to the previous dashboard view.
+        if (window.history && window.history.length > 1) {
+          window.history.back();
+          return;
+        }
+        window.location.href = './index.html';
+      });
+    })();
+  </script>
+</body>
+</html>
+

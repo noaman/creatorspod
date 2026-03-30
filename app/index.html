@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Creators Pod — Autonomous AI content engine for creators & teams worldwide</title>
+  <meta name="description" content="Creators Pod is the AI growth platform for creators and teams. Plan once, create in your voice, launch everywhere, and continuously improve from one intelligent workspace.">
+  <meta name="keywords" content="AI content platform, creator tools, autonomous publishing, second brain for creators, multi-channel content, brand voice AI, content automation, creator economy software">
+  <meta name="author" content="Creators Pod">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://creatorspod.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://creatorspod.com/">
+  <meta property="og:site_name" content="Creators Pod">
+  <meta property="og:title" content="Creators Pod — Your AI content engine">
+  <meta property="og:description" content="Creators Pod helps you plan, create, publish, and optimize from one intelligent workspace built for creators, founders, and teams.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="en_GB">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Creators Pod — Autonomous AI for every creator">
+  <meta name="twitter:description" content="From idea to impact, Creators Pod helps you launch world-class content and campaigns from one intelligent platform.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@450&family=Sora:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    (function () {
+      var stored = localStorage.getItem("creatorspod-theme");
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored === "light" || stored === "dark" ? stored : prefersDark ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://creatorspod.com/#organization",
+        "name": "Creators Pod",
+        "url": "https://creatorspod.com/",
+        "description": "Creators Pod is an AI growth platform for creators and teams. It combines strategy, content creation, publishing, and optimization in one intelligent workspace.",
+        "areaServed": {
+          "@type": "Place",
+          "name": "Worldwide"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://creatorspod.com/#website",
+        "url": "https://creatorspod.com/",
+        "name": "Creators Pod",
+        "publisher": { "@id": "https://creatorspod.com/#organization" },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://creatorspod.com/#product",
+        "name": "Creators Pod",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "AI platform for end-to-end content and campaign execution with brand-aligned creation, publishing workflows, and continuous optimization.",
+        "featureList": [
+          "Unified workspace for planning, creation, distribution, and learning",
+          "Brand-aligned content generation across major content formats",
+          "Automation workflows for publishing and campaign execution",
+          "Cross-channel adaptation and coordinated publishing",
+          "Continuous optimization from performance insights",
+          "Enterprise-ready governance and trust controls"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Creators Pod?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Creators Pod is an AI growth platform that helps creators and teams plan, create, publish, and optimize from one intelligent workspace."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is Creators Pod different from Jasper, ChatGPT, or Canva?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Jasper and similar tools focus on text generation, ChatGPT focuses on conversation, and Canva focuses on design. Creators Pod connects strategy, creation, publishing, and optimization in one platform so teams can move from brief to business impact faster."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who is Creators Pod for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The product targets content creators and influencers, executives and thought leaders, marketing agencies and brands, students and educators, e-commerce operators, podcasters, journalists and writers, solopreneurs, small and medium marketing teams, and local service professionals who need scalable multi-channel content."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What channels does Creators Pod support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The platform spans video social (e.g. YouTube, TikTok, Instagram Reels), image and text social (e.g. LinkedIn, X, Pinterest), long-form web and blogs, email and newsletters, streaming and podcasts, e-commerce storefronts, education platforms, community messaging, and paid media—with automatic formatting per platform specifications."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="ambient-background" aria-hidden="true">
+    <span class="ambient-grid"></span>
+    <span class="ambient-orb ambient-orb-a"></span>
+    <span class="ambient-orb ambient-orb-b"></span>
+    <span class="ambient-orb ambient-orb-c"></span>
+  </div>
+
+  <div class="shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Creators Pod home">
+          <span class="brand-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="icon-stroke" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M10.2 7.2 7.2 15.8"/><path d="M13.8 7.2 16.8 15.8"/><path d="M8.2 17.5h7.6"/></svg>
+          </span>
+          <span class="brand-mark">Creators Pod</span>
+          <span class="brand-tag">Beta</span>
+        </a>
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Theme">
+            <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+            </svg>
+            <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+          </button>
+          <a class="btn btn-ghost" href="#faq">FAQ</a>
+          <a class="btn btn-primary" href="#get-started">Get started</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <article itemscope itemtype="https://schema.org/SoftwareApplication">
+        <meta itemprop="name" content="Creators Pod">
+        <meta itemprop="applicationCategory" content="BusinessApplication">
+
+        <section class="hero" aria-labelledby="hero-heading">
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <p class="overline">AI growth platform · built for global creators</p>
+              <h1 id="hero-heading">Build category-defining presence with <span class="headline-accent">one intelligent workspace.</span></h1>
+              <p class="hero-lede" itemprop="description">
+                <strong>Creators Pod</strong> helps you move from idea to launch without fragmented tools.
+                Plan your strategy, create in your signature voice, adapt for every major channel, and keep improving with built-in intelligence.
+              </p>
+              <div class="hero-cta" id="get-started">
+                <a class="btn btn-primary" href="mailto:hello@creatorspod.com">Request access</a>
+                <a class="btn btn-ghost" href="#capabilities">Explore capabilities</a>
+              </div>
+              <div class="hero-trust-row" aria-label="Trust highlights">
+                <span class="trust-pill">
+                  <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  Brand-safe by default
+                </span>
+                <span class="trust-pill">
+                  <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+                  Built for every major channel
+                </span>
+                <span class="trust-pill">
+                  <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  Enterprise-grade trust controls
+                </span>
+              </div>
+            </div>
+            <div class="hero-stage" aria-hidden="true">
+              <div class="stage-ring"></div>
+              <div class="stage-card stage-card-main">
+                <p class="stage-label">Live workflow</p>
+                <p class="stage-title">Launch in motion</p>
+                <p class="stage-copy">
+                  <span class="workflow-chain">
+                    <span class="workflow-step">Brief</span><span class="workflow-connector" aria-hidden="true"></span>
+                    <span class="workflow-step">Create</span><span class="workflow-connector" aria-hidden="true"></span>
+                    <span class="workflow-step">Adapt</span><span class="workflow-connector" aria-hidden="true"></span>
+                    <span class="workflow-step">Publish</span><span class="workflow-connector" aria-hidden="true"></span>
+                    <span class="workflow-step">Learn</span>
+                  </span>
+                </p>
+              </div>
+              <div class="stage-card stage-card-float stage-card-left">
+                <p class="stage-label">Voice quality</p>
+                <p class="stage-title">On-brand</p>
+              </div>
+              <div class="stage-card stage-card-float stage-card-right">
+                <p class="stage-label">Distribution</p>
+                <p class="stage-title">Everywhere</p>
+              </div>
+            </div>
+          </div>
+          <div class="hero-metrics" role="list">
+            <div class="metric" role="listitem">
+              <span class="metric-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+              </span>
+              <div class="metric-value">One</div>
+              <div class="metric-label">Command center for your full content operation</div>
+            </div>
+            <div class="metric" role="listitem">
+              <span class="metric-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+              </span>
+              <div class="metric-value">Faster</div>
+              <div class="metric-label">From strategy to launch in minutes, not weeks</div>
+            </div>
+            <div class="metric" role="listitem">
+              <span class="metric-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+              </span>
+              <div class="metric-value">Always-on</div>
+              <div class="metric-label">Continuous optimization while your team focuses on growth</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="problem-heading">
+          <div class="section-narrow">
+            <div class="section-head">
+              <span class="section-rule" aria-hidden="true"></span>
+              <h2 id="problem-heading">Most tools create outputs. They do not build momentum.</h2>
+              <p>
+                When planning, creation, publishing, and reporting live in separate products, teams lose speed and consistency.
+                <strong class="entity-block">Creators Pod</strong> is built to close those gaps: each card names a common failure mode and states <strong>how the platform responds</strong>, so the story stays complete—from friction to resolution—in one place.
+              </p>
+            </div>
+            <div class="pain-grid">
+              <div class="pain-card">
+                <span class="pain-card-icon" aria-hidden="true">
+                  <svg class="icon icon--md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                </span>
+                <h3>Scattered context</h3>
+                <p class="pain-card-issue">When decisions and content history are fragmented across tools and threads, every campaign starts slower—and teams re-learn the same context again and again.</p>
+                <p class="pain-card-resolution"><strong>With Creators Pod:</strong> strategy, voice, and what you have already published live in one connected workspace, so new work starts from shared intelligence instead of a cold start.</p>
+              </div>
+              <div class="pain-card">
+                <span class="pain-card-icon" aria-hidden="true">
+                  <svg class="icon icon--md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                </span>
+                <h3>Execution drag</h3>
+                <p class="pain-card-issue">Manual adaptation, file handoffs, and copy-paste across channels steal time from strategy, storytelling, and growth.</p>
+                <p class="pain-card-resolution"><strong>With Creators Pod:</strong> brief-to-publish workflows run in one system—fewer handoffs, clearer ownership, and faster paths from idea to live content across the channels you care about.</p>
+              </div>
+              <div class="pain-card">
+                <span class="pain-card-icon" aria-hidden="true">
+                  <svg class="icon icon--md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+                </span>
+                <h3>Brand dilution</h3>
+                <p class="pain-card-issue">Without clear guardrails, AI-assisted or multi-author output can drift—content feels generic and trust with your audience weakens.</p>
+                <p class="pain-card-resolution"><strong>With Creators Pod:</strong> voice, standards, and review expectations sit in the same layer where work is created and distributed, so every touchpoint stays recognizable and on-brand.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section capabilities-section" id="capabilities" aria-labelledby="pillars-heading">
+          <div class="section-narrow">
+            <div class="section-head">
+              <span class="section-rule" aria-hidden="true"></span>
+              <h2 id="pillars-heading">What you unlock with Creators Pod</h2>
+              <p>A premium operating layer for modern teams: aligned strategy, faster execution, stronger brand consistency, and measurable growth.</p>
+            </div>
+            <div class="pillars">
+              <div class="pillar">
+                <div class="pillar-icon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+                </div>
+                <h3>Shared brand intelligence</h3>
+                <p>Your strategy, tone, and creative history stay connected so every new launch starts informed, not from scratch.</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+                </div>
+                <h3>Proactive execution</h3>
+                <p>Campaigns move forward with less manual coordination and more momentum across your publishing calendar.</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/><path d="M19 3v4"/><path d="M21 5h-4"/></svg>
+                </div>
+                <h3>Creative versatility</h3>
+                <p>From social drops to long-form storytelling, adapt ideas into the right format while staying on-brand.</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+                </div>
+                <h3>Seamless distribution</h3>
+                <p>Launch to the channels that matter to your business from one coordinated system.</p>
+              </div>
+            </div>
+            <p class="channels-note" role="note">
+              <span class="channels-note-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              </span>
+              <span class="channels-note-body"><strong>Built for modern distribution:</strong> social, web, newsletter, community, commerce, and paid media workflows from one command layer.</span>
+            </p>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="personas-heading">
+          <div class="section-narrow">
+            <div class="section-head">
+              <span class="section-rule" aria-hidden="true"></span>
+              <h2 id="personas-heading">Built for how you work</h2>
+              <p>Designed for creators, founders, operators, and teams who need consistent output and premium brand quality at scale.</p>
+            </div>
+            <div class="persona-grid">
+              <div class="persona"><span class="persona-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/><rect width="8" height="5" x="5" y="2" rx="1"/></svg></span><h3>Creators &amp; influencers</h3><p>Growth Scout · trending hooks, scripts, derivatives</p></div>
+              <div class="persona"><span class="persona-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><h3>Executives &amp; experts</h3><p>Authority Builder · calendar-aware thought leadership</p></div>
+              <div class="persona"><span class="persona-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></span><h3>Agencies &amp; brands</h3><p>Campaign Orchestrator · bundles, A/B, reporting</p></div>
+              <div class="persona"><span class="persona-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><h3>Students &amp; educators</h3><p>Study &amp; curriculum agents · notes → multi-format</p></div>
+              <div class="persona"><span class="persona-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span><h3>Commerce &amp; SMB</h3><p>Commerce Engine · listings, ads, lifecycle email</p></div>
+              <div class="persona"><span class="persona-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></span><h3>Audio &amp; editorial</h3><p>Podcast and story workflows · clips, edits, highlights</p></div>
+              <div class="persona"><span class="persona-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><h3>Writers &amp; journalists</h3><p>Story workflows · research, drafts, distribution</p></div>
+              <div class="persona"><span class="persona-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span><h3>Solopreneurs &amp; freelancers</h3><p>Business Amplifier · leads, content, proposals</p></div>
+              <div class="persona"><span class="persona-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><h3>Service professionals</h3><p>Local Authority · reviews, local presence, referrals</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="trust-heading">
+          <div class="section-narrow">
+            <div class="compliance-callout">
+              <div>
+                <div class="trust-badge-row" aria-hidden="true">
+                  <span class="trust-mini"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Governance</span>
+                  <span class="trust-mini"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Security</span>
+                  <span class="trust-mini"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Clarity</span>
+                </div>
+                <h2 id="trust-heading">Trust and control, built in</h2>
+                <p class="entity-block"><strong>Creators Pod</strong> is designed for teams that care about governance, consistency, and auditability. Keep creative velocity high without compromising review standards.</p>
+              </div>
+              <div class="entity-block">
+                <p><strong>Plain-language positioning:</strong> Creators Pod is not another assistant tab. It is a strategic execution layer for brands that want to grow faster and communicate with clarity worldwide.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="faq" aria-labelledby="faq-heading">
+          <div class="section-narrow">
+            <div class="section-head">
+              <span class="section-rule" aria-hidden="true"></span>
+              <h2 id="faq-heading">Questions &amp; answers</h2>
+              <p>Simple answers to what the platform is, how it is different, and why high-growth teams adopt it.</p>
+            </div>
+            <div class="faq-list">
+              <details class="faq-item" open>
+                <summary>
+                  <span class="faq-q-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>
+                  <span class="faq-summary-text">What is Creators Pod?</span>
+                </summary>
+                <p>Creators Pod is an AI growth platform for creators and teams. It unifies strategy, creation, publishing, and optimization in one intelligent workspace.</p>
+              </details>
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>
+                  <span class="faq-summary-text">How is Creators Pod different from Jasper, ChatGPT, or Canva?</span>
+                </summary>
+                <p>Many tools help with isolated tasks. Creators Pod focuses on end-to-end momentum: aligned strategy, on-brand creation, coordinated distribution, and ongoing performance improvement.</p>
+              </details>
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>
+                  <span class="faq-summary-text">Who is Creators Pod for?</span>
+                </summary>
+                <p>It is built for ambitious creators, founder-led brands, and modern teams that need premium output with less operational overhead.</p>
+              </details>
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>
+                  <span class="faq-summary-text">What channels does Creators Pod support?</span>
+                </summary>
+                <p>Creators Pod supports multi-channel distribution across social, web, newsletters, community, commerce, and paid media workflows.</p>
+              </details>
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>
+                  <span class="faq-summary-text">Is Creators Pod only for English or one region?</span>
+                </summary>
+                <p>No. The platform is positioned for global teams and creators with region-aware workflows and multilingual publishing paths.</p>
+              </details>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span class="footer-brand-mark">
+          <span class="brand-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="icon-stroke"><circle cx="12" cy="5" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M10.2 7.2 7.2 15.8"/><path d="M13.8 7.2 16.8 15.8"/><path d="M8.2 17.5h7.6"/></svg>
+          </span>
+          <span>© <span id="y"></span> Creators Pod. All rights reserved.</span>
+        </span>
+        <span><a href="mailto:hello@creatorspod.com">hello@creatorspod.com</a></span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById("theme-toggle");
+      var yearEl = document.getElementById("y");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      function setTheme(next) {
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("creatorspod-theme", next);
+      }
+
+      if (btn) {
+        btn.addEventListener("click", function () {
+          var cur = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+          setTheme(cur === "dark" ? "light" : "dark");
+        });
+      }
+
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
+        if (!localStorage.getItem("creatorspod-theme")) {
+          setTheme(e.matches ? "dark" : "light");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

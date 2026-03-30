@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creators Pod — Your Creative Output, On Autopilot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700&family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --c-bg: #06080E;
+      --c-s1: #0C0F1D;
+      --c-s2: #111527;
+      --c-s3: #181D30;
+      --c-border: #1D2240;
+      --c-border-soft: #242847;
+      --c-accent: #C1FF72;
+      --c-accent-dim: rgba(193,255,114,.12);
+      --c-accent-glow: rgba(193,255,114,.25);
+      --c-orange: #FF6E4A;
+      --c-orange-dim: rgba(255,110,74,.12);
+      --c-blue: #5E9CFF;
+      --c-blue-dim: rgba(94,156,255,.12);
+      --c-text: #EDF2FF;
+      --c-text2: #8892B5;
+      --c-text3: #4A5178;
+      --ff-display: 'Fraunces', Georgia, serif;
+      --ff-ui: 'Syne', sans-serif;
+      --ff-body: 'Epilogue', sans-serif;
+      --r: 12px;
+      --r-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--c-bg);
+      color: var(--c-text);
+      font-family: var(--ff-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--c-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--c-border-soft); border-radius: 3px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(6,8,14,.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(29,34,64,.6);
+      transition: padding .3s;
+    }
+    nav.scrolled { padding: 14px 48px; }
+    .nav-logo {
+      font-family: var(--ff-ui);
+      font-size: 20px; font-weight: 800;
+      letter-spacing: -.01em;
+      color: var(--c-text);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo-dot {
+      width: 8px; height: 8px;
+      background: var(--c-accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--c-accent);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity: 1; box-shadow: 0 0 12px var(--c-accent); }
+      50% { opacity: .6; box-shadow: 0 0 24px var(--c-accent); }
+    }
+    .nav-links {
+      display: flex; gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--ff-ui);
+      font-size: 13px; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--c-text2);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--c-text); }
+    .nav-cta {
+      font-family: var(--ff-ui);
+      font-size: 13px; font-weight: 700;
+      letter-spacing: .04em;
+      background: var(--c-accent);
+      color: #080C0A;
+      border: none; border-radius: 8px;
+      padding: 10px 22px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .nav-cta:hover {
+      background: #D8FF90;
+      box-shadow: 0 0 24px rgba(193,255,114,.4);
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      padding: 140px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(193,255,114,.05) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 10% 80%, rgba(94,156,255,.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(29,34,64,.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29,34,64,.3) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-left { position: relative; z-index: 2; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--ff-ui);
+      font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--c-accent);
+      background: var(--c-accent-dim);
+      border: 1px solid rgba(193,255,114,.2);
+      border-radius: 100px;
+      padding: 6px 14px;
+      margin-bottom: 32px;
+      opacity: 0; animation: fadeUp .6s .2s ease forwards;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--c-accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--c-accent);
+    }
+    h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(48px, 5.5vw, 80px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -.03em;
+      color: var(--c-text);
+      margin-bottom: 24px;
+      opacity: 0; animation: fadeUp .7s .35s ease forwards;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--c-accent);
+    }
+    .hero-sub {
+      font-size: 18px; font-weight: 300;
+      color: var(--c-text2);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 44px;
+      opacity: 0; animation: fadeUp .7s .5s ease forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 16px; align-items: center;
+      opacity: 0; animation: fadeUp .7s .65s ease forwards;
+    }
+    .btn-primary {
+      font-family: var(--ff-ui);
+      font-size: 15px; font-weight: 700;
+      background: var(--c-accent);
+      color: #080C0A;
+      border: none; border-radius: 10px;
+      padding: 14px 28px;
+      cursor: pointer; text-decoration: none;
+      transition: all .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover {
+      background: #D8FF90;
+      box-shadow: 0 0 32px rgba(193,255,114,.35);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      font-family: var(--ff-ui);
+      font-size: 15px; font-weight: 600;
+      color: var(--c-text2);
+      background: transparent;
+      border: 1px solid var(--c-border-soft);
+      border-radius: 10px;
+      padding: 14px 28px;
+      cursor: pointer; text-decoration: none;
+      transition: all .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-ghost:hover {
+      color: var(--c-text);
+      border-color: var(--c-text3);
+      background: var(--c-s1);
+    }
+    .hero-social-proof {
+      margin-top: 52px;
+      display: flex; align-items: center; gap: 20px;
+      opacity: 0; animation: fadeUp .7s .8s ease forwards;
+    }
+    .proof-avatars {
+      display: flex;
+    }
+    .proof-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--c-bg);
+      background: var(--c-s3);
+      margin-left: -8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+    }
+    .proof-avatar:first-child { margin-left: 0; }
+    .proof-text {
+      font-size: 13px;
+      color: var(--c-text3);
+    }
+    .proof-text strong { color: var(--c-text2); }
+
+    /* ─── HERO RIGHT: AGENT TERMINAL ─── */
+    .hero-right {
+      position: relative; z-index: 2;
+      opacity: 0; animation: fadeUp .8s .4s ease forwards;
+    }
+    .agent-terminal {
+      background: var(--c-s1);
+      border: 1px solid var(--c-border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.03),
+        0 40px 80px rgba(0,0,0,.6),
+        0 0 80px rgba(193,255,114,.06);
+    }
+    .terminal-header {
+      padding: 16px 20px;
+      background: var(--c-s2);
+      border-bottom: 1px solid var(--c-border);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .terminal-dots { display: flex; gap: 7px; }
+    .terminal-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+    }
+    .terminal-dot.r { background: #FF6161; }
+    .terminal-dot.y { background: #FFD261; }
+    .terminal-dot.g { background: #61FF8C; }
+    .terminal-title {
+      font-family: var(--ff-ui);
+      font-size: 12px; font-weight: 600;
+      color: var(--c-text3);
+      letter-spacing: .06em;
+      margin-left: 4px;
+    }
+    .terminal-status {
+      margin-left: auto;
+      display: flex; align-items: center; gap: 6px;
+      font-family: var(--ff-ui);
+      font-size: 11px; font-weight: 500; letter-spacing: .05em;
+      color: var(--c-accent);
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--c-accent);
+      animation: pulse-dot 1.5s infinite;
+    }
+    .terminal-body { padding: 24px; font-family: monospace; font-size: 13px; }
+    .t-line {
+      display: flex; gap: 10px;
+      margin-bottom: 10px;
+      opacity: 0;
+    }
+    .t-line.show { animation: slideIn .3s ease forwards; }
+    .t-prefix { color: var(--c-text3); min-width: 18px; }
+    .t-goal { color: var(--c-blue); font-weight: 600; }
+    .t-action { color: var(--c-text2); }
+    .t-tool { color: var(--c-orange); }
+    .t-ok { color: var(--c-accent); }
+    .t-data { color: var(--c-text3); font-size: 11px; }
+    .t-cursor {
+      display: inline-block;
+      width: 8px; height: 14px;
+      background: var(--c-accent);
+      margin-left: 2px;
+      animation: blink .8s steps(1) infinite;
+    }
+    @keyframes blink { 0%,100%{ opacity:1 } 50%{ opacity:0 } }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-8px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .terminal-divider {
+      height: 1px; background: var(--c-border);
+      margin: 16px 0;
+    }
+    .terminal-result {
+      background: var(--c-s2);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r);
+      padding: 14px 16px;
+      margin-top: 8px;
+    }
+    .t-result-label {
+      font-family: var(--ff-ui);
+      font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--c-text3);
+      margin-bottom: 8px;
+    }
+    .t-result-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--c-border);
+      opacity: 0;
+    }
+    .t-result-item.show { animation: fadeUp .3s ease forwards; }
+    .t-result-item:last-child { border-bottom: none; }
+    .t-result-score {
+      font-family: var(--ff-ui);
+      font-size: 12px; font-weight: 700;
+      color: var(--c-accent);
+      min-width: 36px;
+    }
+    .t-result-text { font-family: var(--ff-body); font-size: 12px; color: var(--c-text2); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { position: relative; }
+    .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .section-label {
+      font-family: var(--ff-ui);
+      font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--c-accent);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--c-accent);
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(36px, 3.5vw, 54px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: var(--c-text);
+      margin-bottom: 16px;
+    }
+    .section-title em { font-style: italic; color: var(--c-accent); }
+    .section-sub {
+      font-size: 17px; font-weight: 300;
+      color: var(--c-text2);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ─── LOGOS STRIP ─── */
+    #platforms {
+      padding: 48px 0;
+      border-top: 1px solid var(--c-border);
+      border-bottom: 1px solid var(--c-border);
+      overflow: hidden;
+    }
+    .platforms-label {
+      font-family: var(--ff-ui);
+      font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--c-text3);
+      text-align: center; margin-bottom: 28px;
+    }
+    .marquee-track {
+      display: flex; gap: 48px;
+      animation: marquee 20s linear infinite;
+      width: max-content;
+    }
+    .marquee-wrap {
+      display: flex; gap: 48px;
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .platform-badge {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--ff-ui);
+      font-size: 14px; font-weight: 600;
+      color: var(--c-text3);
+      white-space: nowrap;
+      transition: color .2s;
+    }
+    .platform-badge:hover { color: var(--c-text2); }
+    .platform-icon {
+      width: 28px; height: 28px;
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      background: var(--c-s2);
+    }
+
+    /* ─── PROBLEM SECTION ─── */
+    #problem {
+      padding: 120px 0;
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      margin-top: 60px;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--c-border);
+    }
+    .problem-card {
+      background: var(--c-s1);
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: background .2s;
+    }
+    .problem-card:hover { background: var(--c-s2); }
+    .problem-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .problem-card:hover::after { opacity: 1; }
+    .problem-stat {
+      font-family: var(--ff-display);
+      font-size: 56px; font-weight: 700;
+      letter-spacing: -.04em;
+      color: var(--c-accent);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .problem-title {
+      font-family: var(--ff-ui);
+      font-size: 15px; font-weight: 600;
+      color: var(--c-text);
+      margin-bottom: 10px;
+    }
+    .problem-desc {
+      font-size: 14px; color: var(--c-text3);
+      line-height: 1.6;
+    }
+
+    /* ─── FEATURES ─── */
+    #features {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--c-s1) 20%, var(--c-s1) 80%, transparent);
+    }
+    .features-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: end;
+      margin-bottom: 72px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .feature-card {
+      background: var(--c-bg);
+      padding: 36px 32px;
+      border: 1px solid var(--c-border);
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card:first-child { border-radius: var(--r-lg) 0 0 0; }
+    .feature-card:nth-child(3) { border-radius: 0 var(--r-lg) 0 0; }
+    .feature-card:nth-child(4) { border-radius: 0 0 0 var(--r-lg); }
+    .feature-card:last-child { border-radius: 0 0 var(--r-lg) 0; }
+    .feature-card:hover {
+      background: var(--c-s2);
+      border-color: var(--c-border-soft);
+      transform: translateY(-2px);
+      z-index: 1;
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--c-s2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+      border: 1px solid var(--c-border);
+    }
+    .feature-card:hover .feature-icon {
+      background: var(--c-accent-dim);
+      border-color: rgba(193,255,114,.3);
+    }
+    .feature-name {
+      font-family: var(--ff-ui);
+      font-size: 16px; font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 10px;
+    }
+    .feature-desc {
+      font-size: 14px; color: var(--c-text3);
+      line-height: 1.65;
+    }
+    .feature-tag {
+      display: inline-block;
+      font-family: var(--ff-ui);
+      font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-top: 16px;
+    }
+    .tag-core { background: var(--c-accent-dim); color: var(--c-accent); border: 1px solid rgba(193,255,114,.2); }
+    .tag-new { background: var(--c-orange-dim); color: var(--c-orange); border: 1px solid rgba(255,110,74,.2); }
+    .tag-soon { background: var(--c-blue-dim); color: var(--c-blue); border: 1px solid rgba(94,156,255,.2); }
+
+    /* ─── HOW IT WORKS ─── */
+    #how {
+      padding: 120px 0;
+    }
+    .how-header { text-align: center; margin-bottom: 80px; }
+    .how-header .section-label { justify-content: center; }
+    .how-header .section-label::before { display: none; }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .how-steps::before {
+      content: '';
+      position: absolute; top: 36px; left: 16.66%;
+      width: 66.66%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c-border-soft), transparent);
+    }
+    .how-step {
+      padding: 0 32px;
+      text-align: center;
+    }
+    .step-number {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--c-s2);
+      border: 1px solid var(--c-border-soft);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      font-family: var(--ff-display);
+      font-size: 24px; font-weight: 700;
+      color: var(--c-accent);
+      position: relative;
+      transition: all .3s;
+    }
+    .step-number::after {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(193,255,114,.2);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .how-step:hover .step-number::after { opacity: 1; }
+    .how-step:hover .step-number {
+      background: var(--c-accent-dim);
+      border-color: rgba(193,255,114,.4);
+      box-shadow: 0 0 32px rgba(193,255,114,.15);
+    }
+    .step-title {
+      font-family: var(--ff-ui);
+      font-size: 18px; font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 12px;
+    }
+    .step-desc {
+      font-size: 14px; color: var(--c-text3);
+      line-height: 1.7;
+    }
+
+    /* ─── PERSONAS ─── */
+    #personas {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--c-s1) 20%, var(--c-s1) 80%, transparent);
+    }
+    .personas-header { margin-bottom: 60px; }
+    .personas-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .persona-card {
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: 36px;
+      display: flex; flex-direction: column;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+    .persona-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .persona-card.creator::before { background: var(--c-accent); }
+    .persona-card.brand::before { background: var(--c-orange); }
+    .persona-card.executive::before { background: var(--c-blue); }
+    .persona-card:hover {
+      border-color: var(--c-border-soft);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(0,0,0,.4);
+    }
+    .persona-card.creator:hover { box-shadow: 0 24px 60px rgba(193,255,114,.08); }
+    .persona-card.brand:hover { box-shadow: 0 24px 60px rgba(255,110,74,.08); }
+    .persona-card.executive:hover { box-shadow: 0 24px 60px rgba(94,156,255,.08); }
+    .persona-card:hover::before { opacity: 1; }
+    .persona-emoji {
+      font-size: 36px; margin-bottom: 20px;
+      display: block;
+    }
+    .persona-type {
+      font-family: var(--ff-ui);
+      font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .creator .persona-type { color: var(--c-accent); }
+    .brand .persona-type { color: var(--c-orange); }
+    .executive .persona-type { color: var(--c-blue); }
+    .persona-name {
+      font-family: var(--ff-display);
+      font-size: 26px; font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 12px;
+      letter-spacing: -.02em;
+    }
+    .persona-desc {
+      font-size: 14px; color: var(--c-text3);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 28px;
+    }
+    .persona-goals {
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 28px;
+    }
+    .persona-goal {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--c-text2);
+    }
+    .goal-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .creator .goal-dot { background: var(--c-accent); }
+    .brand .goal-dot { background: var(--c-orange); }
+    .executive .goal-dot { background: var(--c-blue); }
+    .persona-cta {
+      font-family: var(--ff-ui);
+      font-size: 13px; font-weight: 700;
+      letter-spacing: .04em;
+      display: flex; align-items: center; gap: 8px;
+      margin-top: auto;
+    }
+    .creator .persona-cta { color: var(--c-accent); }
+    .brand .persona-cta { color: var(--c-orange); }
+    .executive .persona-cta { color: var(--c-blue); }
+    .cta-arrow { transition: transform .2s; }
+    .persona-card:hover .cta-arrow { transform: translateX(5px); }
+
+    /* ─── COMPARISON ─── */
+    #comparison {
+      padding: 120px 0;
+    }
+    .comparison-header { margin-bottom: 60px; }
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--c-border);
+    }
+    .comp-table th {
+      background: var(--c-s2);
+      padding: 20px 24px;
+      font-family: var(--ff-ui);
+      font-size: 13px; font-weight: 600;
+      letter-spacing: .04em;
+      text-align: left;
+    }
+    .comp-table th:first-child { color: var(--c-text3); }
+    .comp-table th.ours {
+      color: var(--c-accent);
+      background: var(--c-accent-dim);
+      border-left: 2px solid rgba(193,255,114,.3);
+      border-right: 2px solid rgba(193,255,114,.3);
+    }
+    .comp-table td {
+      padding: 18px 24px;
+      border-top: 1px solid var(--c-border);
+      font-size: 14px;
+      color: var(--c-text2);
+    }
+    .comp-table tr:hover td { background: var(--c-s1); }
+    .comp-table td.ours {
+      background: var(--c-accent-dim);
+      border-left: 2px solid rgba(193,255,114,.2);
+      border-right: 2px solid rgba(193,255,114,.2);
+      color: var(--c-text);
+      font-weight: 500;
+    }
+    .comp-table tr:last-child td.ours {
+      border-bottom: 2px solid rgba(193,255,114,.2);
+    }
+    .comp-check { color: var(--c-accent); font-size: 16px; }
+    .comp-x { color: var(--c-text3); font-size: 16px; }
+    .comp-partial { color: var(--c-orange); font-size: 14px; }
+    .feature-dim { font-size: 12px; color: var(--c-text3); display: block; margin-top: 2px; }
+
+    /* ─── MARKET PROOF ─── */
+    #proof {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--c-s1) 20%, var(--c-s1) 80%, transparent);
+    }
+    .proof-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+      border-radius: var(--r-lg); overflow: hidden;
+      border: 1px solid var(--c-border);
+    }
+    .proof-card {
+      background: var(--c-bg);
+      padding: 36px 28px;
+      transition: background .2s;
+    }
+    .proof-card:hover { background: var(--c-s2); }
+    .proof-num {
+      font-family: var(--ff-display);
+      font-size: 42px; font-weight: 700;
+      letter-spacing: -.03em;
+      color: var(--c-text);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .proof-num span { color: var(--c-accent); }
+    .proof-label {
+      font-family: var(--ff-ui);
+      font-size: 13px; font-weight: 500;
+      color: var(--c-text3);
+      line-height: 1.5;
+    }
+    .proof-source {
+      font-size: 11px; color: var(--c-text3);
+      margin-top: 8px;
+      opacity: .6;
+    }
+
+    /* ─── PRICING ─── */
+    #pricing {
+      padding: 120px 0;
+    }
+    .pricing-header { text-align: center; margin-bottom: 60px; }
+    .pricing-header .section-label { justify-content: center; }
+    .pricing-header .section-label::before { display: none; }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .pricing-card {
+      background: var(--c-s1);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: 32px 28px;
+      display: flex; flex-direction: column;
+      transition: all .3s;
+    }
+    .pricing-card:hover {
+      border-color: var(--c-border-soft);
+      transform: translateY(-4px);
+    }
+    .pricing-card.featured {
+      background: var(--c-accent-dim);
+      border: 2px solid rgba(193,255,114,.4);
+      position: relative;
+    }
+    .featured-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      font-family: var(--ff-ui);
+      font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      background: var(--c-accent); color: #080C0A;
+      padding: 4px 14px; border-radius: 100px;
+      white-space: nowrap;
+    }
+    .plan-name {
+      font-family: var(--ff-ui);
+      font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--c-text3);
+      margin-bottom: 20px;
+    }
+    .pricing-card.featured .plan-name { color: var(--c-accent); }
+    .plan-price {
+      font-family: var(--ff-display);
+      font-size: 44px; font-weight: 700;
+      letter-spacing: -.04em;
+      color: var(--c-text);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .plan-price sup {
+      font-size: 20px; font-weight: 400;
+      vertical-align: top; margin-top: 8px; margin-right: 2px;
+    }
+    .plan-period {
+      font-size: 13px; color: var(--c-text3);
+      margin-bottom: 28px;
+    }
+    .plan-divider {
+      height: 1px; background: var(--c-border);
+      margin: 20px 0;
+    }
+    .plan-features { flex: 1; }
+    .plan-feature {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13px; color: var(--c-text2);
+      margin-bottom: 12px;
+    }
+    .plan-feature::before {
+      content: '✓';
+      color: var(--c-accent);
+      font-weight: 700;
+      min-width: 14px;
+      margin-top: 1px;
+    }
+    .plan-feature.muted { color: var(--c-text3); }
+    .plan-feature.muted::before { color: var(--c-text3); content: '—'; }
+    .plan-btn {
+      font-family: var(--ff-ui);
+      font-size: 14px; font-weight: 700;
+      padding: 12px; width: 100%;
+      border: none; border-radius: 10px;
+      cursor: pointer; margin-top: 24px;
+      transition: all .2s;
+      text-align: center; text-decoration: none;
+      display: block;
+    }
+    .plan-btn.ghost {
+      background: transparent;
+      border: 1px solid var(--c-border-soft);
+      color: var(--c-text2);
+    }
+    .plan-btn.ghost:hover {
+      border-color: var(--c-text3);
+      color: var(--c-text);
+      background: var(--c-s2);
+    }
+    .plan-btn.solid {
+      background: var(--c-accent);
+      color: #080C0A;
+    }
+    .plan-btn.solid:hover {
+      background: #D8FF90;
+      box-shadow: 0 0 28px rgba(193,255,114,.3);
+    }
+
+    /* ─── FINAL CTA ─── */
+    #cta-section {
+      padding: 120px 0;
+    }
+    .cta-box {
+      background: var(--c-s1);
+      border: 1px solid var(--c-border);
+      border-radius: 28px;
+      padding: 80px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(193,255,114,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-title {
+      font-family: var(--ff-display);
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 700; letter-spacing: -.03em;
+      color: var(--c-text);
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .cta-title em { font-style: italic; color: var(--c-accent); }
+    .cta-sub {
+      font-size: 17px; color: var(--c-text2);
+      max-width: 480px; margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .cta-actions {
+      display: flex; gap: 16px; align-items: center; justify-content: center;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--c-border);
+      padding: 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: var(--ff-ui);
+      font-size: 16px; font-weight: 800;
+      color: var(--c-text3);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .footer-links {
+      display: flex; gap: 32px;
+    }
+    .footer-links a {
+      font-family: var(--ff-ui);
+      font-size: 12px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--c-text3);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--c-text2); }
+    .footer-copy {
+      font-size: 12px; color: var(--c-text3);
+    }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-dot"></span>
+    Creators Pod
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#personas">Who It's For</a></li>
+    <li><a href="#comparison">Compare</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">Get Early Access</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag">Agentic AI · Second Brain Platform</div>
+    <h1>Your creative<br>output, <em>on<br>autopilot.</em></h1>
+    <p class="hero-sub">
+      Creators Pod is the agentic AI platform that transforms a single goal into a full content strategy — autonomously researching, creating, publishing and optimising across every channel.
+    </p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">
+        Start Free
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="walkthrough-creator.html" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 5.5l4 2.5-4 2.5V5.5z" fill="currentColor"/></svg>
+        Watch It Work
+      </a>
+    </div>
+    <div class="hero-social-proof">
+      <div class="proof-avatars">
+        <div class="proof-avatar">🎬</div>
+        <div class="proof-avatar">🏢</div>
+        <div class="proof-avatar">💼</div>
+        <div class="proof-avatar">🎯</div>
+        <div class="proof-avatar" style="background:var(--c-accent-dim);color:var(--c-accent);font-family:var(--ff-ui);font-weight:700;font-size:10px;">+</div>
+      </div>
+      <p class="proof-text">Trusted by <strong>200+ early creators</strong> in beta</p>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="agent-terminal">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <div class="terminal-dot r"></div>
+          <div class="terminal-dot y"></div>
+          <div class="terminal-dot g"></div>
+        </div>
+        <span class="terminal-title">POD AGENT · LIVE SESSION</span>
+        <div class="terminal-status">
+          <span class="status-dot"></span>
+          RUNNING
+        </div>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <div class="t-line" id="tl-1">
+          <span class="t-prefix">▸</span>
+          <span class="t-goal">Goal: "Grow YouTube channel to 100K subscribers in 90 days"</span>
+        </div>
+        <div class="terminal-divider"></div>
+        <div class="t-line" id="tl-2">
+          <span class="t-prefix">~</span>
+          <span class="t-action">Research Agent initializing...</span>
+        </div>
+        <div class="t-line" id="tl-3">
+          <span class="t-prefix">&nbsp;</span>
+          <span class="t-tool">→ fetch_trends(niche="tech", platforms=["youtube","tiktok"])</span>
+        </div>
+        <div class="t-line" id="tl-4">
+          <span class="t-prefix">&nbsp;</span>
+          <span class="t-ok">✓ 47 trending topics identified · 12 high-opportunity gaps found</span>
+        </div>
+        <div class="t-line" id="tl-5">
+          <span class="t-prefix">&nbsp;</span>
+          <span class="t-tool">→ generate_content_hooks(topic="AI productivity tools", count=5)</span>
+        </div>
+        <div class="t-line" id="tl-6">
+          <span class="t-prefix">&nbsp;</span>
+          <span class="t-ok">✓ 5 hooks generated · voice profile applied</span>
+        </div>
+        <div class="t-line" id="tl-7">
+          <span class="t-prefix">&nbsp;</span>
+          <span class="t-tool">→ draft_script(hook=1, length="8min", format="youtube")</span>
+        </div>
+        <div class="t-line" id="tl-8">
+          <span class="t-prefix">&nbsp;</span>
+          <span class="t-ok">✓ Full script drafted · brand voice score: 94/100</span>
+        </div>
+        <div class="t-line" id="tl-9">
+          <span class="t-prefix">&nbsp;</span>
+          <span class="t-tool">→ schedule_publish(platforms=["youtube","tiktok","linkedin"], time="optimal")</span>
+        </div>
+        <div class="t-line" id="tl-10">
+          <span class="t-prefix">&nbsp;</span>
+          <span class="t-ok">✓ Content queued for Tue 9AM, Wed 6PM, Thu 12PM</span>
+        </div>
+        <div class="terminal-divider"></div>
+        <div class="terminal-result" id="terminal-result">
+          <div class="t-result-label">Top Content Hooks Generated</div>
+          <div class="t-result-item" id="r1">
+            <span class="t-result-score">96</span>
+            <span class="t-result-text">"I tested 12 AI tools so you don't have to — here's what actually works"</span>
+          </div>
+          <div class="t-result-item" id="r2">
+            <span class="t-result-score">91</span>
+            <span class="t-result-text">"The AI workflow that saved me 20 hours this week (full breakdown)"</span>
+          </div>
+          <div class="t-result-item" id="r3">
+            <span class="t-result-score">87</span>
+            <span class="t-result-text">"Why most creators are using AI wrong — and what to do instead"</span>
+          </div>
+          <div style="margin-top:12px">
+            <span class="t-cursor"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM LOGOS -->
+<section id="platforms">
+  <p class="platforms-label">Connects with every platform in your stack</p>
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marquee">
+      <div class="platform-badge"><span class="platform-icon">▶</span>YouTube</div>
+      <div class="platform-badge"><span class="platform-icon">♪</span>TikTok</div>
+      <div class="platform-badge"><span class="platform-icon">in</span>LinkedIn</div>
+      <div class="platform-badge"><span class="platform-icon">📸</span>Instagram</div>
+      <div class="platform-badge"><span class="platform-icon">𝕏</span>X / Twitter</div>
+      <div class="platform-badge"><span class="platform-icon">📝</span>Substack</div>
+      <div class="platform-badge"><span class="platform-icon">W</span>WordPress</div>
+      <div class="platform-badge"><span class="platform-icon">📊</span>Google Analytics</div>
+      <div class="platform-badge"><span class="platform-icon">📋</span>Notion</div>
+      <div class="platform-badge"><span class="platform-icon">🎵</span>Spotify</div>
+      <div class="platform-badge"><span class="platform-icon">⚡</span>Webflow</div>
+      <div class="platform-badge"><span class="platform-icon">🔗</span>HubSpot</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="platform-badge"><span class="platform-icon">▶</span>YouTube</div>
+      <div class="platform-badge"><span class="platform-icon">♪</span>TikTok</div>
+      <div class="platform-badge"><span class="platform-icon">in</span>LinkedIn</div>
+      <div class="platform-badge"><span class="platform-icon">📸</span>Instagram</div>
+      <div class="platform-badge"><span class="platform-icon">𝕏</span>X / Twitter</div>
+      <div class="platform-badge"><span class="platform-icon">📝</span>Substack</div>
+      <div class="platform-badge"><span class="platform-icon">W</span>WordPress</div>
+      <div class="platform-badge"><span class="platform-icon">📊</span>Google Analytics</div>
+      <div class="platform-badge"><span class="platform-icon">📋</span>Notion</div>
+      <div class="platform-badge"><span class="platform-icon">🎵</span>Spotify</div>
+      <div class="platform-badge"><span class="platform-icon">⚡</span>Webflow</div>
+      <div class="platform-badge"><span class="platform-icon">🔗</span>HubSpot</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section id="problem">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">The Problem</div>
+      <h2 class="section-title">Creators are <em>drowning</em><br>in their own workflows</h2>
+      <p class="section-sub">The creator economy is booming. But the tools haven't caught up. Most creators spend more time managing their workflow than actually creating.</p>
+    </div>
+    <div class="problem-grid reveal">
+      <div class="problem-card">
+        <div class="problem-stat">45%</div>
+        <div class="problem-title">Time wasted on repetitive tasks</div>
+        <div class="problem-desc">Nearly half of every creator's workweek is consumed by copy-editing, asset tagging, scheduling, and data aggregation — leaving only 55% for strategic work.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-stat">58%</div>
+        <div class="problem-title">Struggle with voice consistency</div>
+        <div class="problem-desc">Multi-channel creators report difficulty maintaining a consistent brand voice across YouTube, TikTok, and Instagram — citing manual copy-editing as the core bottleneck.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-stat">12%</div>
+        <div class="problem-title">Average campaign error rate</div>
+        <div class="problem-desc">Multi-step campaign execution has a 12% average error rate due to mismatched asset versions and outdated performance metrics across disconnected tools.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="features-header">
+      <div class="reveal">
+        <div class="section-label">Platform Capabilities</div>
+        <h2 class="section-title">Everything your<br>content needs,<br><em>fully automated.</em></h2>
+      </div>
+      <div class="reveal">
+        <p class="section-sub" style="margin-bottom:0">Six integrated engines working in concert — powered by the OpenClaw agentic runtime with persistent memory, so context is never lost between sessions.</p>
+      </div>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <div class="feature-name">Content Research Engine</div>
+        <div class="feature-desc">Real-time trend discovery across social, search, and news. Monitors emerging conversations, maps topic clusters, and identifies high-opportunity gaps in your niche — continuously.</div>
+        <span class="feature-tag tag-core">Core</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <div class="feature-name">Content Development Engine</div>
+        <div class="feature-desc">Multi-format content generation: scripts, captions, articles, threads, newsletter segments — all grounded in your personal voice fingerprint and past performance data.</div>
+        <span class="feature-tag tag-core">Core</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-name">Smart Publishing System</div>
+        <div class="feature-desc">Multi-platform publishing with cadence optimisation, platform-specific reformatting, and automated A/B testing of headline variants. One piece of content, every channel.</div>
+        <span class="feature-tag tag-core">Core</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-name">Analytics & Optimisation</div>
+        <div class="feature-desc">Unified performance dashboard aggregating reach, engagement, and conversions across all platforms. Predictive scoring before you publish. Feedback loops that make every piece better.</div>
+        <span class="feature-tag tag-core">Core</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧬</div>
+        <div class="feature-name">Brand Voice DNA</div>
+        <div class="feature-desc">A proprietary voice fingerprint built from your content history — capturing tone, vocabulary, sentence structure, and emotional register. Every output scored for consistency before delivery.</div>
+        <span class="feature-tag tag-new">New</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-name">Goal-State Machine</div>
+        <div class="feature-desc">Define a high-level goal (e.g. "Grow LinkedIn to 50K followers in 6 months"). The platform decomposes it into weekly sprints, executes autonomously, and reports progress every 7 days.</div>
+        <span class="feature-tag tag-new">New</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <div class="how-header reveal">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Three steps to<br><em>autonomous content</em></h2>
+    </div>
+    <div class="how-steps reveal">
+      <div class="how-step">
+        <div class="step-number">01</div>
+        <div class="step-title">Define Your Goal</div>
+        <div class="step-desc">Tell the platform what you want to achieve — in plain language. Growth targets, authority in a niche, campaign outcomes. The Goal-State Machine handles the rest.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-number">02</div>
+        <div class="step-title">Agents Execute</div>
+        <div class="step-desc">Research, Content, Publishing, and Analytics agents collaborate in a ReAct reasoning loop — researching, drafting, scheduling, and optimising your content without interruption.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-number">03</div>
+        <div class="step-title">Review & Scale</div>
+        <div class="step-desc">Review a daily digest, approve or adjust, and watch performance compound. The platform learns from every interaction, getting smarter the longer you use it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAS -->
+<section id="personas">
+  <div class="section-inner">
+    <div class="personas-header reveal">
+      <div class="section-label">Built for Three Worlds</div>
+      <h2 class="section-title">Who is it <em>for?</em></h2>
+      <p class="section-sub">Different goals, different workflows — one platform. Choose your persona and see the agent in action.</p>
+    </div>
+    <div class="personas-grid reveal">
+
+      <a href="walkthrough-creator.html" class="persona-card creator">
+        <span class="persona-emoji">🎬</span>
+        <div class="persona-type">Individual Creator</div>
+        <div class="persona-name">The Solo Creator</div>
+        <div class="persona-desc">YouTubers, TikTokers, podcasters, and newsletter writers who want to 10× their output without burning out. Your second brain handles the grind — you handle the vision.</div>
+        <div class="persona-goals">
+          <div class="persona-goal"><span class="goal-dot"></span>Automate research, scripting & publishing</div>
+          <div class="persona-goal"><span class="goal-dot"></span>Maintain voice consistency across platforms</div>
+          <div class="persona-goal"><span class="goal-dot"></span>30% more output without extra hours</div>
+        </div>
+        <div class="persona-cta">
+          See Creator Walkthrough <span class="cta-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="walkthrough-brand.html" class="persona-card brand">
+        <span class="persona-emoji">🏢</span>
+        <div class="persona-type">Brand & Agency</div>
+        <div class="persona-name">The Campaign Team</div>
+        <div class="persona-desc">Marketing teams and creative agencies running multi-channel campaigns at scale. From brief to published assets in hours, not weeks — with brand compliance baked in.</div>
+        <div class="persona-goals">
+          <div class="persona-goal"><span class="goal-dot"></span>Brief → multi-format assets in one workflow</div>
+          <div class="persona-goal"><span class="goal-dot"></span>Brand voice enforcement across all outputs</div>
+          <div class="persona-goal"><span class="goal-dot"></span>15–20% lift in campaign ROI</div>
+        </div>
+        <div class="persona-cta">
+          See Brand Walkthrough <span class="cta-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="walkthrough-executive.html" class="persona-card executive">
+        <span class="persona-emoji">💼</span>
+        <div class="persona-type">Executive & Thought Leader</div>
+        <div class="persona-name">The Thought Leader</div>
+        <div class="persona-desc">VCs, executives, consultants, and subject-matter experts who want a powerful digital presence without the time investment. Your insights, amplified — without the grind.</div>
+        <div class="persona-goals">
+          <div class="persona-goal"><span class="goal-dot"></span>Calendar-aware, timely content generation</div>
+          <div class="persona-goal"><span class="goal-dot"></span>Secure RAG over private documents</div>
+          <div class="persona-goal"><span class="goal-dot"></span>2× LinkedIn engagement, content time cut to &lt;1hr</div>
+        </div>
+        <div class="persona-cta">
+          See Executive Walkthrough <span class="cta-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- MARKET PROOF -->
+<section id="proof">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Market Opportunity</div>
+      <h2 class="section-title">A $70B market with<br><em>no clear leader.</em> Yet.</h2>
+      <p class="section-sub">The creator economy is exploding. The tools haven't caught up. The high-autonomy, low-cost quadrant of the market is virtually empty — and that's where we live.</p>
+    </div>
+    <div class="proof-grid reveal">
+      <div class="proof-card">
+        <div class="proof-num">$<span>70</span>B<span style="font-size:24px;vertical-align:top;margin-top:8px">+</span></div>
+        <div class="proof-label">Combined TAM for autonomous creator agents by 2030</div>
+        <div class="proof-source">Grand View Research · Deloitte · Market.US</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num"><span>30</span>%</div>
+        <div class="proof-label">CAGR for agentic AI content creation through 2034</div>
+        <div class="proof-source">Market.US Agentic AI Report 2025</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num"><span>73</span>%</div>
+        <div class="proof-label">Of creators already use AI weekly — ready to upgrade</div>
+        <div class="proof-source">Freep Creator Economy Report 2025</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">$<span>284</span>B</div>
+        <div class="proof-label">Creator economy TAM in 2024, growing to $400B+ by 2026</div>
+        <div class="proof-source">PressConnects Press Release 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section id="comparison">
+  <div class="section-inner">
+    <div class="comparison-header reveal">
+      <div class="section-label">Competitive Landscape</div>
+      <h2 class="section-title">Why Creators Pod<br>wins on <em>every dimension.</em></h2>
+    </div>
+    <div class="reveal">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th class="ours">Creators Pod</th>
+            <th>Jasper</th>
+            <th>Copy.ai</th>
+            <th>Platform-native</th>
+            <th>LangChain</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Persistent Memory<span class="feature-dim">Remembers your history, voice & data</span></td>
+            <td class="ours"><span class="comp-check">✓</span> ClawDB native</td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-partial">⚠ Setup req.</span></td>
+          </tr>
+          <tr>
+            <td>Full Agentic Autonomy<span class="feature-dim">End-to-end execution without prompting</span></td>
+            <td class="ours"><span class="comp-check">✓</span> ReAct loop</td>
+            <td><span class="comp-partial">⚠ Partial</span></td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-partial">⚠ Dev only</span></td>
+          </tr>
+          <tr>
+            <td>Brand Voice DNA<span class="feature-dim">Learned voice fingerprint from your content</span></td>
+            <td class="ours"><span class="comp-check">✓</span> Proprietary</td>
+            <td><span class="comp-partial">⚠ Basic</span></td>
+            <td><span class="comp-partial">⚠ Templates</span></td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-x">✗</span></td>
+          </tr>
+          <tr>
+            <td>Privacy / Self-hosting<span class="feature-dim">Your data never leaves your environment</span></td>
+            <td class="ours"><span class="comp-check">✓</span> Docker + K8s</td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-partial">⚠ Complex</span></td>
+          </tr>
+          <tr>
+            <td>Cross-Platform Publishing<span class="feature-dim">15+ platforms, one workflow</span></td>
+            <td class="ours"><span class="comp-check">✓</span> 15+ platforms</td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-x">✗ Locked</span></td>
+            <td><span class="comp-x">✗</span></td>
+          </tr>
+          <tr>
+            <td>EU AI Act Compliance<span class="feature-dim">Provenance, labeling, audit trails</span></td>
+            <td class="ours"><span class="comp-check">✓</span> Built-in</td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-x">✗</span></td>
+            <td><span class="comp-partial">⚠ Partial</span></td>
+            <td><span class="comp-x">✗</span></td>
+          </tr>
+          <tr>
+            <td>Accessible Pricing<span class="feature-dim">Pro features from $29/mo</span></td>
+            <td class="ours"><span class="comp-check">✓</span> From $29</td>
+            <td><span class="comp-partial">From $99</span></td>
+            <td><span class="comp-partial">From $49</span></td>
+            <td><span class="comp-check">✓</span> Free</td>
+            <td><span class="comp-partial">Dev cost</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="pricing-header reveal">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Start free.<br><em>Scale when you're ready.</em></h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center">From solo creators to enterprise media teams. Every tier includes your personal second brain.</p>
+    </div>
+    <div class="pricing-grid reveal">
+
+      <div class="pricing-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price"><sup>$</sup>0</div>
+        <div class="plan-period">Forever free · No credit card</div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="plan-feature">5 agent runs per day</div>
+          <div class="plan-feature">1 platform connection</div>
+          <div class="plan-feature">1GB ClawDB storage</div>
+          <div class="plan-feature">Community plugins</div>
+          <div class="plan-feature muted">Brand voice DNA</div>
+          <div class="plan-feature muted">Multi-platform publishing</div>
+          <div class="plan-feature muted">Advanced analytics</div>
+        </div>
+        <a href="#" class="plan-btn ghost">Start Free</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="plan-name">Creator Pro</div>
+        <div class="plan-price"><sup>$</sup>29</div>
+        <div class="plan-period">per month · billed monthly</div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="plan-feature">Unlimited agent runs</div>
+          <div class="plan-feature">5 platform connections</div>
+          <div class="plan-feature">25GB ClawDB storage</div>
+          <div class="plan-feature">Brand Voice DNA</div>
+          <div class="plan-feature">Smart scheduling</div>
+          <div class="plan-feature">Analytics dashboard</div>
+          <div class="plan-feature">Premium plugins (SEO, video)</div>
+        </div>
+        <a href="#" class="plan-btn solid">Get Creator Pro</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="plan-name">Agency Pro</div>
+        <div class="plan-price"><sup>$</sup>99</div>
+        <div class="plan-period">per month · billed monthly</div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="plan-feature">Everything in Creator Pro</div>
+          <div class="plan-feature">Multi-account management</div>
+          <div class="plan-feature">100GB ClawDB storage</div>
+          <div class="plan-feature">Team collaboration tools</div>
+          <div class="plan-feature">White-label reports</div>
+          <div class="plan-feature">15 platform connections</div>
+          <div class="plan-feature">Priority support</div>
+        </div>
+        <a href="#" class="plan-btn ghost">Get Agency Pro</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price" style="font-size:32px;letter-spacing:-.02em">Custom</div>
+        <div class="plan-period">Starting from $1,200/mo</div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="plan-feature">Everything in Agency Pro</div>
+          <div class="plan-feature">SSO / SAML auth</div>
+          <div class="plan-feature">On-premise deployment</div>
+          <div class="plan-feature">SLA-backed uptime</div>
+          <div class="plan-feature">Compliance module (GDPR)</div>
+          <div class="plan-feature">Private plugin dev kit</div>
+          <div class="plan-feature">Dedicated success manager</div>
+        </div>
+        <a href="#" class="plan-btn ghost">Talk to Sales</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="cta-section">
+  <div class="section-inner">
+    <div class="cta-box reveal">
+      <h2 class="cta-title">Your second brain<br>is waiting to be <em>built.</em></h2>
+      <p class="cta-sub">Join 200+ creators already running on autopilot. Start free, upgrade when the results speak for themselves.</p>
+      <div class="cta-actions">
+        <a href="#pricing" class="btn-primary">
+          Start Free Today
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="walkthrough-creator.html" class="btn-ghost">See Live Demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="nav-logo-dot"></div>
+    Creators Pod
+  </div>
+  <div class="footer-links">
+    <a href="#features">Features</a>
+    <a href="#personas">Personas</a>
+    <a href="#pricing">Pricing</a>
+    <a href="walkthrough-creator.html">Creator Demo</a>
+    <a href="walkthrough-brand.html">Brand Demo</a>
+    <a href="walkthrough-executive.html">Executive Demo</a>
+  </div>
+  <div class="footer-copy">© 2026 Creators Pod. All rights reserved.</div>
+</footer>
+
+<script>
+  // ── Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // ── Terminal animation
+  const lines = [1,2,3,4,5,6,7,8,9,10];
+  const results = ['r1','r2','r3'];
+  let lineIdx = 0;
+
+  function showNextLine() {
+    if (lineIdx < lines.length) {
+      const el = document.getElementById('tl-' + lines[lineIdx]);
+      if (el) el.classList.add('show');
+      lineIdx++;
+      const delay = lineIdx <= 2 ? 600 : 400;
+      setTimeout(showNextLine, delay);
+    } else {
+      // show result items
+      results.forEach((id, i) => {
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('show');
+        }, i * 300);
+      });
+      // restart loop after a pause
+      setTimeout(() => {
+        lineIdx = 0;
+        lines.forEach(n => {
+          const el = document.getElementById('tl-' + n);
+          if (el) el.classList.remove('show');
+        });
+        results.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.remove('show');
+        });
+        setTimeout(showNextLine, 500);
+      }, 8000);
+    }
+  }
+  setTimeout(showNextLine, 800);
+
+  // ── Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

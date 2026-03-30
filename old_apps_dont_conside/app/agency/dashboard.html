@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agency Dashboard | Creators Pod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <script>
+    (function(){var t=localStorage.getItem('creatorspod-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();
+  </script>
+</head>
+<body class="dashboard-page">
+  <header class="header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">Creators<span>Pod</span></a>
+      <nav class="nav">
+        <button type="button" class="theme-switch" data-theme-toggle aria-label="Toggle dark mode">
+          <i class="fa-solid fa-sun theme-switch-icon sun" aria-hidden="true"></i>
+          <i class="fa-solid fa-moon theme-switch-icon moon" aria-hidden="true"></i>
+        </button>
+        <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <h1 class="dashboard-title">Agency Dashboard</h1>
+    <p class="dashboard-subtitle">Campaign Orchestrator · Campaign performance and content pipeline</p>
+
+    <nav class="dashboard-nav" aria-label="Dashboard sections">
+      <a href="#panel-dashboard" class="dashboard-nav-link active" data-panel="panel-dashboard"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Dashboard</a>
+      <a href="#panel-second-brain" class="dashboard-nav-link" data-panel="panel-second-brain"><i class="fa-solid fa-brain" aria-hidden="true"></i> Second Brain</a>
+      <a href="#panel-agents" class="dashboard-nav-link" data-panel="panel-agents"><i class="fa-solid fa-robot" aria-hidden="true"></i> Copilot</a>
+      <a href="#panel-calendar" class="dashboard-nav-link" data-panel="panel-calendar"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Calendar</a>
+      <a href="#panel-analytics" class="dashboard-nav-link" data-panel="panel-analytics"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Analytics</a>
+    </nav>
+
+    <div class="dashboard-layout">
+      <section id="panel-dashboard" class="dashboard-panel active" aria-labelledby="dashboard-heading">
+        <div class="dashboard-section agency-brief">
+          <h2 class="dashboard-section-title" id="dashboard-heading"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Campaign Orchestrator — Agency Command Center</h2>
+          <p class="agency-hierarchy-note" aria-describedby="dashboard-heading"><strong>Property</strong> → <strong>Channel</strong> (Organic | Campaigns). Track each client and channel separately.</p>
+
+          <!-- Property: Acme Co -->
+          <div class="agency-property" data-property="acme-co">
+            <h3 class="agency-property-name"><i class="fa-solid fa-building" aria-hidden="true"></i> Acme Co</h3>
+            <div class="agency-channels">
+              <div class="agency-channel">
+                <h4 class="agency-channel-name">Website</h4>
+                <div class="agency-channel-split">
+                  <div class="agency-channel-block agency-organic">
+                    <span class="agency-channel-block-label">Organic</span>
+                    <p class="agency-channel-stats">42K sessions · 2.1% conv. (30d)</p>
+                  </div>
+                  <div class="agency-channel-block agency-campaigns">
+                    <span class="agency-channel-block-label">Campaigns</span>
+                    <ul class="agency-campaign-list" role="list">
+                      <li class="agency-campaign-card" role="listitem">
+                        <span class="agency-campaign-name">Product Launch XYZ</span>
+                        <span class="agency-campaign-stats">842K impressions · 12% conv.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="agency-channel">
+                <h4 class="agency-channel-name">Instagram</h4>
+                <div class="agency-channel-split">
+                  <div class="agency-channel-block agency-organic">
+                    <span class="agency-channel-block-label">Organic</span>
+                    <p class="agency-channel-stats">284K reach · 4.2% eng. (30d)</p>
+                  </div>
+                  <div class="agency-channel-block agency-campaigns">
+                    <span class="agency-channel-block-label">Campaigns</span>
+                    <ul class="agency-campaign-list" role="list">
+                      <li class="agency-campaign-card" role="listitem">
+                        <span class="agency-campaign-name">Q4 Holiday Push</span>
+                        <span class="agency-campaign-stats">$47,280 spent · 2.3% CTR <span class="delta-positive">↑ 0.4%</span></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="agency-channel">
+                <h4 class="agency-channel-name">Meta Ads</h4>
+                <div class="agency-channel-split">
+                  <div class="agency-channel-block agency-organic">
+                    <span class="agency-channel-block-label">Organic</span>
+                    <p class="agency-channel-stats">—</p>
+                  </div>
+                  <div class="agency-channel-block agency-campaigns">
+                    <span class="agency-channel-block-label">Campaigns</span>
+                    <ul class="agency-campaign-list" role="list">
+                      <li class="agency-campaign-card" role="listitem">
+                        <span class="agency-campaign-name">Q4 Holiday (Ad Set A/B)</span>
+                        <span class="agency-campaign-stats">$47K · 2.3% CTR</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Property: Brand XYZ -->
+          <div class="agency-property" data-property="brand-xyz">
+            <h3 class="agency-property-name"><i class="fa-solid fa-building" aria-hidden="true"></i> Brand XYZ</h3>
+            <div class="agency-channels">
+              <div class="agency-channel">
+                <h4 class="agency-channel-name">Instagram</h4>
+                <div class="agency-channel-split">
+                  <div class="agency-channel-block agency-organic">
+                    <span class="agency-channel-block-label">Organic</span>
+                    <p class="agency-channel-stats">1.1M reach · 3.8% eng. (30d)</p>
+                  </div>
+                  <div class="agency-channel-block agency-campaigns">
+                    <span class="agency-channel-block-label">Campaigns</span>
+                    <ul class="agency-campaign-list" role="list">
+                      <li class="agency-campaign-card" role="listitem">
+                        <span class="agency-campaign-name">Influencer Collab</span>
+                        <span class="agency-campaign-stats">3 live, 2 contracts pending</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="agency-channel">
+                <h4 class="agency-channel-name">LinkedIn</h4>
+                <div class="agency-channel-split">
+                  <div class="agency-channel-block agency-organic">
+                    <span class="agency-channel-block-label">Organic</span>
+                    <p class="agency-channel-stats">Evergreen · 2.1M reach this month</p>
+                  </div>
+                  <div class="agency-channel-block agency-campaigns">
+                    <span class="agency-channel-block-label">Campaigns</span>
+                    <ul class="agency-campaign-list" role="list">
+                      <li class="agency-campaign-card" role="listitem">
+                        <span class="agency-campaign-name">—</span>
+                        <span class="agency-campaign-stats">No active paid</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Required (tagged Property · Channel) -->
+          <h3 class="dashboard-section-title"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Action Required</h3>
+          <p class="dashboard-section-intro" style="margin-bottom: var(--space-4);">Flagged by channel. Act per property so you can track impact.</p>
+          <ul class="agency-alerts-list" aria-label="Optimization alerts">
+            <li class="agency-alert-card">
+              <span class="agency-alert-scope">Acme Co · Meta Ads (Campaigns)</span>
+              <h4 class="agency-alert-title">Ad Set B underperforming</h4>
+              <p class="agency-alert-detail">CTR: 1.2% (target: 2.0%). Consider pausing or running an A/B test.</p>
+              <div class="agency-alert-actions">
+                <button type="button" class="btn btn-ghost">Pause</button>
+                <button type="button" class="btn btn-primary">A/B Test</button>
+              </div>
+            </li>
+            <li class="agency-alert-card">
+              <span class="agency-alert-scope">Brand XYZ · Instagram (Campaigns)</span>
+              <h4 class="agency-alert-title">Influencer @creator_name contract renewal due 11/20</h4>
+              <p class="agency-alert-detail">Last campaign ROI: 3.2×. Renew or renegotiate terms.</p>
+              <div class="agency-alert-actions">
+                <button type="button" class="btn btn-primary">Renew</button>
+                <button type="button" class="btn btn-ghost">Renegotiate</button>
+              </div>
+            </li>
+            <li class="agency-alert-card">
+              <span class="agency-alert-scope">Acme Co · Website (Campaigns)</span>
+              <h4 class="agency-alert-title">Landing page bounce rate: 68%</h4>
+              <p class="agency-alert-detail">Industry avg: 42%. Run a diagnostic or test a new variant.</p>
+              <div class="agency-alert-actions">
+                <button type="button" class="btn btn-ghost">Run Diagnostic</button>
+                <button type="button" class="btn btn-primary">New Variant</button>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Content Production Status (by Property · Channel) -->
+          <div class="agency-pipeline-panel">
+            <p class="agency-pipeline-title">Content Production Status</p>
+            <ul class="agency-pipeline-list" aria-label="Pipeline status">
+              <li class="agency-pipeline-item">
+                <span class="agency-pipeline-item-left">
+                  <i class="fa-solid fa-check" aria-hidden="true"></i>
+                  <span><span class="agency-pipeline-scope">Acme Co · Instagram</span> 12 assets ready for approval</span>
+                </span>
+                <button type="button" class="btn btn-primary">Review Batch</button>
+              </li>
+              <li class="agency-pipeline-item">
+                <span class="agency-pipeline-item-left">
+                  <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                  <span><span class="agency-pipeline-scope">Acme Co</span> 8 assets in brand voice review · ETA: 8 min</span>
+                </span>
+              </li>
+              <li class="agency-pipeline-item">
+                <span class="agency-pipeline-item-left">
+                  <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                  <span><span class="agency-pipeline-scope">Acme Co · Email</span> Next batch (Holiday Email Seq.) · 14 min</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-second-brain" class="dashboard-panel" aria-labelledby="second-brain-heading" hidden>
+        <div class="dashboard-section second-brain-creator">
+          <h2 class="dashboard-section-title" id="second-brain-heading"><i class="fa-solid fa-brain" aria-hidden="true"></i> Second Brain</h2>
+
+          <!-- Campaign Orchestrator intro: data-driven, strategic -->
+          <div class="sb-agent-message" role="status" aria-live="polite">
+            <div class="sb-agent-avatar" aria-hidden="true"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+            <div class="sb-agent-bubble">
+              <p class="sb-agent-greeting">Command center for <strong>Property → Channel.</strong></p>
+              <p class="sb-agent-body">Knowledge sources and voice are set per <strong>property</strong> (client). I track each <strong>channel</strong> (Website, Instagram, etc.) with Organic and Campaigns separately so you can see where performance and pipeline sit. Configure here; I run hourly by property and channel.</p>
+            </div>
+          </div>
+
+          <!-- Live activity strip -->
+          <div class="sb-activity-strip">
+            <span class="sb-activity-label"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i> Right now</span>
+            <ul class="sb-activity-list" aria-label="Campaign Orchestrator activity">
+              <li>KPI refresh (Acme Co, Brand XYZ · all channels) — <span class="sb-activity-time">18 min ago</span></li>
+              <li>Pipeline: Acme Co · 8 in voice review, 12 ready</li>
+              <li>Next optimization sweep <strong>~42 min</strong> (by property)</li>
+            </ul>
+          </div>
+
+          <!-- Property chooser: filters all tab content -->
+          <div class="sb-property-chooser" role="group" aria-label="Select property">
+            <span class="sb-property-chooser-label">Property</span>
+            <div class="sb-property-chooser-buttons">
+              <button type="button" class="sb-property-chooser-btn active" data-sb-property="all" aria-pressed="true">All properties</button>
+              <button type="button" class="sb-property-chooser-btn" data-sb-property="acme-co" aria-pressed="false">Acme Co</button>
+              <button type="button" class="sb-property-chooser-btn" data-sb-property="brand-xyz" aria-pressed="false">Brand XYZ</button>
+            </div>
+          </div>
+
+          <nav class="copilot-subnav sb-subnav" aria-label="Second Brain sections">
+            <a href="#" class="copilot-subnav-link active" data-sb-panel="sb-panel-sources">Knowledge Sources</a>
+            <a href="#" class="copilot-subnav-link" data-sb-panel="sb-panel-voice">Voice DNA</a>
+            <a href="#" class="copilot-subnav-link" data-sb-panel="sb-panel-settings">Agent Settings</a>
+            <a href="#" class="copilot-subnav-link" data-sb-panel="sb-panel-history">History &amp; usage</a>
+          </nav>
+
+          <!-- Panel: Knowledge Sources (by Property) -->
+          <div id="sb-panel-sources" class="sb-subpanel active">
+            <div class="sb-panel-block">
+              <h3 class="sb-panel-title"><i class="fa-solid fa-plug" aria-hidden="true"></i> Where I pull context &amp; guidelines</h3>
+              <p class="sb-panel-intro sb-panel-intro-property" data-sb-property-intro="all">Organized by <strong>Property</strong> (client). Each property&apos;s sources feed brand voice and pipeline for that property&apos;s channels.</p>
+              <p class="sb-panel-intro sb-panel-intro-property" data-sb-property-intro="single" hidden>Sources for this property. Add or disconnect below.</p>
+              <div class="sb-property-groups">
+                <div class="sb-property-group" data-sb-property="acme-co">
+                  <h4 class="sb-property-group-name"><i class="fa-solid fa-building" aria-hidden="true"></i> Acme Co</h4>
+                  <ul class="sb-sources-list" aria-label="Acme Co knowledge sources">
+                    <li class="sb-source-item connected">
+                      <i class="fa-solid fa-palette" aria-hidden="true"></i>
+                      <span class="sb-source-name">Brand guidelines</span>
+                      <span class="sb-source-meta">Website + Instagram · 95%+</span>
+                    </li>
+                    <li class="sb-source-item connected">
+                      <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                      <span class="sb-source-name">Google Drive</span>
+                      <span class="sb-source-meta">Campaign briefs, creative libs</span>
+                    </li>
+                    <li class="sb-source-item connected">
+                      <i class="fa-solid fa-bullhorn" aria-hidden="true"></i>
+                      <span class="sb-source-name">Meta &amp; Google Ads</span>
+                      <span class="sb-source-meta">Ad copy, performance refs</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="sb-property-group" data-sb-property="brand-xyz">
+                  <h4 class="sb-property-group-name"><i class="fa-solid fa-building" aria-hidden="true"></i> Brand XYZ</h4>
+                  <ul class="sb-sources-list" aria-label="Brand XYZ knowledge sources">
+                    <li class="sb-source-item connected">
+                      <i class="fa-solid fa-palette" aria-hidden="true"></i>
+                      <span class="sb-source-name">Brand guidelines</span>
+                      <span class="sb-source-meta">Instagram + LinkedIn</span>
+                    </li>
+                    <li class="sb-source-item connected">
+                      <i class="fa-solid fa-book" aria-hidden="true"></i>
+                      <span class="sb-source-name">Notion</span>
+                      <span class="sb-source-meta">Client wiki, approval workflows</span>
+                    </li>
+                    <li class="sb-source-item connected">
+                      <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+                      <span class="sb-source-name">Influencer intel</span>
+                      <span class="sb-source-meta">Contracts, ROI history</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="sb-source-connect-wrap" data-sb-property="all acme-co brand-xyz">
+                  <div class="sb-source-item sb-source-connect">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    <span class="sb-source-name">Add property or connect sources</span>
+                    <span class="sb-source-meta">New client, Slack, HubSpot, more</span>
+                    <button type="button" class="btn btn-primary btn-sm">Add</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel: Voice DNA (per Property) -->
+          <div id="sb-panel-voice" class="sb-subpanel" hidden>
+            <div class="sb-panel-block">
+              <h3 class="sb-panel-title"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i> Brand Voice per property</h3>
+              <p class="sb-panel-intro sb-voice-intro-all" data-sb-property-intro="all">One voice fingerprint per <strong>Property</strong>. Assets are scored against the property&apos;s fingerprint before pipeline.</p>
+              <p class="sb-panel-intro sb-voice-intro-single" data-sb-property-intro="single" hidden>Voice fingerprint for this property. Refine below.</p>
+              <div class="sb-voice-cards">
+                <div class="sb-voice-card" data-sb-property="acme-co">
+                  <div class="sb-voice-score-wrap">
+                    <span class="sb-voice-score" aria-label="96 percent">96%</span>
+                    <span class="sb-voice-score-label">Acme Co</span>
+                  </div>
+                  <p class="sb-voice-meta">Website, Instagram, Meta Ads · 95%+ enforced</p>
+                </div>
+                <div class="sb-voice-card" data-sb-property="brand-xyz">
+                  <div class="sb-voice-score-wrap">
+                    <span class="sb-voice-score" aria-label="94 percent">94%</span>
+                    <span class="sb-voice-score-label">Brand XYZ</span>
+                  </div>
+                  <p class="sb-voice-meta">Instagram, LinkedIn · 8 assets in review</p>
+                </div>
+              </div>
+              <div class="sb-voice-actions" style="margin-top: var(--space-4);">
+                <button type="button" class="btn btn-primary">Manage property voices</button>
+                <span class="sb-voice-hint">Add property, upload guidelines, set tone per channel</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel: Agent Settings (global; shown for any property selection) -->
+          <div id="sb-panel-settings" class="sb-subpanel" hidden>
+            <div class="sb-panel-block" data-sb-property="all">
+              <h3 class="sb-panel-title"><i class="fa-solid fa-sliders" aria-hidden="true"></i> Autonomy &amp; approval gates</h3>
+              <p class="sb-panel-intro">Control how I run: campaign monitoring is hourly; pipeline and publishing can be gated so nothing goes live without review. Applies to all properties unless you set overrides per property.</p>
+              <ul class="sb-autonomy-list" aria-label="Agent autonomy settings">
+                <li class="sb-autonomy-item">
+                  <div class="sb-autonomy-header">
+                    <span class="sb-autonomy-name">Content / asset generation</span>
+                    <span class="sb-autonomy-badge supervised">Supervised</span>
+                  </div>
+                  <p class="sb-autonomy-desc">Batches run on your trigger or schedule; you review before anything enters the pipeline.</p>
+                  <div class="sb-autonomy-slider-wrap">
+                    <div class="sb-autonomy-track"><div class="sb-autonomy-fill" style="width: 70%;" aria-hidden="true"></div></div>
+                    <div class="sb-autonomy-legends">
+                      <span class="sb-autonomy-legend">You trigger only</span>
+                      <span class="sb-autonomy-legend">Scheduled + your approval</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="sb-autonomy-item">
+                  <div class="sb-autonomy-header">
+                    <span class="sb-autonomy-name">Publishing</span>
+                    <span class="sb-autonomy-badge supervised">Campaigns: approval required</span>
+                  </div>
+                  <p class="sb-autonomy-desc">Evergreen: autopilot. Campaigns: nothing publishes until you approve (Review Batch).</p>
+                  <div class="sb-autonomy-slider-wrap">
+                    <div class="sb-autonomy-track"><div class="sb-autonomy-fill" style="width: 35%;" aria-hidden="true"></div></div>
+                    <div class="sb-autonomy-legends">
+                      <span class="sb-autonomy-legend">All approval</span>
+                      <span class="sb-autonomy-legend">Evergreen auto, campaigns approval</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="sb-autonomy-item">
+                  <div class="sb-autonomy-header">
+                    <span class="sb-autonomy-name">Campaign monitoring &amp; optimization</span>
+                    <span class="sb-autonomy-badge autopilot">Full autopilot</span>
+                  </div>
+                  <p class="sb-autonomy-desc">Hourly KPI checks, underperformer flags, A/B and budget suggestions. You act on alerts; I keep surfacing them.</p>
+                  <div class="sb-autonomy-slider-wrap">
+                    <div class="sb-autonomy-track"><div class="sb-autonomy-fill" style="width: 100%;" aria-hidden="true"></div></div>
+                    <div class="sb-autonomy-legends">
+                      <span class="sb-autonomy-legend">Manual</span>
+                      <span class="sb-autonomy-legend">Hourly sweep</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <p class="sb-autonomy-note"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Campaign and client data stay in your control. Publishing gates apply per campaign unless you enable autopublish for that campaign.</p>
+            </div>
+          </div>
+
+          <!-- Panel: History & token analytics (tied to dashboard: campaigns, alerts, pipeline) -->
+          <div id="sb-panel-history" class="sb-subpanel" hidden>
+            <div class="sb-panel-block">
+              <h3 class="sb-panel-title"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> When I ran &amp; what I used</h3>
+              <p class="sb-panel-intro sb-history-intro-all" data-sb-property-intro="all">Every action behind your command center—KPI refresh, optimization alerts, pipeline batches, and brand voice checks. Token counts per action.</p>
+              <p class="sb-panel-intro sb-history-intro-single" data-sb-property-intro="single" hidden>Actions and token usage for this property only.</p>
+
+              <div class="sb-history-summary" data-sb-property="all acme-co brand-xyz">
+                <div class="sb-history-last-run">
+                  <span class="sb-history-label">Last run</span>
+                  <span class="sb-history-value"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> 18 min ago</span>
+                  <span class="sb-history-detail">Campaign KPI refresh (4 active)</span>
+                </div>
+                <div class="sb-history-totals">
+                  <span class="sb-history-label">Today</span>
+                  <span class="sb-history-value">~31.8K tokens</span>
+                  <span class="sb-history-detail">9 actions</span>
+                </div>
+              </div>
+
+              <div class="sb-history-table-wrap">
+                <table class="sb-history-table" aria-label="Agent run history and token usage">
+                  <thead>
+                    <tr>
+                      <th scope="col">When</th>
+                      <th scope="col">Property</th>
+                      <th scope="col">Channel</th>
+                      <th scope="col">Action</th>
+                      <th scope="col" class="sb-history-col-tokens">Tokens</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-sb-property="all">
+                      <td><span class="sb-history-time">18 min ago</span></td>
+                      <td><span class="sb-history-property">Acme Co, Brand XYZ</span></td>
+                      <td><span class="sb-history-channel">All</span></td>
+                      <td><span class="sb-history-action">Campaign KPI refresh</span> — All properties</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">5,200</span></td>
+                    </tr>
+                    <tr data-sb-property="acme-co">
+                      <td><span class="sb-history-time">1h 02m ago</span></td>
+                      <td><span class="sb-history-property">Acme Co</span></td>
+                      <td><span class="sb-history-channel">Meta Ads</span></td>
+                      <td><span class="sb-history-action">Optimization alert</span> — Ad Set B CTR 1.2% (target 2.0%)</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">2,880</span></td>
+                    </tr>
+                    <tr data-sb-property="brand-xyz">
+                      <td><span class="sb-history-time">1h 02m ago</span></td>
+                      <td><span class="sb-history-property">Brand XYZ</span></td>
+                      <td><span class="sb-history-channel">Instagram</span></td>
+                      <td><span class="sb-history-action">Optimization alert</span> — Influencer renewal 11/20; ROI 3.2×</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">1,950</span></td>
+                    </tr>
+                    <tr data-sb-property="acme-co">
+                      <td><span class="sb-history-time">1h 02m ago</span></td>
+                      <td><span class="sb-history-property">Acme Co</span></td>
+                      <td><span class="sb-history-channel">Website</span></td>
+                      <td><span class="sb-history-action">Optimization alert</span> — Landing page bounce 68% vs 42%</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">2,100</span></td>
+                    </tr>
+                    <tr data-sb-property="acme-co">
+                      <td><span class="sb-history-time">2h 15m ago</span></td>
+                      <td><span class="sb-history-property">Acme Co</span></td>
+                      <td><span class="sb-history-channel">Instagram</span></td>
+                      <td><span class="sb-history-action">Pipeline batch</span> — 8 in voice review · 12 ready</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">6,400</span></td>
+                    </tr>
+                    <tr data-sb-property="acme-co">
+                      <td><span class="sb-history-time">2h 30m ago</span></td>
+                      <td><span class="sb-history-property">Acme Co</span></td>
+                      <td><span class="sb-history-channel">Email</span></td>
+                      <td><span class="sb-history-action">Asset bundle</span> — Holiday Email Seq. · 14 min ETA</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">4,800</span></td>
+                    </tr>
+                    <tr data-sb-property="all">
+                      <td><span class="sb-history-time">3h 00m ago</span></td>
+                      <td><span class="sb-history-property">Acme Co, Brand XYZ</span></td>
+                      <td><span class="sb-history-channel">All</span></td>
+                      <td><span class="sb-history-action">Campaign KPI refresh</span> — Hourly sweep</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">5,100</span></td>
+                    </tr>
+                    <tr data-sb-property="brand-xyz">
+                      <td><span class="sb-history-time">4h 00m ago</span></td>
+                      <td><span class="sb-history-property">Brand XYZ</span></td>
+                      <td><span class="sb-history-channel">Instagram</span></td>
+                      <td><span class="sb-history-action">Influencer intel</span> — Contracts, ROI</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">2,370</span></td>
+                    </tr>
+                    <tr data-sb-property="all">
+                      <td><span class="sb-history-time">5h 00m ago</span></td>
+                      <td><span class="sb-history-property">—</span></td>
+                      <td><span class="sb-history-channel">—</span></td>
+                      <td><span class="sb-history-action">Daily pipeline digest</span> — All properties</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">600</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="sb-history-footnote"><i class="fa-solid fa-info-circle" aria-hidden="true"></i> Tokens = input + output per action. Resets daily; monthly rollups in billing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-agents" class="dashboard-panel" aria-labelledby="agents-heading" hidden>
+        <nav class="copilot-subnav" aria-label="Copilot sub-sections">
+          <a href="#" class="copilot-subnav-link active" data-copilot-panel="copilot-panel-agents">Agents</a>
+          <a href="#" class="copilot-subnav-link" data-copilot-panel="copilot-panel-workflows">Workflows</a>
+        </nav>
+
+        <div id="copilot-panel-agents" class="copilot-subpanel active">
+        <div class="dashboard-section">
+          <h2 class="dashboard-section-title" id="agents-heading"><i class="fa-solid fa-robot" aria-hidden="true"></i> Agents</h2>
+          <p class="dashboard-section-intro">Agents are specialist AI tools that do one job brilliantly. Pick a task, get a result in seconds—no workflow required. We have 85+ agents across writing, research, visual, and more.</p>
+          <div class="agent-category">
+            <h3 class="agent-category-title">Content creation &amp; writing</h3>
+            <div class="agent-grid">
+              <a href="#" class="agent-card"><i class="fa-solid fa-pen" aria-hidden="true"></i> Script Writer</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-quote-right" aria-hidden="true"></i> Caption Generator</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-heading" aria-hidden="true"></i> Headlines</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-fish" aria-hidden="true"></i> Hook Creator</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> CTA Builder</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-user" aria-hidden="true"></i> Bio Writer</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-comments" aria-hidden="true"></i> Thread Writer</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Subject Lines</a>
+            </div>
+          </div>
+          <div class="agent-category">
+            <h3 class="agent-category-title">Optimization &amp; enhancement</h3>
+            <div class="agent-grid">
+              <a href="#" class="agent-card"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> SEO Optimizer</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i> Readability</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Grammar &amp; Polish</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-palette" aria-hidden="true"></i> Tone Shifter</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-arrows-up-down" aria-hidden="true"></i> Length Adjuster</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Engagement Predictor</a>
+            </div>
+          </div>
+          <div class="agent-category">
+            <h3 class="agent-category-title">Research &amp; intelligence</h3>
+            <div class="agent-grid">
+              <a href="#" class="agent-card"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i> Keyword Research</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-users" aria-hidden="true"></i> Audience Insight</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Fact Checker</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-quote-left" aria-hidden="true"></i> Quote Finder</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Statistics Finder</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Content Gap Analyzer</a>
+            </div>
+          </div>
+          <div class="agent-category">
+            <h3 class="agent-category-title">Visual, platform &amp; collaboration</h3>
+            <div class="agent-grid">
+              <a href="#" class="agent-card"><i class="fa-solid fa-hashtag" aria-hidden="true"></i> Hashtag Generator</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-image" aria-hidden="true"></i> Thumbnail Creator</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-film" aria-hidden="true"></i> Video Storyboard</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-language" aria-hidden="true"></i> Translate</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-compress" aria-hidden="true"></i> Summarize</a>
+              <a href="#" class="agent-card"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Client Reporter</a>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div id="copilot-panel-workflows" class="copilot-subpanel" hidden>
+        <div class="dashboard-section">
+          <h2 class="dashboard-section-title"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i> Multi-Agent Workflows</h2>
+          <p class="dashboard-section-intro">Workflows chain multiple agents together for complex tasks. One click runs the full sequence and delivers a complete output—e.g. a research report, campaign bundle, or 10+ repurposed assets.</p>
+          <div class="workflow-category">
+            <h3 class="workflow-category-title">Research &amp; long-form</h3>
+            <div class="workflow-grid">
+              <div class="workflow-card">
+                <h4>Deep Research</h4>
+                <p>Comprehensive report with citations from 20+ sources. Research → Content → Formatting agents.</p>
+                <span class="workflow-time">~5–10 min</span>
+              </div>
+              <div class="workflow-card">
+                <h4>Newsletter</h4>
+                <p>Auto-curate from your ClawDB into a full HTML newsletter. Ready for Substack or Mailchimp.</p>
+                <span class="workflow-time">~3–5 min</span>
+              </div>
+            </div>
+          </div>
+          <div class="workflow-category">
+            <h3 class="workflow-category-title">Campaign &amp; scale</h3>
+            <div class="workflow-grid">
+              <div class="workflow-card">
+                <h4>Campaign Asset Bundle</h4>
+                <p>Ads, social posts, email sequences, landing page copy. Brand Voice enforced across all assets.</p>
+                <span class="workflow-time">~15–20 min</span>
+              </div>
+            </div>
+          </div>
+          <div class="workflow-category">
+            <h3 class="workflow-category-title">Audio &amp; video</h3>
+            <div class="workflow-grid">
+              <div class="workflow-card">
+                <h4>Video Concept</h4>
+                <p>Script, shot-by-shot storyboard, B-roll suggestions, and production doc with timestamps.</p>
+                <span class="workflow-time">~4–8 min</span>
+              </div>
+              <div class="workflow-card">
+                <h4>Create Podcast</h4>
+                <p>Turn a blog or article into a conversational script + AI voiceover + show notes.</p>
+                <span class="workflow-time">~3–7 min</span>
+              </div>
+            </div>
+          </div>
+          <div class="workflow-category">
+            <h3 class="workflow-category-title">Repurposing &amp; distribution</h3>
+            <div class="workflow-grid">
+              <div class="workflow-card">
+                <h4>Cross-Platform Repurposing</h4>
+                <p>One video or article → 10+ pieces: Reels, thread, LinkedIn article, newsletter, carousel.</p>
+                <span class="workflow-time">~8–15 min</span>
+              </div>
+              <div class="workflow-card">
+                <h4>Image Generation</h4>
+                <p>Custom images from your content context, resized for each platform.</p>
+                <span class="workflow-time">~1–3 min</span>
+              </div>
+            </div>
+          </div>
+          <div class="workflow-category">
+            <h3 class="workflow-category-title">Localization</h3>
+            <div class="workflow-grid">
+              <div class="workflow-card">
+                <h4>Translation &amp; Localization</h4>
+                <p>Translate into 20+ languages with cultural adaptation (idioms, humor, references).</p>
+                <span class="workflow-time">~2–4 min per language</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <section id="panel-calendar" class="dashboard-panel" aria-labelledby="calendar-heading" hidden>
+        <div class="dashboard-section">
+          <h2 class="dashboard-section-title" id="calendar-heading"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Content Calendar</h2>
+          <div class="calendar-placeholder">Your content calendar and scheduled posts will appear here. Connect your platforms to see upcoming publish dates.</div>
+        </div>
+      </section>
+
+      <section id="panel-analytics" class="dashboard-panel" aria-labelledby="analytics-heading" hidden>
+        <div class="dashboard-section">
+          <h2 class="dashboard-section-title" id="analytics-heading"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Performance Overview (Last 30 Days)</h2>
+          <div class="metrics-row">
+            <div class="metric-card">
+              <div class="metric-value">—</div>
+              <div class="metric-label">Total Reach</div>
+              <div class="metric-delta positive">Connect platforms to see data</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">—</div>
+              <div class="metric-label">Conversions</div>
+              <div class="metric-delta positive">Connect platforms to see data</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">—</div>
+              <div class="metric-label">Engagement Rate</div>
+              <div class="metric-delta">Connect platforms to see data</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">—</div>
+              <div class="metric-label">Campaign ROI</div>
+              <div class="metric-delta">Connect platforms to see data</div>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-section">
+          <h2 class="dashboard-section-title"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> By Campaign</h2>
+          <ul class="platform-list">
+            <li><span class="platform-name">Active campaigns</span><span class="platform-stat">Connect to see stats</span></li>
+          </ul>
+        </div>
+        <div class="dashboard-section">
+          <h2 class="dashboard-section-title"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Top Performing Content</h2>
+          <ul class="top-content-list">
+            <li><span class="content-title">No data yet.</span> Connect platforms and publish content to see top performers.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../js/theme.js"></script>
+  <script>
+    (function () {
+      var navLinks = document.querySelectorAll('.dashboard-nav-link');
+      var panels = document.querySelectorAll('.dashboard-panel');
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var panelId = link.getAttribute('data-panel');
+          navLinks.forEach(function (l) { l.classList.remove('active'); });
+          panels.forEach(function (p) {
+            p.classList.remove('active');
+            p.hidden = true;
+          });
+          link.classList.add('active');
+          var panel = document.getElementById(panelId);
+          if (panel) {
+            panel.classList.add('active');
+            panel.hidden = false;
+          }
+        });
+      });
+    })();
+
+    // Copilot sub-tabs: switch between Agents and Workflows inside the Copilot panel
+    (function () {
+      var copilotPanel = document.getElementById('panel-agents');
+      if (!copilotPanel) return;
+
+      var subnavLinks = copilotPanel.querySelectorAll('.copilot-subnav-link');
+      var subpanels = copilotPanel.querySelectorAll('.copilot-subpanel');
+
+      subnavLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var panelId = link.getAttribute('data-copilot-panel');
+
+          subnavLinks.forEach(function (l) { l.classList.remove('active'); });
+          subpanels.forEach(function (p) {
+            p.classList.remove('active');
+            p.hidden = true;
+          });
+
+          link.classList.add('active');
+          var panel = document.getElementById(panelId);
+          if (panel) {
+            panel.classList.add('active');
+            panel.hidden = false;
+          }
+        });
+      });
+    })();
+
+    // Second Brain sub-tabs: Knowledge Sources, Voice DNA, Agent Settings, History & usage
+    (function () {
+      var sbPanel = document.getElementById('panel-second-brain');
+      if (!sbPanel) return;
+      var sbLinks = sbPanel.querySelectorAll('.sb-subnav.copilot-subnav .copilot-subnav-link[data-sb-panel]');
+      var sbSubpanels = sbPanel.querySelectorAll('.sb-subpanel');
+      sbLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var panelId = link.getAttribute('data-sb-panel');
+          sbLinks.forEach(function (l) { l.classList.remove('active'); });
+          sbSubpanels.forEach(function (p) {
+            p.classList.remove('active');
+            p.hidden = true;
+          });
+          link.classList.add('active');
+          var panel = document.getElementById(panelId);
+          if (panel) {
+            panel.classList.add('active');
+            panel.hidden = false;
+          }
+        });
+      });
+    })();
+
+    // Second Brain property chooser: filter tab content by selected property
+    (function () {
+      var sbPanel = document.getElementById('panel-second-brain');
+      if (!sbPanel) return;
+      var chooserBtns = sbPanel.querySelectorAll('.sb-property-chooser-btn[data-sb-property]');
+      var currentProperty = 'all';
+
+      function propertyMatches(element, selected) {
+        if (selected === 'all') return true;
+        var attr = element.getAttribute('data-sb-property');
+        if (!attr) return false;
+        var list = attr.trim().split(/\s+/);
+        return list.indexOf(selected) !== -1 || list.indexOf('all') !== -1;
+      }
+
+      function applyPropertyFilter(selected) {
+        currentProperty = selected;
+        sbPanel.querySelectorAll('[data-sb-property]').forEach(function (el) {
+          el.hidden = !propertyMatches(el, selected);
+        });
+        sbPanel.querySelectorAll('[data-sb-property-intro="all"]').forEach(function (el) {
+          el.hidden = selected !== 'all';
+        });
+        sbPanel.querySelectorAll('[data-sb-property-intro="single"]').forEach(function (el) {
+          el.hidden = selected === 'all';
+        });
+        chooserBtns.forEach(function (btn) {
+          var prop = btn.getAttribute('data-sb-property');
+          btn.classList.toggle('active', prop === selected);
+          btn.setAttribute('aria-pressed', prop === selected ? 'true' : 'false');
+        });
+      }
+
+      chooserBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var prop = btn.getAttribute('data-sb-property');
+          if (prop) applyPropertyFilter(prop);
+        });
+      });
+      applyPropertyFilter('all');
+    })();
+
+    // Agent card clicks -> open chat with that agent preselected.
+    // Generates an `agent` id from the card/workflow title.
+    (function () {
+      function slugify(str) {
+        return safeText(str)
+          .toLowerCase()
+          .replace(/&/g, ' and ')
+          .replace(/[^a-z0-9]+/g, ' ')
+          .trim()
+          .replace(/\s+/g, '-');
+      }
+
+      function safeText(v) {
+        return v == null ? '' : String(v);
+      }
+
+      function openChat(agentId) {
+        var url = '../agent-chat.html?agent=' + encodeURIComponent(agentId) + '&model=mini';
+        window.location.href = url;
+      }
+
+      var agentCards = document.querySelectorAll('#panel-agents .agent-card');
+      agentCards.forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var title = a.textContent || '';
+          var agentId = slugify(title);
+          openChat(agentId);
+        });
+      });
+
+      var workflowCards = document.querySelectorAll('#panel-agents .workflow-card');
+      workflowCards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          var h4 = card.querySelector('h4');
+          var title = h4 ? h4.textContent : card.textContent;
+          var agentId = slugify(title);
+          openChat(agentId);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

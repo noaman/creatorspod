@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creators Pod | Executive Onboarding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <script src="../../assets/app.js" defer></script>
+  </head>
+  <body data-theme="light" data-persona="executive">
+    <header class="site-header">
+      <div class="shell persona-nav">
+        <a class="brand-lockup" href="../../index.html">
+          <span class="brand-lockup__mark">C</span>
+          <span class="brand-lockup__text">
+            <span class="brand-lockup__eyebrow">Executive flow</span>
+            <span>Creators Pod</span>
+          </span>
+        </a>
+        <div class="inline-links">
+          <a class="inline-link" href="../../index.html">Home</a>
+          <a class="inline-link" href="./dashboard.html">Dashboard preview</a>
+          <a class="inline-link" href="../creator/onboarding.html">Creator flow</a>
+          <a class="inline-link" href="../brand/onboarding.html">Brand flow</a>
+        </div>
+        <button class="button-ghost theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+          Dark
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-intro">
+        <div class="shell page-intro__grid">
+          <article class="panel hero-panel reveal">
+            <div class="kicker">Executives and thought leaders</div>
+            <h1 style="font-size: clamp(2.6rem, 5vw, 4.8rem);">Turn private knowledge into public authority with less effort.</h1>
+            <p style="margin-top: 20px;">
+              This onboarding flow is optimized for leaders who need high-quality, compliant content
+              without spending hours in creation tools every week.
+            </p>
+            <div class="hero-actions">
+              <button class="button-secondary" type="button" data-step-target="0">Begin setup</button>
+              <a class="button-ghost" href="./dashboard.html">Skip to dashboard</a>
+            </div>
+          </article>
+
+          <aside class="panel progress-shell reveal reveal-delay-1">
+            <div class="meta-label">Authority setup</div>
+            <h3>From internal context to public narrative</h3>
+            <p>
+              The system learns your communication style, connects private context sources, and
+              prepares a review-first publishing rhythm tied to your calendar and priorities.
+            </p>
+            <div class="progress-track">
+              <span data-progress-fill></span>
+            </div>
+            <p style="margin-top: 12px;" data-progress-label>Step 1 of 5</p>
+            <div class="summary-list">
+              <div>
+                <strong>Primary outcome</strong>
+                <span>A consistent thought-leadership engine with compliance-friendly review.</span>
+              </div>
+              <div>
+                <strong>Suggested control mode</strong>
+                <span data-autonomy-output>Strategic assist</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell steps-layout">
+          <div class="steps-stack" data-onboarding-flow>
+            <article class="step-card is-active" data-step="0">
+              <div class="meta-label">Step 01</div>
+              <h3>Capture the executive voice and communication posture</h3>
+              <p>
+                Creators Pod builds a ghostwriting-ready voice profile that reflects your natural
+                tone while respecting strategic and compliance boundaries.
+              </p>
+              <div class="step-grid">
+                <label class="input-shell">
+                  <span>Role focus</span>
+                  <input type="text" value="B2B SaaS CEO" />
+                </label>
+                <label class="input-shell">
+                  <span>Primary channel</span>
+                  <select>
+                    <option>LinkedIn</option>
+                    <option>Newsletter</option>
+                    <option>Blog</option>
+                  </select>
+                </label>
+                <label class="input-shell" style="grid-column: 1 / -1;">
+                  <span>Communication style</span>
+                  <textarea>Clear, evidence-led, concise, slightly provocative, never boastful, always grounded in first-hand operating experience.</textarea>
+                </label>
+              </div>
+            </article>
+
+            <article class="step-card" data-step="1">
+              <div class="meta-label">Step 02</div>
+              <h3>Connect trusted context sources</h3>
+              <p>
+                Import internal reports, previous talks, meeting notes, and calendar context so the
+                platform can draft timely posts without exposing sensitive detail.
+              </p>
+              <div class="step-grid">
+                <div class="selection-card is-selected">
+                  <div class="field-title">Board and strategy notes</div>
+                  <p>Source material for thoughtful, differentiated public narratives.</p>
+                </div>
+                <div class="selection-card is-selected">
+                  <div class="field-title">Calendar</div>
+                  <p>Upcoming events, product launches, panels, and speaking engagements.</p>
+                </div>
+                <div class="selection-card is-selected">
+                  <div class="field-title">Previous posts and articles</div>
+                  <p>Used to learn cadence, structure, and rhetorical habits.</p>
+                </div>
+                <div class="selection-card">
+                  <div class="field-title">Investor updates</div>
+                  <p>Optional restricted source for framing external commentary with care.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="step-card" data-step="2">
+              <div class="meta-label">Step 03</div>
+              <h3>Define the authority-building goal</h3>
+              <p>
+                Choose the long-horizon outcome. The system then decomposes it into a publish rhythm,
+                narrative themes, and event-aware opportunities.
+              </p>
+              <div class="step-grid">
+                <label class="input-shell" style="grid-column: 1 / -1;">
+                  <span>Authority objective</span>
+                  <textarea>Become a recognized voice in vertical SaaS strategy on LinkedIn over the next six months and support the upcoming conference circuit.</textarea>
+                </label>
+              </div>
+              <div class="slider-row">
+                <div class="field-title">Autonomy level</div>
+                <input type="range" min="0" max="2" value="1" data-autonomy-range />
+                <div class="slider-scale">
+                  <span>Draft support</span>
+                  <span>Strategic assist</span>
+                  <span>Authority autopilot</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="step-card" data-step="3">
+              <div class="meta-label">Step 04</div>
+              <h3>Set review and publishing boundaries</h3>
+              <p>
+                Decide what can be automated and what must always pass through legal, comms, or a
+                chief of staff before publishing.
+              </p>
+              <div class="step-grid">
+                <div class="toggle-card is-selected">
+                  <div class="field-title">LinkedIn</div>
+                  <p>Calendar-aware post generation and queueing.</p>
+                </div>
+                <div class="toggle-card is-selected">
+                  <div class="field-title">Newsletter</div>
+                  <p>Monthly thought-leadership repurposing from approved source material.</p>
+                </div>
+                <div class="toggle-card is-selected">
+                  <div class="field-title">Chief of staff review</div>
+                  <p>Mandatory review for any post referencing product, revenue, or partnerships.</p>
+                </div>
+                <div class="toggle-card">
+                  <div class="field-title">Legal compliance review</div>
+                  <p>Optional always-on path for regulated industries or market-sensitive updates.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="step-card" data-step="4">
+              <div class="meta-label">Step 05</div>
+              <h3>Generate the first leadership content cycle</h3>
+              <p>
+                The system now compiles your next public-facing sprint, including event-aware post
+                suggestions, article drafts, and review-ready briefs.
+              </p>
+              <div class="summary-list">
+                <div>
+                  <strong>Prepared outputs</strong>
+                  <span>3 LinkedIn drafts, 1 event amplification sequence, 1 long-form article outline.</span>
+                </div>
+                <div>
+                  <strong>Risk posture</strong>
+                  <span>Private data remains grounded to internal context sources and externalized through review-first summaries.</span>
+                </div>
+                <div>
+                  <strong>Operating loop</strong>
+                  <span>The calendar agent scans for timely windows and queues recommendations automatically.</span>
+                </div>
+              </div>
+            </article>
+
+            <div class="step-actions">
+              <button class="button-ghost" type="button" data-prev-step>Previous</button>
+              <button class="button-secondary" type="button" data-next-step>Next step</button>
+              <button class="button" type="button" data-complete-onboarding hidden>Generate first cycle</button>
+            </div>
+          </div>
+
+          <aside class="panel preview-card">
+            <div class="meta-label">Workspace preview</div>
+            <h3>What the executive dashboard emphasizes</h3>
+            <div class="check-list">
+              <span>Calendar-aware publishing opportunities before key events.</span>
+              <span>Internal data to external narrative with careful framing.</span>
+              <span>Ghostwriting in a stored executive voice profile.</span>
+              <span>Review-first publishing with explainable reasoning trails.</span>
+            </div>
+            <div class="panel-actions" style="margin-top: 22px;">
+              <a class="button" href="./dashboard.html">Open executive dashboard</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer__inner">
+        <p>Executive onboarding prototype for Creators Pod.</p>
+        <div class="inline-links">
+          <a class="inline-link" href="../creator/onboarding.html">Creator onboarding</a>
+          <a class="inline-link" href="../brand/onboarding.html">Brand onboarding</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

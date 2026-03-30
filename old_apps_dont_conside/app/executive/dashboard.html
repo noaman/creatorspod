@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Executive Dashboard | Creators Pod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <script>
+    (function(){var t=localStorage.getItem('creatorspod-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();
+  </script>
+</head>
+<body class="dashboard-page">
+  <header class="header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">Creators<span>Pod</span></a>
+      <nav class="nav">
+        <button type="button" class="theme-switch" data-theme-toggle aria-label="Toggle dark mode">
+          <i class="fa-solid fa-sun theme-switch-icon sun" aria-hidden="true"></i>
+          <i class="fa-solid fa-moon theme-switch-icon moon" aria-hidden="true"></i>
+        </button>
+        <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <h1 class="dashboard-title">Executive Dashboard</h1>
+    <p class="dashboard-subtitle">Authority Builder · Thought leadership and calendar-triggered content</p>
+
+    <nav class="dashboard-nav" aria-label="Dashboard sections">
+      <a href="#panel-dashboard" class="dashboard-nav-link active" data-panel="panel-dashboard"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Dashboard</a>
+      <a href="#panel-second-brain" class="dashboard-nav-link" data-panel="panel-second-brain"><i class="fa-solid fa-brain" aria-hidden="true"></i> Second Brain</a>
+      <a href="#panel-agents" class="dashboard-nav-link" data-panel="panel-agents"><i class="fa-solid fa-robot" aria-hidden="true"></i> Copilot</a>
+      <a href="#panel-calendar" class="dashboard-nav-link" data-panel="panel-calendar"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Calendar</a>
+      <a href="#panel-analytics" class="dashboard-nav-link" data-panel="panel-analytics"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Analytics</a>
+    </nav>
+
+    <div class="dashboard-layout">
+      <section id="panel-dashboard" class="dashboard-panel active" aria-labelledby="dashboard-heading">
+        <div class="dashboard-section executive-brief">
+          <h2 class="dashboard-section-title" id="dashboard-heading"><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Authority Builder — Executive Dashboard</h2>
+
+          <!-- Authority Building Progress (userflow: Top Section) -->
+          <div class="goal-progress">
+            <p class="goal-progress-title">Authority Building Progress</p>
+            <h3 class="goal-progress-headline"><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Reach 10,000 LinkedIn followers by Q3 2026</h3>
+            <div class="goal-progress-bar-wrap">
+              <div class="goal-progress-bar" style="width: 72%;" role="progressbar" aria-valuenow="7248" aria-valuemin="0" aria-valuemax="10000" title="72%"></div>
+            </div>
+            <p class="goal-progress-stats">
+              <span><strong>7,248</strong> / 10,000 (72%)</span>
+              <span>+312 this week</span>
+              <span><i class="fa-solid fa-briefcase" aria-hidden="true"></i> 18 inbound inquiries this month</span>
+            </p>
+          </div>
+
+          <!-- Calendar-Triggered Opportunities (userflow: Middle Section) -->
+          <h3 class="dashboard-section-title" style="margin-top: 0;"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Upcoming Opportunities</h3>
+          <p class="dashboard-section-intro" style="margin-bottom: var(--space-4);">Content ideas tied to your calendar. Generate drafts and schedule around key events.</p>
+          <ul class="opportunity-list" aria-label="Calendar-triggered content opportunities">
+            <li class="opportunity-card">
+              <h4 class="opportunity-card-title"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> AWS Re:Invent (Dec 2, 2025)</h4>
+              <p class="opportunity-card-suggestion">Suggested: LinkedIn post on AI infrastructure trends. Publish 3 days before event for maximum reach.</p>
+              <div class="opportunity-card-actions">
+                <button type="button" class="btn btn-primary">Generate Draft</button>
+                <span>Publish 3 days before event</span>
+              </div>
+            </li>
+            <li class="opportunity-card">
+              <h4 class="opportunity-card-title"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Q4 Board Meeting (Nov 18, 2025)</h4>
+              <p class="opportunity-card-suggestion">Suggested: Post-meeting reflection article. Share non-confidential insights to reinforce thought leadership.</p>
+              <div class="opportunity-card-actions">
+                <button type="button" class="btn btn-primary">Generate Draft</button>
+                <span>Publish 1 day after</span>
+              </div>
+            </li>
+            <li class="opportunity-card">
+              <h4 class="opportunity-card-title"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Industry Report Release (Nov 21, 2025)</h4>
+              <p class="opportunity-card-suggestion">Suggested: Commentary post or thread reacting to key findings. Position yourself as a go-to voice.</p>
+              <div class="opportunity-card-actions">
+                <button type="button" class="btn btn-primary">Generate Draft</button>
+                <span>Publish day of release</span>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Ready for Your Review (userflow: Bottom Section) -->
+          <h3 class="dashboard-section-title"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Ready for Your Review</h3>
+          <p class="dashboard-section-intro" style="margin-bottom: var(--space-4);">Content drafted by Authority Builder. Review, edit, and schedule when ready.</p>
+          <ul class="review-queue-list" aria-label="Content ready for review">
+            <li class="review-queue-card">
+              <div class="review-queue-card-content">
+                <h4 class="review-queue-card-title"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> LinkedIn Article: &quot;3 Lessons from 20 Years in Tech&quot;</h4>
+                <p class="review-queue-meta">2,100 words · Voice: 97% match</p>
+              </div>
+              <div class="review-queue-actions">
+                <button type="button" class="btn btn-primary">Review &amp; Edit</button>
+              </div>
+            </li>
+            <li class="review-queue-card">
+              <div class="review-queue-card-content">
+                <h4 class="review-queue-card-title"><i class="fa-solid fa-comments" aria-hidden="true"></i> Thread: Hot take on OpenAI announcement</h4>
+                <p class="review-queue-meta">9 tweets · Voice: 95% match</p>
+              </div>
+              <div class="review-queue-actions">
+                <button type="button" class="btn btn-primary">Review &amp; Schedule</button>
+              </div>
+            </li>
+            <li class="review-queue-card">
+              <div class="review-queue-card-content">
+                <h4 class="review-queue-card-title"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Newsletter Draft: November insights roundup</h4>
+                <p class="review-queue-meta">In progress · ETA: 5 min</p>
+              </div>
+              <div class="review-queue-actions">
+                <button type="button" class="btn btn-ghost" disabled>Review when ready</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="panel-second-brain" class="dashboard-panel" aria-labelledby="second-brain-heading" hidden>
+        <div class="dashboard-section second-brain-creator">
+          <h2 class="dashboard-section-title" id="second-brain-heading"><i class="fa-solid fa-brain" aria-hidden="true"></i> Second Brain</h2>
+
+          <!-- Authority Builder intro: professional, authoritative -->
+          <div class="sb-agent-message" role="status" aria-live="polite">
+            <div class="sb-agent-avatar" aria-hidden="true"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></div>
+            <div class="sb-agent-bubble">
+              <p class="sb-agent-greeting">Your thought leadership command center.</p>
+              <p class="sb-agent-body">Knowledge sources, voice profile, and autonomy settings live here. I use them to surface calendar-triggered opportunities, keep drafts on-brand, and scan every output for confidential material before anything goes to your review queue.</p>
+            </div>
+          </div>
+
+          <div class="sb-activity-strip">
+            <span class="sb-activity-label"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i> Right now</span>
+            <ul class="sb-activity-list" aria-label="Authority Builder activity">
+              <li>Calendar sync (Google) — <span class="sb-activity-time">25 min ago</span></li>
+              <li>3 opportunities this week · 2 drafts ready for review</li>
+              <li>Next network growth check <strong>tomorrow 6 AM</strong></li>
+            </ul>
+          </div>
+
+          <nav class="copilot-subnav sb-subnav" aria-label="Second Brain sections">
+            <a href="#" class="copilot-subnav-link active" data-sb-panel="sb-panel-sources">Knowledge Sources</a>
+            <a href="#" class="copilot-subnav-link" data-sb-panel="sb-panel-voice">Voice DNA</a>
+            <a href="#" class="copilot-subnav-link" data-sb-panel="sb-panel-settings">Agent Settings</a>
+            <a href="#" class="copilot-subnav-link" data-sb-panel="sb-panel-history">History &amp; usage</a>
+          </nav>
+
+          <!-- Panel: Knowledge Sources -->
+          <div id="sb-panel-sources" class="sb-subpanel active">
+            <div class="sb-panel-block">
+              <h3 class="sb-panel-title"><i class="fa-solid fa-plug" aria-hidden="true"></i> Where I pull context &amp; insights</h3>
+              <p class="sb-panel-intro">Calendar, profile, and private knowledge feed your opportunities and drafts. I never use confidential content in public-facing output without your approval.</p>
+              <ul class="sb-sources-list" aria-label="Connected knowledge sources">
+                <li class="sb-source-item connected">
+                  <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                  <span class="sb-source-name">Google Calendar</span>
+                  <span class="sb-source-meta">Events synced for opportunity triggers</span>
+                </li>
+                <li class="sb-source-item connected">
+                  <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                  <span class="sb-source-name">LinkedIn Profile</span>
+                  <span class="sb-source-meta">287 posts indexed · voice reference</span>
+                </li>
+                <li class="sb-source-item connected">
+                  <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                  <span class="sb-source-name">Google Drive</span>
+                  <span class="sb-source-meta">Meeting notes, reports (private)</span>
+                </li>
+                <li class="sb-source-item connected">
+                  <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                  <span class="sb-source-name">Newsletter archive</span>
+                  <span class="sb-source-meta">Substack · tone &amp; themes</span>
+                </li>
+                <li class="sb-source-item connected">
+                  <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+                  <span class="sb-source-name">Medium / blog</span>
+                  <span class="sb-source-meta">Articles for voice &amp; expertise</span>
+                </li>
+                <li class="sb-source-item sb-source-connect">
+                  <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                  <span class="sb-source-name">Connect more sources</span>
+                  <span class="sb-source-meta">Outlook, Notion, OneNote</span>
+                  <button type="button" class="btn btn-primary btn-sm">Add source</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Panel: Voice DNA -->
+          <div id="sb-panel-voice" class="sb-subpanel" hidden>
+            <div class="sb-panel-block">
+              <h3 class="sb-panel-title"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i> How I sound like you</h3>
+              <p class="sb-panel-intro">Professional profile, expertise areas, and communication style. Every article, post, and newsletter draft is scored against this fingerprint.</p>
+              <div class="sb-voice-card">
+                <div class="sb-voice-score-wrap">
+                  <span class="sb-voice-score" aria-label="97 percent">97%</span>
+                  <span class="sb-voice-score-label">Voice confidence</span>
+                </div>
+                <dl class="sb-voice-details">
+                  <div class="sb-voice-row">
+                    <dt>Tone</dt>
+                    <dd>Professional, authoritative, insight-driven</dd>
+                  </div>
+                  <div class="sb-voice-row">
+                    <dt>Reading level</dt>
+                    <dd>Professional / 12th grade — clear, substantive</dd>
+                  </div>
+                  <div class="sb-voice-row">
+                    <dt>Signature elements</dt>
+                    <dd>Data-backed claims, framing with &quot;here&apos;s what I&apos;ve learned,&quot; concise conclusions</dd>
+                  </div>
+                </dl>
+                <div class="sb-voice-actions">
+                  <button type="button" class="btn btn-primary">Refine voice profile</button>
+                  <span class="sb-voice-hint">Upload new samples or adjust expertise areas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel: Agent Settings -->
+          <div id="sb-panel-settings" class="sb-subpanel" hidden>
+            <div class="sb-panel-block">
+              <h3 class="sb-panel-title"><i class="fa-solid fa-sliders" aria-hidden="true"></i> Autonomy &amp; safeguards</h3>
+              <p class="sb-panel-intro">Review required by default. Calendar and insight mining run in the background; nothing publishes without your approval.</p>
+              <ul class="sb-autonomy-list" aria-label="Agent autonomy settings">
+                <li class="sb-autonomy-item">
+                  <div class="sb-autonomy-header">
+                    <span class="sb-autonomy-name">Content generation</span>
+                    <span class="sb-autonomy-badge supervised">Review required</span>
+                  </div>
+                  <p class="sb-autonomy-desc">I draft articles, posts, and newsletters on your trigger or from calendar opportunities; you review before anything is scheduled.</p>
+                  <div class="sb-autonomy-slider-wrap">
+                    <div class="sb-autonomy-track"><div class="sb-autonomy-fill" style="width: 60%;" aria-hidden="true"></div></div>
+                    <div class="sb-autonomy-legends">
+                      <span class="sb-autonomy-legend">You trigger only</span>
+                      <span class="sb-autonomy-legend">Suggest + you approve</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="sb-autonomy-item">
+                  <div class="sb-autonomy-header">
+                    <span class="sb-autonomy-name">Publishing</span>
+                    <span class="sb-autonomy-badge supervised">Requires approval</span>
+                  </div>
+                  <p class="sb-autonomy-desc">Nothing goes live until you tap Review &amp; Schedule or Review &amp; Edit.</p>
+                  <div class="sb-autonomy-slider-wrap">
+                    <div class="sb-autonomy-track"><div class="sb-autonomy-fill" style="width: 15%;" aria-hidden="true"></div></div>
+                    <div class="sb-autonomy-legends">
+                      <span class="sb-autonomy-legend">Always you</span>
+                      <span class="sb-autonomy-legend">Optimal time auto-publish</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="sb-autonomy-item">
+                  <div class="sb-autonomy-header">
+                    <span class="sb-autonomy-name">Calendar &amp; network</span>
+                    <span class="sb-autonomy-badge autopilot">Full autopilot</span>
+                  </div>
+                  <p class="sb-autonomy-desc">I sync calendar daily and surface opportunities; I track network growth and inbound inquiries. You act on suggestions.</p>
+                  <div class="sb-autonomy-slider-wrap">
+                    <div class="sb-autonomy-track"><div class="sb-autonomy-fill" style="width: 100%;" aria-hidden="true"></div></div>
+                    <div class="sb-autonomy-legends">
+                      <span class="sb-autonomy-legend">Manual</span>
+                      <span class="sb-autonomy-legend">I run in background</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <p class="sb-autonomy-note"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Compliance scan runs on every draft. Confidential data is never included in suggested copy without your explicit approval.</p>
+            </div>
+          </div>
+
+          <!-- Panel: History & token analytics -->
+          <div id="sb-panel-history" class="sb-subpanel" hidden>
+            <div class="sb-panel-block">
+              <h3 class="sb-panel-title"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> When I ran &amp; what I used</h3>
+              <p class="sb-panel-intro">Actions behind your dashboard—calendar sync, opportunity suggestions, draft generation, voice checks, and compliance scans. Token counts per action.</p>
+
+              <div class="sb-history-summary">
+                <div class="sb-history-last-run">
+                  <span class="sb-history-label">Last run</span>
+                  <span class="sb-history-value"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> 25 min ago</span>
+                  <span class="sb-history-detail">Calendar sync (Google)</span>
+                </div>
+                <div class="sb-history-totals">
+                  <span class="sb-history-label">Today</span>
+                  <span class="sb-history-value">~18.4K tokens</span>
+                  <span class="sb-history-detail">7 actions</span>
+                </div>
+              </div>
+
+              <div class="sb-history-table-wrap">
+                <table class="sb-history-table" aria-label="Agent run history and token usage">
+                  <thead>
+                    <tr>
+                      <th scope="col">When</th>
+                      <th scope="col">Action</th>
+                      <th scope="col" class="sb-history-col-tokens">Tokens</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="sb-history-time">25 min ago</span></td>
+                      <td><span class="sb-history-action">Calendar sync</span> — Google Calendar · AWS Re:Invent, Q4 Board, Industry Report</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">2,100</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="sb-history-time">1h 10m ago</span></td>
+                      <td><span class="sb-history-action">Opportunity suggestions</span> — 3 calendar-triggered angles for the week</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">4,200</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="sb-history-time">2h 00m ago</span></td>
+                      <td><span class="sb-history-action">Voice check</span> — LinkedIn article &quot;3 Lessons from 20 Years in Tech&quot; → 97% match</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">1,400</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="sb-history-time">2h 00m ago</span></td>
+                      <td><span class="sb-history-action">Voice check</span> — Thread (OpenAI announcement) → 95% match</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">980</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="sb-history-time">3h 30m ago</span></td>
+                      <td><span class="sb-history-action">Compliance scan</span> — Newsletter draft (November roundup) · no confidential flags</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">1,850</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="sb-history-time">4h 00m ago</span></td>
+                      <td><span class="sb-history-action">Network growth check</span> — 7,248 followers (+312), 18 inbound inquiries</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">2,620</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="sb-history-time">5h 00m ago</span></td>
+                      <td><span class="sb-history-action">Insight mining</span> — Meeting notes → newsletter insights (in progress)</td>
+                      <td class="sb-history-col-tokens"><span class="sb-history-tokens">4,250</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="sb-history-footnote"><i class="fa-solid fa-info-circle" aria-hidden="true"></i> Tokens = input + output per action. Resets daily; monthly rollups in billing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-agents" class="dashboard-panel" aria-labelledby="agents-heading" hidden>
+        <nav class="copilot-subnav" aria-label="Copilot sub-sections">
+          <a href="#" class="copilot-subnav-link active" data-copilot-panel="copilot-panel-agents">Agents</a>
+          <a href="#" class="copilot-subnav-link" data-copilot-panel="copilot-panel-workflows">Workflows</a>
+        </nav>
+
+        <div id="copilot-panel-agents" class="copilot-subpanel active">
+          <div class="dashboard-section">
+            <h2 class="dashboard-section-title" id="agents-heading"><i class="fa-solid fa-robot" aria-hidden="true"></i> Agents</h2>
+            <p class="dashboard-section-intro">Agents are specialist AI tools that do one job brilliantly. Pick a task, get a result in seconds—no workflow required. We have 85+ agents across writing, research, visual, and more.</p>
+            <div class="agent-category">
+              <h3 class="agent-category-title">Content creation &amp; writing</h3>
+              <div class="agent-grid">
+                <a href="#" class="agent-card"><i class="fa-solid fa-pen" aria-hidden="true"></i> Script Writer</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-quote-right" aria-hidden="true"></i> Caption Generator</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-heading" aria-hidden="true"></i> Headlines</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-fish" aria-hidden="true"></i> Hook Creator</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> CTA Builder</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-user" aria-hidden="true"></i> Bio Writer</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-comments" aria-hidden="true"></i> Thread Writer</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Subject Lines</a>
+              </div>
+            </div>
+            <div class="agent-category">
+              <h3 class="agent-category-title">Optimization &amp; enhancement</h3>
+              <div class="agent-grid">
+                <a href="#" class="agent-card"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> SEO Optimizer</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i> Readability</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Grammar &amp; Polish</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-palette" aria-hidden="true"></i> Tone Shifter</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-arrows-up-down" aria-hidden="true"></i> Length Adjuster</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Engagement Predictor</a>
+              </div>
+            </div>
+            <div class="agent-category">
+              <h3 class="agent-category-title">Research &amp; intelligence</h3>
+              <div class="agent-grid">
+                <a href="#" class="agent-card"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i> Keyword Research</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-users" aria-hidden="true"></i> Audience Insight</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Fact Checker</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-quote-left" aria-hidden="true"></i> Quote Finder</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Statistics Finder</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Content Gap Analyzer</a>
+              </div>
+            </div>
+            <div class="agent-category">
+              <h3 class="agent-category-title">Visual &amp; platform</h3>
+              <div class="agent-grid">
+                <a href="#" class="agent-card"><i class="fa-solid fa-hashtag" aria-hidden="true"></i> Hashtag Generator</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-image" aria-hidden="true"></i> Thumbnail Creator</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-film" aria-hidden="true"></i> Video Storyboard</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-language" aria-hidden="true"></i> Translate</a>
+                <a href="#" class="agent-card"><i class="fa-solid fa-compress" aria-hidden="true"></i> Summarize</a>
+                <a href="#" class="agent-card"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn Algorithm</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="copilot-panel-workflows" class="copilot-subpanel" hidden>
+          <div class="dashboard-section">
+            <h2 class="dashboard-section-title"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i> Multi-Agent Workflows</h2>
+            <p class="dashboard-section-intro">Workflows chain multiple agents together for complex tasks. One click runs the full sequence and delivers a complete output—e.g. a research report, podcast, or 10+ repurposed assets.</p>
+            <div class="workflow-category">
+              <h3 class="workflow-category-title">Research &amp; long-form</h3>
+              <div class="workflow-grid">
+                <div class="workflow-card">
+                  <h4>Deep Research</h4>
+                  <p>Comprehensive report with citations from 20+ sources. Research → Content → Formatting agents.</p>
+                  <span class="workflow-time">~5–10 min</span>
+                </div>
+                <div class="workflow-card">
+                  <h4>Newsletter</h4>
+                  <p>Auto-curate from your ClawDB into a full HTML newsletter. Ready for Substack or Mailchimp.</p>
+                  <span class="workflow-time">~3–5 min</span>
+                </div>
+              </div>
+            </div>
+            <div class="workflow-category">
+              <h3 class="workflow-category-title">Audio &amp; video</h3>
+              <div class="workflow-grid">
+                <div class="workflow-card">
+                  <h4>Video Concept</h4>
+                  <p>Script, shot-by-shot storyboard, B-roll suggestions, and production doc with timestamps.</p>
+                  <span class="workflow-time">~4–8 min</span>
+                </div>
+                <div class="workflow-card">
+                  <h4>Create Podcast</h4>
+                  <p>Turn a blog or article into a conversational script + AI voiceover + show notes.</p>
+                  <span class="workflow-time">~3–7 min</span>
+                </div>
+              </div>
+            </div>
+            <div class="workflow-category">
+              <h3 class="workflow-category-title">Repurposing &amp; distribution</h3>
+              <div class="workflow-grid">
+                <div class="workflow-card">
+                  <h4>Cross-Platform Repurposing</h4>
+                  <p>One video or article → 10+ pieces: Reels, thread, LinkedIn article, newsletter, carousel.</p>
+                  <span class="workflow-time">~8–15 min</span>
+                </div>
+                <div class="workflow-card">
+                  <h4>Image Generation</h4>
+                  <p>Custom images from your content context, resized for each platform.</p>
+                  <span class="workflow-time">~1–3 min</span>
+                </div>
+              </div>
+            </div>
+            <div class="workflow-category">
+              <h3 class="workflow-category-title">Localization</h3>
+              <div class="workflow-grid">
+                <div class="workflow-card">
+                  <h4>Translation &amp; Localization</h4>
+                  <p>Translate into 20+ languages with cultural adaptation (idioms, humor, references).</p>
+                  <span class="workflow-time">~2–4 min per language</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-calendar" class="dashboard-panel" aria-labelledby="calendar-heading" hidden>
+        <div class="dashboard-section">
+          <h2 class="dashboard-section-title" id="calendar-heading"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Content Calendar</h2>
+          <div class="calendar-placeholder">Your content calendar and scheduled posts will appear here. Connect your platforms to see upcoming publish dates.</div>
+        </div>
+      </section>
+
+      <section id="panel-analytics" class="dashboard-panel" aria-labelledby="analytics-heading" hidden>
+        <div class="dashboard-section">
+          <h2 class="dashboard-section-title" id="analytics-heading"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Performance Overview (Last 30 Days)</h2>
+          <div class="metrics-row">
+            <div class="metric-card">
+              <div class="metric-value">—</div>
+              <div class="metric-label">Total Reach</div>
+              <div class="metric-delta positive">Connect platforms to see data</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">—</div>
+              <div class="metric-label">New Followers</div>
+              <div class="metric-delta positive">Connect platforms to see data</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">—</div>
+              <div class="metric-label">Engagement Rate</div>
+              <div class="metric-delta">Connect platforms to see data</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">—</div>
+              <div class="metric-label">Click-Through Rate</div>
+              <div class="metric-delta">Connect platforms to see data</div>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-section">
+          <h2 class="dashboard-section-title"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> By Platform</h2>
+          <ul class="platform-list">
+            <li><span class="platform-name">LinkedIn</span><span class="platform-stat">Connect to see stats</span></li>
+            <li><span class="platform-name">Twitter/X</span><span class="platform-stat">Connect to see stats</span></li>
+            <li><span class="platform-name">Medium</span><span class="platform-stat">Connect to see stats</span></li>
+            <li><span class="platform-name">Newsletter</span><span class="platform-stat">Connect to see stats</span></li>
+          </ul>
+        </div>
+        <div class="dashboard-section">
+          <h2 class="dashboard-section-title"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Top Performing Content</h2>
+          <ul class="top-content-list">
+            <li><span class="content-title">No data yet.</span> Connect platforms and publish content to see top performers.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../js/theme.js"></script>
+  <script>
+    (function () {
+      var navLinks = document.querySelectorAll('.dashboard-nav-link');
+      var panels = document.querySelectorAll('.dashboard-panel');
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var panelId = link.getAttribute('data-panel');
+          navLinks.forEach(function (l) { l.classList.remove('active'); });
+          panels.forEach(function (p) {
+            p.classList.remove('active');
+            p.hidden = true;
+          });
+          link.classList.add('active');
+          var panel = document.getElementById(panelId);
+          if (panel) {
+            panel.classList.add('active');
+            panel.hidden = false;
+          }
+        });
+      });
+    })();
+
+    // Copilot sub-tabs: switch between Agents and Workflows inside the Copilot panel
+    (function () {
+      var copilotPanel = document.getElementById('panel-agents');
+      if (!copilotPanel) return;
+
+      var subnavLinks = copilotPanel.querySelectorAll('.copilot-subnav-link');
+      var subpanels = copilotPanel.querySelectorAll('.copilot-subpanel');
+
+      subnavLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var panelId = link.getAttribute('data-copilot-panel');
+
+          subnavLinks.forEach(function (l) { l.classList.remove('active'); });
+          subpanels.forEach(function (p) {
+            p.classList.remove('active');
+            p.hidden = true;
+          });
+
+          link.classList.add('active');
+          var panel = document.getElementById(panelId);
+          if (panel) {
+            panel.classList.add('active');
+            panel.hidden = false;
+          }
+        });
+      });
+    })();
+
+    // Second Brain sub-tabs: Knowledge Sources, Voice DNA, Agent Settings, History & usage
+    (function () {
+      var sbPanel = document.getElementById('panel-second-brain');
+      if (!sbPanel) return;
+      var sbLinks = sbPanel.querySelectorAll('.sb-subnav.copilot-subnav .copilot-subnav-link[data-sb-panel]');
+      var sbSubpanels = sbPanel.querySelectorAll('.sb-subpanel');
+      sbLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var panelId = link.getAttribute('data-sb-panel');
+          sbLinks.forEach(function (l) { l.classList.remove('active'); });
+          sbSubpanels.forEach(function (p) {
+            p.classList.remove('active');
+            p.hidden = true;
+          });
+          link.classList.add('active');
+          var panel = document.getElementById(panelId);
+          if (panel) {
+            panel.classList.add('active');
+            panel.hidden = false;
+          }
+        });
+      });
+    })();
+
+    // Agent card clicks -> open chat with that agent preselected.
+    // Generates an `agent` id from the card/workflow title.
+    (function () {
+      function slugify(str) {
+        return safeText(str)
+          .toLowerCase()
+          .replace(/&/g, ' and ')
+          .replace(/[^a-z0-9]+/g, ' ')
+          .trim()
+          .replace(/\s+/g, '-');
+      }
+
+      function safeText(v) {
+        return v == null ? '' : String(v);
+      }
+
+      function openChat(agentId) {
+        var url = '../agent-chat.html?agent=' + encodeURIComponent(agentId) + '&model=mini';
+        window.location.href = url;
+      }
+
+      var agentCards = document.querySelectorAll('#panel-agents .agent-card');
+      agentCards.forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var title = a.textContent || '';
+          var agentId = slugify(title);
+          openChat(agentId);
+        });
+      });
+
+      var workflowCards = document.querySelectorAll('#panel-agents .workflow-card');
+      workflowCards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          var h4 = card.querySelector('h4');
+          var title = h4 ? h4.textContent : card.textContent;
+          var agentId = slugify(title);
+          openChat(agentId);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator dashboard — Creators Pod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F8F6F2;
+      --surface: #FFFEFB;
+      --surface-2: #EFEDE8;
+      --border: #E2DFD9;
+      --border-strong: #C9C4BA;
+      --text: #1A1814;
+      --text-2: #5C5650;
+      --text-3: #8A847A;
+      --accent: #2D6B5C;
+      --accent-dim: rgba(45, 107, 92, 0.12);
+      --success: #2D6B5C;
+      --ff-display: 'Instrument Serif', Georgia, serif;
+      --ff-body: 'DM Sans', sans-serif;
+      --ff-mono: 'JetBrains Mono', monospace;
+      --radius: 12px;
+    }
+    [data-theme="dark"] {
+      --bg: #0F0E0C;
+      --surface: #181614;
+      --surface-2: #1E1C18;
+      --border: #2A2722;
+      --border-strong: #3D3832;
+      --text: #F2F0EB;
+      --text-2: #B5B0A6;
+      --text-3: #7A756C;
+      --accent: #4A9B88;
+      --accent-dim: rgba(74, 155, 136, 0.15);
+      --success: #4A9B88;
+    }
+    html, body { height: 100%; font-family: var(--ff-body); font-size: 15px; color: var(--text); background: var(--bg); display: flex; flex-direction: column; transition: background 0.2s, color 0.2s; }
+
+    .topbar {
+      height: 56px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+    .topbar-logo { font-family: var(--ff-display); font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .topbar-badge { font-family: var(--ff-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--border); border-radius: 100px; padding: 4px 12px; }
+    .topbar-nav { margin-left: auto; display: flex; gap: 8px; }
+    .topbar-nav a { font-size: 13px; font-weight: 500; color: var(--text-2); text-decoration: none; padding: 8px 14px; border-radius: 8px; transition: all 0.2s; }
+    .topbar-nav a:hover { color: var(--text); background: var(--surface-2); }
+    .topbar-nav a.active { color: var(--accent); background: var(--accent-dim); }
+
+    .layout { flex: 1; display: grid; grid-template-columns: 220px 1fr 300px; overflow: hidden; }
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 20px 16px;
+      overflow-y: auto;
+    }
+    .profile-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 20px; }
+    .profile-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #6BB8A8); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 8px; }
+    .profile-name { font-weight: 700; font-size: 13px; color: var(--text); }
+    .profile-handle { font-size: 11px; color: var(--text-3); margin-bottom: 8px; }
+    .profile-goal { font-size: 11px; color: var(--text-2); line-height: 1.45; padding: 8px; background: var(--accent-dim); border-radius: 8px; }
+    .sidebar-label { font-family: var(--ff-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; padding: 0 6px; }
+    .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text-2); text-decoration: none; transition: all 0.2s; margin-bottom: 2px; }
+    .sidebar-link:hover { background: var(--surface-2); color: var(--text); }
+    .sidebar-link.active { background: var(--accent-dim); color: var(--accent); }
+    .stat-box { padding: 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; }
+    .stat-label { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+    .stat-value { font-family: var(--ff-display); font-size: 20px; font-weight: 400; color: var(--accent); }
+    .stat-change { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+    .stat-change.up { color: var(--success); }
+
+    .main { overflow-y: auto; padding: 24px; }
+    .page-title { font-family: var(--ff-display); font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+    .page-sub { font-size: 14px; color: var(--text-2); margin-bottom: 24px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .card-title { font-weight: 700; font-size: 14px; color: var(--text); }
+    .card-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; background: var(--accent-dim); color: var(--accent); }
+    .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+    .metric { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .metric-label { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+    .metric-value { font-family: var(--ff-display); font-size: 24px; font-weight: 400; color: var(--text); }
+    .metric-change { font-size: 12px; margin-top: 4px; }
+    .metric-change.up { color: var(--success); }
+    .trend-list { display: flex; flex-direction: column; gap: 8px; }
+    .trend-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .trend-item:hover { border-color: var(--accent); background: var(--accent-dim); }
+    .trend-score { font-weight: 700; font-size: 14px; color: var(--accent); min-width: 36px; }
+    .trend-topic { font-weight: 600; font-size: 13px; color: var(--text); }
+    .trend-meta { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+    .cal-day { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 10px; min-height: 80px; }
+    .cal-day-num { font-size: 11px; font-weight: 600; color: var(--text-3); margin-bottom: 6px; }
+    .cal-event { font-size: 11px; color: var(--text-2); padding: 4px 6px; background: var(--accent-dim); border-radius: 6px; margin-bottom: 4px; cursor: pointer; }
+    .cal-event:hover { opacity: 0.9; }
+
+    .panel {
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .panel-title { font-weight: 700; font-size: 13px; color: var(--text); margin-bottom: 12px; }
+    .agent-status { display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: var(--surface-2); border-radius: 8px; margin-bottom: 12px; }
+    .agent-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+    .agent-status span { font-size: 12px; color: var(--text-2); }
+    .quick-action { display: block; width: 100%; text-align: left; padding: 12px 14px; background: var(--accent-dim); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--accent); cursor: pointer; margin-bottom: 8px; transition: all 0.2s; }
+    .quick-action:hover { background: var(--accent); color: #fff; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html" class="topbar-logo"><span class="logo-dot"></span>Creators Pod</a>
+  <span class="topbar-badge">Creator dashboard</span>
+  <nav class="topbar-nav">
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="../index.html">Home</a>
+  </nav>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="profile-card">
+      <div class="profile-avatar">🎬</div>
+      <div class="profile-name">Alex Creator</div>
+      <div class="profile-handle">@alexcreates · YouTube, TikTok</div>
+      <div class="profile-goal">Grow YouTube to 100K in 90 days</div>
+    </div>
+    <div class="sidebar-label">Menu</div>
+    <a href="dashboard.html" class="sidebar-link active">📊 Dashboard</a>
+    <a href="#" class="sidebar-link">📅 Content calendar</a>
+    <a href="#" class="sidebar-link">🔍 Trends & research</a>
+    <a href="#" class="sidebar-link">✍️ Drafts</a>
+    <a href="#" class="sidebar-link">📈 Analytics</a>
+    <div class="sidebar-label" style="margin-top:20px">This week</div>
+    <div class="stat-box">
+      <div class="stat-label">Planned posts</div>
+      <div class="stat-value">7</div>
+      <div class="stat-change">3 ready to publish</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Voice score (avg)</div>
+      <div class="stat-value">91%</div>
+      <div class="stat-change up">↑ vs last week</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1 class="page-title">Creator dashboard</h1>
+    <p class="page-sub">Your content pipeline and performance at a glance. The agent is running in the background.</p>
+
+    <div class="metrics-row">
+      <div class="metric">
+        <div class="metric-label">Subscribers (YouTube)</div>
+        <div class="metric-value">42.3K</div>
+        <div class="metric-change up">↑ 2.1K this month</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Views (7d)</div>
+        <div class="metric-value">186K</div>
+        <div class="metric-change up">↑ 24%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Engagement rate</div>
+        <div class="metric-value">8.2%</div>
+        <div class="metric-change up">↑ 0.8%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Content time saved</div>
+        <div class="metric-value">12h</div>
+        <div class="metric-change">This week</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Trending in your niche</span>
+        <span class="card-badge">Live</span>
+      </div>
+      <div class="trend-list">
+        <div class="trend-item">
+          <span class="trend-score">94</span>
+          <div><div class="trend-topic">AI productivity tools — "I tested 12 so you don't have to"</div><div class="trend-meta">YouTube · TikTok · +340% search</div></div>
+        </div>
+        <div class="trend-item">
+          <span class="trend-score">88</span>
+          <div><div class="trend-topic">Creator burnout — rest and repurpose strategies</div><div class="trend-meta">LinkedIn · Newsletter · Rising</div></div>
+        </div>
+        <div class="trend-item">
+          <span class="trend-score">82</span>
+          <div><div class="trend-topic">Short-form to long-form pipeline</div><div class="trend-meta">YouTube · 3 scripts suggested</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">This week's content calendar</span>
+        <span class="card-badge">Agent-scheduled</span>
+      </div>
+      <div class="calendar-grid">
+        <div class="cal-day"><div class="cal-day-num">Mon 18</div><div class="cal-event">YouTube script draft</div><div class="cal-event">TikTok hook × 2</div></div>
+        <div class="cal-day"><div class="cal-day-num">Tue 19</div><div class="cal-event">Publish YouTube</div><div class="cal-event">Newsletter draft</div></div>
+        <div class="cal-day"><div class="cal-day-num">Wed 20</div><div class="cal-event">TikTok × 2</div></div>
+        <div class="cal-day"><div class="cal-day-num">Thu 21</div><div class="cal-event">LinkedIn post</div></div>
+        <div class="cal-day"><div class="cal-day-num">Fri 22</div><div class="cal-event">YouTube edit</div></div>
+        <div class="cal-day"><div class="cal-day-num">Sat 23</div></div>
+        <div class="cal-day"><div class="cal-day-num">Sun 24</div><div class="cal-event">Newsletter send</div></div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="panel">
+    <div class="panel-title">Pod agent</div>
+    <div class="agent-status">
+      <span class="agent-dot"></span>
+      <span>Research & scheduling active</span>
+    </div>
+    <button class="quick-action">💬 Ask the agent</button>
+    <button class="quick-action">📋 View workflow</button>
+    <button class="quick-action">⚙️ Autopilot settings</button>
+  </aside>
+</div>
+<script>if (localStorage.getItem('creatorspod-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');</script>
+</body>
+</html>
